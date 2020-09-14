@@ -1,0 +1,41 @@
+{
+  "name": "coronastats-fl-crawler",
+  "version": "1.0.0",
+  "description": "Node.js-based crawler for coronastats-fl",
+  "keywords": [
+    "crawler"
+  ],
+  "author": "Christian Mund <git@mundpropaganda.net>",
+  "homepage": "https://coronastats-fl.mundpropaganda.net",
+  "license": "GPL-3.0-or-later",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkkrist/coronastats-fl.git"
+  },
+  "scripts": {
+    "start": "node lib"
+  },
+  "bugs": {
+    "url": "https://github.com/kkkrist/coronastats-fl/issues"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "jsdom": "^16.4.0",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.8.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
+}
