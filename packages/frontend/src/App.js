@@ -56,8 +56,7 @@ const markers = [
   {
     axis: 'y',
     value: 50,
-    legend:
-      'Grenzwert für Anzahl Neuinfizierte pro 100.000 innerhalb von 7 Tagen',
+    legend: 'Grenzwert für 7-Tage-Inzidenz',
     legendPosition: 'top',
     lineStyle: { stroke: '#aaa', strokeWidth: 1 }
   }
@@ -182,7 +181,7 @@ const App = () => {
               },
               {
                 color: '#BB8DEE',
-                id: 'Neuinfizierte pro 100.000 innerhalb von 7 Tagen',
+                id: '7-Tage-Inzidenz',
                 data: []
               },
               {
