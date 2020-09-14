@@ -1,0 +1,62 @@
+body {
+  background-color: #fafafa;
+  font-family: monospace;
+  margin: 2rem;
+}
+
+h1 {
+  margin-bottom: 1.5em;
+}
+
+table {
+  background-color: #fafafa;
+  border-radius: 7px;
+  border: 1px solid #999;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  font-size: small;
+  padding: 0.25rem;
+  text-align: left;
+}
+
+table th,
+table td {
+  padding: 0.25em;
+}
+
+table td:first-child span {
+  display: block;
+  height: 1em;
+  width: 1em;
+}
+
+table td:last-child {
+  font-weight: bold;
+  text-align: right;
+}
+
+footer {
+  margin: 2rem 0;
+}
+
+footer a {
+  color: inherit;
+}
+
+#app {
+  text-align: center;
+}
+
+#container {
+  background-color: #fff;
+  border-radius: 7px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#linechart {
+  height: calc(100vh - 19.5rem);
+  min-height: 450px;
+  min-width: 1024px;
+}

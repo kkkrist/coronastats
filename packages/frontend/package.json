@@ -1,0 +1,60 @@
+{
+  "name": "coronastats-fl-frontend",
+  "version": "1.1.0",
+  "description": "Corona Dashboard for Flensburg",
+  "keywords": [
+    "react"
+  ],
+  "author": "Christian Mund <git@mundpropaganda.net>",
+  "homepage": "https://coronastats-fl.mundpropaganda.net",
+  "license": "GPL-3.0-or-later",
+  "directories": {
+    "lib": "lib"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkkrist/coronastats-fl.git"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "lint": "prettier-standard src/**/*.css src/**/*.js",
+    "release": "npm run lint && git diff-index --quiet HEAD -- && standard-version",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
+  },
+  "bugs": {
+    "url": "https://github.com/kkkrist/coronastats-fl/issues"
+  },
+  "dependencies": {
+    "@nivo/line": "^0.62.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "dayjs": "^1.8.35",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.3"
+  },
+  "devDependencies": {
+    "prettier-standard": "^16.4.1"
+  }
+}
