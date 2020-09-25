@@ -253,6 +253,14 @@ const App = () => {
           <a href='https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1'>
             flensburg.de
           </a>
+          . Die 7-Tage-Inzidenz wird mit einer Einwohnerzahl von 96.920
+          errechnet (Quelle:{' '}
+          <a href='https://www.flensburg.de/Politik-Verwaltung/Stadtverwaltung/Statistik'>
+            Statistikstelle der Stadt Flensburg
+          </a>
+          , Stichtag 31.12.2019). Das Robert Koch-Institut verwendet für seine
+          Berechnungen eine Einwohnerzahl von 89.504, somit unterscheiden sich
+          die Werte. (Stand 25.09.2019)
         </p>
 
         <p>
