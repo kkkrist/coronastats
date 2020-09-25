@@ -209,7 +209,14 @@ const App = () => {
       <h1>Zeitverlauf der Corona-Fälle in Flensburg</h1>
 
       <div id='container'>
-        <div id='linechart'>
+        <div
+          id='linechart'
+          style={{
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
           {error ? (
             <code>{error.message || error.toString()}</code>
           ) : stats.length === 0 ? (
