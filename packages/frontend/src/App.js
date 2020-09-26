@@ -259,8 +259,8 @@ const App = () => {
             Statistikstelle der Stadt Flensburg
           </a>
           , Stichtag 31.12.2019). Das Robert Koch-Institut verwendet für seine
-          Berechnungen eine Einwohnerzahl von 89.504, somit unterscheiden sich
-          die Werte. (Stand 25.09.2019)
+          Berechnungen eine Einwohnerzahl von 89.504, somit können sich die
+          Werte unterscheiden. (Stand 25.09.2019)
         </p>
 
         <p>
