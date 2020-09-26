@@ -15,8 +15,7 @@ module.exports = () =>
               (acc, cur) => {
                 if (
                   cur.textContent !== 'Fallzahlen' ||
-                  !cur.nextElementSibling ||
-                  !cur.previousElementSibling
+                  !cur.nextElementSibling
                 ) {
                   return acc
                 }
@@ -37,9 +36,21 @@ module.exports = () =>
                   /([0-9]+) Verstorbene/
                 )
 
-                const dateMatch = cur.previousElementSibling.textContent.match(
-                  /^([0-9]+)\.([0-9]+)\.([0-9]+)/
-                )
+                let dateMatch
+
+                while (dateMatch === undefined) {
+                  if (!cur.previousElementSibling) {
+                    cur = cur.parentElement
+                  }
+
+                  if (cur.previousElementSibling.tagName === 'H2') {
+                    dateMatch = cur.previousElementSibling.textContent.match(
+                      /^([0-9]+)\.([0-9]+)\.([0-9]+)/
+                    )
+                  } else {
+                    cur = cur.previousElementSibling
+                  }
+                }
 
                 if (
                   !infectedMatch ||
