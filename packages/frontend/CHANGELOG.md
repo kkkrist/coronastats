@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/kkkrist/coronastats-fl/compare/v1.1.2...v1.1.3) (2020-09-26)
+
+
+### Bug Fixes
+
+* **App:** re-phrase 7-day incidence description ([39a9eed](https://github.com/kkkrist/coronastats-fl/commit/39a9eed0cce4ae03d7616524dc38b56961e4ba49))
+
+
+
+
+
 ## [1.1.2](https://github.com/kkkrist/coronastats-fl/compare/v1.1.1...v1.1.2) (2020-09-25)
 
 
