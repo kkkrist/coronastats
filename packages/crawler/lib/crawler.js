@@ -21,19 +21,19 @@ module.exports = () =>
                 }
 
                 const infectedMatch = cur.nextElementSibling.textContent.match(
-                  /([0-9]+) nachweislich Infizierte/
+                  /([0-9]+)\*? nachweislich Infizierte/
                 )
 
                 const recoveredMatch = cur.nextElementSibling.textContent.match(
-                  /([0-9]+) davon gelten als genesen/
+                  /([0-9]+)\*? davon gelten als genesen/
                 )
 
                 const quarantinedMatch = cur.nextElementSibling.textContent.match(
-                  /([0-9]+) Verdachtsfälle in Quarantäne/
+                  /([0-9]+)\*? Verdachtsfälle in Quarantäne/
                 )
 
                 const deathsMatch = cur.nextElementSibling.textContent.match(
-                  /([0-9]+) Verstorbene/
+                  /([0-9]+)\*? Verstorbene/
                 )
 
                 let dateMatch
