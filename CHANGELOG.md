@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/kkkrist/coronastats-fl/compare/v1.1.3...v1.1.4) (2020-09-28)
+
+
+### Bug Fixes
+
+* **crawler:** consider (optional) asterisks in metrics notation ([d687d6a](https://github.com/kkkrist/coronastats-fl/commit/d687d6accc5b083f863ac093c82d4f4ee7dab510))
+
+
+
+
+
 ## [1.1.3](https://github.com/kkkrist/coronastats-fl/compare/v1.1.2...v1.1.3) (2020-09-26)
 
 
