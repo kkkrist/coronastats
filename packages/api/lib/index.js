@@ -47,7 +47,10 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'GET') {
     try {
       const col = await getCollection(colName)
-      const data = await col.find({}).toArray()
+      const data = await col
+        .find()
+        .sort({ date: -1 })
+        .toArray()
       console.info(`${data.length} entries read from ${colName}`)
       res.setHeader('content-type', 'application/json')
       return res.end(JSON.stringify(data))
