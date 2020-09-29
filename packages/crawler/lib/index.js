@@ -6,10 +6,10 @@ require('dotenv').config()
 
 crawler()
   .then(data =>
-    fetch(`${process.env.JSONBIN_BASEURL}/me/${process.env.JSONBIN_ENDPOINT}`, {
+    fetch(`${process.env.API_URL}/${process.env.API_COL}`, {
       body: JSON.stringify(data),
       headers: {
-        Authorization: `token ${process.env.JSONBIN_TOKEN}`,
+        Authorization: `token ${process.env.API_TOKEN}`,
         'Content-Type': 'application/json'
       },
       method: 'POST'
