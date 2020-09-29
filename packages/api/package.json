@@ -1,6 +1,6 @@
 {
   "name": "api",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "API layer for coronastats-fl",
   "author": "Christian Mund <git@mundpropaganda.net>",
   "homepage": "https://coronastats-fl.mundpropaganda.net",
