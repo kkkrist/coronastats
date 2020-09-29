@@ -70,14 +70,14 @@ const server = http.createServer(async (req, res) => {
       })
       .on('end', async () => {
         try {
-          const last_modified = new Date()
+          const last_modified = new Date().toISOString()
           const payload = JSON.parse(Buffer.concat(body).toString())
           const col = await getCollection(colName)
           const output = await Promise.all(
-            payload.map(({ date, ...entry }) =>
+            payload.map(entry =>
               col.updateOne(
                 { date: entry.date },
-                { $set: { date: new Date(date), last_modified, ...entry } },
+                { $set: { last_modified, ...entry } },
                 { upsert: true }
               )
             )
