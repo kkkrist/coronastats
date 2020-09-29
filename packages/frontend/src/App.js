@@ -124,7 +124,9 @@ const App = () => {
 
   useEffect(() => {
     window
-      .fetch('https://coronastats-fl.mundpropaganda.net/api/fl')
+      .fetch('https://coronastats-fl.mundpropaganda.net/api/fl', {
+        headers: { accept: 'application/json' }
+      })
       .then(res => res.json())
       .then(data => {
         setError()
