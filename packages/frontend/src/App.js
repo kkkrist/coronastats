@@ -124,7 +124,7 @@ const App = () => {
 
   useEffect(() => {
     window
-      .fetch('https://jsonbin.mundpropaganda.net/kkkrist/coronastats-fl/')
+      .fetch('https://coronastats-fl.mundpropaganda.net/api/fl')
       .then(res => res.json())
       .then(data => {
         setError()
