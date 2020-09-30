@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/kkkrist/coronastats-fl/compare/v1.2.0...v1.3.0) (2020-09-30)
+
+
+### Features
+
+* **crawler:** turn into multi-crawler framework, add crawler for "rz" ([fe8720f](https://github.com/kkkrist/coronastats-fl/commit/fe8720f6859995349d2c3be4b7ff3fe084d0860b))
+
+
+
+
+
 # [1.2.0](https://github.com/kkkrist/coronastats-fl/compare/v1.1.4...v1.2.0) (2020-09-29)
 
 
