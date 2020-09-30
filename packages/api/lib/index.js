@@ -17,7 +17,7 @@ const getCollection = async name => {
     const client = await MongoClient.connect(process.env.MONGODB_URI, {
       useUnifiedTopology: true
     })
-    const db = await client.db('coronastats')
+    const db = await client.db(process.env.MONGODB_DBNAME)
     return await db.collection(name)
   } catch (error) {
     throw error
