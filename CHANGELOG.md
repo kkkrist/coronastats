@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/kkkrist/coronastats-fl/compare/v1.3.0...v1.3.1) (2020-09-30)
+
+
+### Features
+
+* **api:** add "expires" http header to get requests, set to next full hour ([b4064fa](https://github.com/kkkrist/coronastats-fl/commit/b4064fa9489cc2236528e68d8431f594a9c71a09))
+
+
+
+
+
 # [1.3.0](https://github.com/kkkrist/coronastats-fl/compare/v1.2.0...v1.3.0) (2020-09-30)
 
 
