@@ -24,6 +24,7 @@
     "url": "https://github.com/kkkrist/coronastats-fl/issues"
   },
   "dependencies": {
+    "dayjs": "^1.9.1",
     "dotenv": "^8.2.0",
     "mongodb": "^3.6.2"
   },

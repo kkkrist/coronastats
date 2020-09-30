@@ -1,3 +1,4 @@
+const dayjs = require('dayjs')
 const http = require('http')
 const MongoClient = require('mongodb').MongoClient
 
@@ -51,8 +52,18 @@ const server = http.createServer(async (req, res) => {
         .find()
         .sort({ date: -1 })
         .toArray()
+      const now = dayjs()
       console.info(`${data.length} entries read from "${colName}"`)
       res.setHeader('content-type', 'application/json')
+      res.setHeader(
+        'expires',
+        now
+          .set('hour', now.hour() + 1)
+          .set('minute', 0)
+          .set('seconds', 0)
+          .toDate()
+          .toGMTString()
+      )
       return res.end(JSON.stringify(data))
     } catch (error) {
       console.error(error)
