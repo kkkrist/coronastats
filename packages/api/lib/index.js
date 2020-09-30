@@ -51,7 +51,7 @@ const server = http.createServer(async (req, res) => {
         .find()
         .sort({ date: -1 })
         .toArray()
-      console.info(`${data.length} entries read from ${colName}`)
+      console.info(`${data.length} entries read from "${colName}"`)
       res.setHeader('content-type', 'application/json')
       return res.end(JSON.stringify(data))
     } catch (error) {
@@ -76,7 +76,7 @@ const server = http.createServer(async (req, res) => {
           const last_modified = new Date().toISOString()
           const payload = JSON.parse(Buffer.concat(body).toString())
           const col = await getCollection(colName)
-          const output = await Promise.all(
+          await Promise.all(
             payload.map(entry =>
               col.updateOne(
                 { date: entry.date },
