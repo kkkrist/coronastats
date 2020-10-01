@@ -59,7 +59,7 @@ const server = http.createServer(async (req, res) => {
         'expires',
         now
           .set('hour', now.hour() + 1)
-          .set('minute', 0)
+          .set('minute', 1)
           .set('seconds', 0)
           .toDate()
           .toGMTString()
