@@ -11,7 +11,7 @@ module.exports = () =>
       .then(dom => {
         const stats = [...dom.window.document.querySelectorAll('h3')].reduce(
           (acc, cur) => {
-            if (cur.textContent !== 'Fallzahlen' || !cur.nextElementSibling) {
+            if (!cur.textContent.startsWith('Fallzahlen') || !cur.nextElementSibling) {
               return acc
             }
 
