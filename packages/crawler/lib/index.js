@@ -1,10 +1,11 @@
 const fetch = require('node-fetch')
 const fl = require('./fl')
 const rz = require('./rz')
+const sl = require('./sl')
 
 require('dotenv').config()
 
-Promise.all([fl(), rz()])
+Promise.all([fl(), rz(), sl()])
   .then(data =>
     Promise.all(
       data.map(({ col, stats }) =>
