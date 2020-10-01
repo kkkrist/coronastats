@@ -8,7 +8,7 @@ module.exports = () =>
       const str = dom.window.document.querySelector('h1').nextElementSibling
         .textContent
 
-      const infectedMatch = str.match(/gesamt.*?([0-9]+)/)
+      const infectedMatch = str.match(/gesamt.*?([0-9]+)/i)
 
       const recoveredMatch = str.match(/genesen.*?([0-9]+)/)
 
