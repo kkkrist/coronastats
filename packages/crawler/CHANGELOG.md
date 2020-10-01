@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/kkkrist/coronastats-fl/compare/v1.3.2...v1.4.0) (2020-10-01)
+
+
+### Bug Fixes
+
+* **crawler:** account for same-day updates notation in "fl" crawler ([5f8207c](https://github.com/kkkrist/coronastats-fl/commit/5f8207c479176138f9eebbb9b42fea846c9b7dc2))
+* **crawler:** handle crawlers independently ([665b06a](https://github.com/kkkrist/coronastats-fl/commit/665b06a1d71e60e2501573df96d725fdfe4996cf))
+* **crawler:** match case-insensitive in "rz" crawler ([238bfbf](https://github.com/kkkrist/coronastats-fl/commit/238bfbf9b560810e2fb45ac93b18787a468c0dc9))
+
+
+### Features
+
+* **crawler:** add crawler for "sl" collection ([3953fd1](https://github.com/kkkrist/coronastats-fl/commit/3953fd1953d388f3ed811423f93933b0c0ae7a9f))
+
+
+
+
+
 # [1.3.0](https://github.com/kkkrist/coronastats-fl/compare/v1.2.0...v1.3.0) (2020-09-30)
 
 

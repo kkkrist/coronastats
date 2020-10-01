@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/kkkrist/coronastats-fl/compare/v1.3.2...v1.4.0) (2020-10-01)
+
+
+### Bug Fixes
+
+* **crawler:** account for same-day updates notation in "fl" crawler ([5f8207c](https://github.com/kkkrist/coronastats-fl/commit/5f8207c479176138f9eebbb9b42fea846c9b7dc2))
+* **crawler:** handle crawlers independently ([665b06a](https://github.com/kkkrist/coronastats-fl/commit/665b06a1d71e60e2501573df96d725fdfe4996cf))
+* **crawler:** match case-insensitive in "rz" crawler ([238bfbf](https://github.com/kkkrist/coronastats-fl/commit/238bfbf9b560810e2fb45ac93b18787a468c0dc9))
+* **frontend:** add an asterisk to link 7-day incidence desc ([4c36fe0](https://github.com/kkkrist/coronastats-fl/commit/4c36fe02a9a36280ea5c89daba0c716e120bece1))
+* **frontend:** fix legend props ([6d2c169](https://github.com/kkkrist/coronastats-fl/commit/6d2c1697c84131252d10068548d4f5ecded5e82c))
+
+
+### Features
+
+* **crawler:** add crawler for "sl" collection ([3953fd1](https://github.com/kkkrist/coronastats-fl/commit/3953fd1953d388f3ed811423f93933b0c0ae7a9f))
+* **frontend:** show last modified timestamp in desc ([8d4195f](https://github.com/kkkrist/coronastats-fl/commit/8d4195f59386fea687855889dfcc351931557e6d))
+
+
+
+
+
 ## [1.3.2](https://github.com/kkkrist/coronastats-fl/compare/v1.3.1...v1.3.2) (2020-10-01)
 
 
