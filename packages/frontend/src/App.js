@@ -184,7 +184,7 @@ const App = () => {
               },
               {
                 color: '#BB8DEE',
-                id: '7-Tage-Inzidenz',
+                id: '7-Tage-Inzidenz*',
                 data: []
               },
               {
@@ -256,7 +256,10 @@ const App = () => {
           <a href='https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1'>
             flensburg.de
           </a>
-          . Die 7-Tage-Inzidenz wird mit einer Einwohnerzahl von 96.920
+        </p>
+
+        <p>
+          *) Die 7-Tage-Inzidenz wird mit einer Einwohnerzahl von 96.920
           errechnet (Quelle:{' '}
           <a href='https://www.flensburg.de/Politik-Verwaltung/Stadtverwaltung/Statistik'>
             Statistikstelle der Stadt Flensburg
