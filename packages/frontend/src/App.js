@@ -20,7 +20,8 @@ const legends = [
     direction: 'column',
     translateX: 16,
     translateY: -32,
-    itemHeight: 20
+    itemHeight: 20,
+    itemWidth: 0
   }
 ]
 
