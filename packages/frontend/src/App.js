@@ -121,6 +121,7 @@ const sliceTooltip = ({ slice: { points } }) => (
 
 const App = () => {
   const [error, setError] = useState()
+  const [lastModified, setLastModified] = useState()
   const [stats, setStats] = useState([])
 
   useEffect(() => {
@@ -131,6 +132,14 @@ const App = () => {
       .then(res => res.json())
       .then(data => {
         setError()
+
+        setLastModified(
+          data.reduce((timestamp, cur) => {
+            const last_modified = Date.parse(cur.last_modified)
+            return last_modified > timestamp ? last_modified : timestamp
+          }, 0)
+        )
+
         setStats(
           data.reduce(
             (acc, cur, index, arr) => {
@@ -256,6 +265,9 @@ const App = () => {
           <a href='https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1'>
             flensburg.de
           </a>
+          {lastModified
+            ? ` (Letztes Update: ${new Date(lastModified).toLocaleString()})`
+            : ''}
         </p>
 
         <p>
