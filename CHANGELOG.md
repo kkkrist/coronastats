@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/kkkrist/coronastats-fl/compare/v1.3.1...v1.3.2) (2020-10-01)
+
+
+### Bug Fixes
+
+* **api:** tweak cache settings ([a741110](https://github.com/kkkrist/coronastats-fl/commit/a741110866713d1608377eb7cc173ebd2b3a08c3))
+
+
+
+
+
 ## [1.3.1](https://github.com/kkkrist/coronastats-fl/compare/v1.3.0...v1.3.1) (2020-09-30)
 
 
