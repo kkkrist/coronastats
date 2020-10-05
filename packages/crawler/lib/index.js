@@ -28,8 +28,13 @@ Promise.all([fl(), rz(), sl()])
     const errors = docs.filter(d => d.error)
     const newDocs = docs.filter(d => /^1-/.test(d.rev))
     const updatedDocs = docs.filter(d => d.rev && !/^1-/.test(d.rev))
+
     console.log(
       `${newDocs.length} inserted, ${updatedDocs.length} updated, ${errors.length} errors`
     )
+
+    if (errors.length > 0) {
+      console.log(errors)
+    }
   })
   .catch(console.error)
