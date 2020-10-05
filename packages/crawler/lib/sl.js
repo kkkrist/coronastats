@@ -62,6 +62,7 @@ module.exports = () =>
         }
 
         const entry = {
+          areacode: 'sl',
           date: new Date(
             `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]} ${dateMatch[4]}:${dateMatch[5]}`
           ),
@@ -70,14 +71,11 @@ module.exports = () =>
           recovered: Number(recoveredMatch[1])
         }
 
-        resolve({
-          col: 'sl',
-          stats: [
-            {
-              ...entry,
-              active: entry.infected - entry.recovered - entry.deaths
-            }
-          ]
-        })
+        resolve([
+          {
+            ...entry,
+            active: entry.infected - entry.recovered - entry.deaths
+          }
+        ])
       }, reject)
   })

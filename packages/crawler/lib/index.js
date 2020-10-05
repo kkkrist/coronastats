@@ -8,27 +8,28 @@ require('dotenv').config()
 
 const db = nano(process.env.COUCHDB_URI)
 
-const mapper = ({ col, stats }) =>
-  db.find({ selector: { area: col } }).then(({ docs }) =>
+const upsert = stats =>
+  db.get('_all_docs', { include_docs: true }).then(({ rows }) =>
     db.bulk({
       docs: stats.map(stat => ({
-        ...(docs.find(doc => doc.date === stat.date.toISOString()) || {}),
+        ...(rows.find(
+          ({ doc }) =>
+            doc.areacode === stat.areacode && doc.date === stat.date.toISOString()
+        )?.doc || {}),
         ...stat,
-        area: col,
         last_modified: new Date().toISOString()
       }))
     })
   )
 
-fl()
-  .then(mapper)
-  .then(console.log)
-  .catch(console.error)
-rz()
-  .then(mapper)
-  .then(console.log)
-  .catch(console.error)
-sl()
-  .then(mapper)
-  .then(console.log)
+Promise.all([fl(), rz(), sl()])
+  .then(data => upsert(data.flat()))
+  .then(docs => {
+    const errors = docs.filter(d => d.error)
+    const newDocs = docs.filter(d => /^1-/.test(d.rev))
+    const updatedDocs = docs.filter(d => d.rev && !/^1-/.test(d.rev))
+    console.log(
+      `${newDocs.length} inserted, ${updatedDocs.length} updated, ${errors.length} errors`
+    )
+  })
   .catch(console.error)
