@@ -1,23 +1,34 @@
-const fetch = require('node-fetch')
+const nano = require('nano')
+
 const fl = require('./fl')
 const rz = require('./rz')
 const sl = require('./sl')
 
 require('dotenv').config()
 
+const db = nano(process.env.COUCHDB_URI)
+
 const mapper = ({ col, stats }) =>
-  fetch(`${process.env.API_URL}/${col}`, {
-    body: JSON.stringify(stats),
-    headers: {
-      Authorization: `token ${process.env.API_TOKEN}`,
-      'Content-Type': 'application/json'
-    },
-    method: 'POST'
-  }).then(
-    res => console.log(res.url, res.status, res.statusText),
-    console.error
+  db.find({ selector: { area: col } }).then(({ docs }) =>
+    db.bulk({
+      docs: stats.map(stat => ({
+        ...(docs.find(doc => doc.date === stat.date.toISOString()) || {}),
+        ...stat,
+        area: col,
+        last_modified: new Date().toISOString()
+      }))
+    })
   )
 
-fl().then(mapper)
-rz().then(mapper)
-sl().then(mapper)
+fl()
+  .then(mapper)
+  .then(console.log)
+  .catch(console.error)
+rz()
+  .then(mapper)
+  .then(console.log)
+  .catch(console.error)
+sl()
+  .then(mapper)
+  .then(console.log)
+  .catch(console.error)
