@@ -21,20 +21,18 @@ module.exports = () =>
       }
 
       const entry = {
+        areacode: 'rz',
         date: new Date(`${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`),
         deaths: Number(deathsMatch[1]),
         infected: Number(infectedMatch[1]),
         recovered: Number(recoveredMatch[1])
       }
 
-      resolve({
-        col: 'rz',
-        stats: [
-          {
-            ...entry,
-            active: entry.infected - entry.recovered - entry.deaths
-          }
-        ]
-      })
+      resolve([
+        {
+          ...entry,
+          active: entry.infected - entry.recovered - entry.deaths
+        }
+      ])
     }, reject)
   })

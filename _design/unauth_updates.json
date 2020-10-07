@@ -1,0 +1,5 @@
+{
+  "_id": "_design/unauth_updates",
+  "language": "javascript",
+  "validate_doc_update": "function(newDoc, oldDoc, userCtx, secObj) { for (var i = 0; i < userCtx.roles.length; i++) { if (secObj.admins.roles.includes(userCtx.roles[i])) { return } } throw { unauthorized: 'You don\\'t have sufficient permissions!' } }"
+}

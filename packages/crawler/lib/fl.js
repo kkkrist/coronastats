@@ -11,7 +11,10 @@ module.exports = () =>
       .then(dom => {
         const stats = [...dom.window.document.querySelectorAll('h3')].reduce(
           (acc, cur) => {
-            if (!cur.textContent.startsWith('Fallzahlen') || !cur.nextElementSibling) {
+            if (
+              !cur.textContent.startsWith('Fallzahlen') ||
+              !cur.nextElementSibling
+            ) {
               return acc
             }
 
@@ -58,6 +61,7 @@ module.exports = () =>
             }
 
             const entry = {
+              areacode: 'fl',
               date: new Date(
                 `20${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`
               ),
@@ -78,6 +82,6 @@ module.exports = () =>
           []
         )
 
-        resolve({ col: 'fl', stats })
+        resolve(stats)
       }, reject)
   })

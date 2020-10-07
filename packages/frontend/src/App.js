@@ -126,22 +126,32 @@ const App = () => {
 
   useEffect(() => {
     window
-      .fetch('https://coronastats-fl.mundpropaganda.net/api/fl', {
-        headers: { accept: 'application/json' }
+      .fetch('https://api.mundpropaganda.net/coronastats/_find', {
+        body: JSON.stringify({
+          limit: 9999,
+          selector: {
+            areacode: {
+              $eq: 'fl'
+            }
+          },
+          sort: [{ date: 'desc' }]
+        }),
+        headers: { 'content-type': 'application/json' },
+        method: 'POST'
       })
       .then(res => res.json())
-      .then(data => {
+      .then(({ docs }) => {
         setError()
 
         setLastModified(
-          data.reduce((timestamp, cur) => {
+          docs.reduce((timestamp, cur) => {
             const last_modified = Date.parse(cur.last_modified)
             return last_modified > timestamp ? last_modified : timestamp
           }, 0)
         )
 
         setStats(
-          data.reduce(
+          docs.reduce(
             (acc, cur, index, arr) => {
               acc[0].data.unshift({ x: new Date(cur.date), y: cur.deaths })
               acc[1].data.unshift({ x: new Date(cur.date), y: cur.active })
