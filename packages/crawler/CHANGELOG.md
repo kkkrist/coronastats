@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/kkkrist/coronastats-fl/compare/v1.4.0...v1.5.0) (2020-10-07)
+
+
+### Features
+
+* use couchdb as backend/api ([#2](https://github.com/kkkrist/coronastats-fl/issues/2)) ([d2b4459](https://github.com/kkkrist/coronastats-fl/commit/d2b4459d309bc26e74d3f1339e904b54f9a87552))
+
+
+
+
+
 # [1.4.0](https://github.com/kkkrist/coronastats-fl/compare/v1.3.2...v1.4.0) (2020-10-01)
 
 
