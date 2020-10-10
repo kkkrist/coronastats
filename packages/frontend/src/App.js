@@ -4,6 +4,37 @@ import { linearGradientDef } from '@nivo/core'
 import { ResponsiveLine } from '@nivo/line'
 import { version } from '../package.json'
 
+const areacodes = {
+  fl: {
+    population: 96920,
+    populationLabel: 'Statistikstelle der Stadt Flensburg',
+    populationUri:
+      'https://www.flensburg.de/Politik-Verwaltung/Stadtverwaltung/Statistik',
+    sourceLabel: 'flensburg.de',
+    sourceUri:
+      'https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1'
+  },
+  rz: {
+    population: 198019,
+    populationLabel: 'Statistikamt Nord',
+    populationUri:
+      'https://www.statistik-nord.de/fileadmin/Dokumente/Statistische_Berichte/bevoelkerung/A_I_2_S/A_I_2_vj_194_Zensus_SH.xlsx',
+    sourceLabel: 'kreis-rz.de',
+    sourceUri: 'https://www.kreis-rz.de/Corona'
+  },
+  sl: {
+    population: 201156,
+    populationLabel: 'Statistikamt Nord',
+    populationUri:
+      'https://www.statistik-nord.de/fileadmin/Dokumente/Statistische_Berichte/bevoelkerung/A_I_2_S/A_I_2_vj_194_Zensus_SH.xlsx',
+    sourceLabel: 'schleswig-flensburg.de',
+    sourceUri:
+      'https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus'
+  }
+}
+
+const { format: formatNum } = new Intl.NumberFormat('de')
+
 const gradients = {
   defs: [
     linearGradientDef('gradientA', [
@@ -74,6 +105,7 @@ const axisBottom = {
 }
 
 const axisLeft = {
+  format: n => formatNum(n),
   legend: 'Personen',
   legendOffset: -40,
   legendPosition: 'middle',
@@ -84,6 +116,7 @@ const axisLeft = {
 }
 
 const axisRight = {
+  format: n => formatNum(n),
   orient: 'right',
   tickPadding: 8,
   tickSize: 0
@@ -120,18 +153,23 @@ const sliceTooltip = ({ slice: { points } }) => (
 )
 
 const App = () => {
+  const [areacode, setAreacode] = useState(
+    new URLSearchParams(window.location.search).get('areacode') || 'fl'
+  )
   const [error, setError] = useState()
   const [lastModified, setLastModified] = useState()
   const [stats, setStats] = useState([])
 
   useEffect(() => {
+    setStats([])
+
     window
       .fetch('https://api.mundpropaganda.net/coronastats/_find', {
         body: JSON.stringify({
           limit: 9999,
           selector: {
             areacode: {
-              $eq: 'fl'
+              $eq: areacode
             }
           },
           sort: [{ date: 'desc' }]
@@ -154,10 +192,17 @@ const App = () => {
           docs.reduce(
             (acc, cur, index, arr) => {
               acc[0].data.unshift({ x: new Date(cur.date), y: cur.deaths })
-              acc[1].data.unshift({ x: new Date(cur.date), y: cur.active })
-              acc[2].data.unshift({ x: new Date(cur.date), y: cur.recovered })
 
-              if (index < arr.length - 6) {
+              cur.active &&
+                acc[1].data.unshift({ x: new Date(cur.date), y: cur.active })
+
+              cur.recovered &&
+                acc[2].data.unshift({
+                  x: new Date(cur.date),
+                  y: cur.recovered ?? 0
+                })
+
+              if (index < arr.length - 6 && areacodes[areacode].population) {
                 const sums = [cur.infected]
 
                 for (let shift = 0; shift < 7; shift++) {
@@ -174,14 +219,21 @@ const App = () => {
                   acc[3].data.unshift({
                     x: new Date(cur.date),
                     y: Math.round(
-                      ((sums[0] - sums[sums.length - 1]) / 96920) * 100000
+                      ((sums[0] - sums[sums.length - 1]) /
+                        areacodes[areacode].population) *
+                        100000
                     )
                   })
                 }
               }
 
               acc[4].data.unshift({ x: new Date(cur.date), y: cur.infected })
-              acc[5].data.unshift({ x: new Date(cur.date), y: cur.quarantined })
+
+              cur.quarantined &&
+                acc[5].data.unshift({
+                  x: new Date(cur.date),
+                  y: cur.quarantined
+                })
 
               return acc
             },
@@ -220,7 +272,7 @@ const App = () => {
           )
         )
       }, setError)
-  }, [])
+  }, [areacode])
 
   if (error) {
     console.log(error)
@@ -228,7 +280,18 @@ const App = () => {
 
   return (
     <div id='app'>
-      <h1>Zeitverlauf der Corona-Fälle in Flensburg</h1>
+      <h1>Zeitverlauf der Corona-Fälle in </h1>
+
+      <div style={{ fontSize: '2em', marginBottom: '1.5rem' }}>
+        <select
+          onChange={({ target: { value } }) => setAreacode(value)}
+          value={areacode}
+        >
+          <option value='fl'>Flensburg</option>
+          <option value='sl'>Kreis Schleswig-Flensburg</option>
+          <option value='rz'>Kreis Herzogtum Lauenburg</option>
+        </select>
+      </div>
 
       <div id='container'>
         <div
@@ -262,6 +325,7 @@ const App = () => {
               sliceTooltip={sliceTooltip}
               xFormat={longDate}
               xScale={{ type: 'time' }}
+              yFormat={formatNum}
               yScale={{ type: 'linear' }}
               {...gradients}
             />
@@ -272,8 +336,8 @@ const App = () => {
       <footer>
         <p>
           Datenquelle:{' '}
-          <a href='https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1'>
-            flensburg.de
+          <a href={areacodes[areacode].sourceUri}>
+            {areacodes[areacode].sourceLabel}
           </a>
           {lastModified
             ? ` (Letztes Update: ${new Date(lastModified).toLocaleString()})`
@@ -281,14 +345,14 @@ const App = () => {
         </p>
 
         <p>
-          *) Die 7-Tage-Inzidenz wird mit einer Einwohnerzahl von 96.920
-          errechnet (Quelle:{' '}
-          <a href='https://www.flensburg.de/Politik-Verwaltung/Stadtverwaltung/Statistik'>
-            Statistikstelle der Stadt Flensburg
+          *) Die 7-Tage-Inzidenz wird mit einer Einwohnerzahl von{' '}
+          {formatNum(areacodes[areacode].population)} errechnet (Quelle:{' '}
+          <a href={areacodes[areacode].populationUri}>
+            {areacodes[areacode].populationLabel}
           </a>
-          , Stichtag 31.12.2019). Das Robert Koch-Institut verwendet für seine
-          Berechnungen eine Einwohnerzahl von 89.504, somit können sich die
-          Werte unterscheiden. (Stand 25.09.2019)
+          ). Das Robert Koch-Institut verwendet für seine Berechnungen z.T.
+          abweichende Einwohnerzahlen, somit können sich die Werte
+          unterscheiden.
         </p>
 
         <p>
