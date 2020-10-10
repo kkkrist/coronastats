@@ -11,7 +11,13 @@ module.exports = () =>
       ({
         features: [
           {
-            attributes: { cases, deaths, last_update, recovered }
+            attributes: {
+              cases,
+              cases7_per_100k,
+              deaths,
+              last_update,
+              recovered
+            }
           }
         ]
       }) => {
@@ -31,6 +37,7 @@ module.exports = () =>
             ),
             deaths,
             infected: cases,
+            infected7p100k: cases7_per_100k,
             recovered
           }
         ]
