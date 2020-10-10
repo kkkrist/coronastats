@@ -40,7 +40,12 @@ const upsert = stats =>
     })
   )
 
-Promise.all([require('./fl')(), require('./rz')(), require('./sl')()])
+Promise.all([
+  require('./fl')(),
+  require('./plö')(),
+  require('./rz')(),
+  require('./sl')()
+])
   .then(data => upsert(data.flat()))
   .then(docs => {
     const errors = docs.filter(d => d.error)
