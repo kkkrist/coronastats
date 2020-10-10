@@ -40,13 +40,33 @@ const upsert = stats =>
     })
   )
 
-Promise.all([
+Promise.allSettled([
   require('./fl')(),
   require('./plö')(),
   require('./rz')(),
   require('./sl')()
 ])
-  .then(data => upsert(data.flat()))
+  .then(promises => {
+    const data = promises
+      .filter(p => p.status === 'fulfilled')
+      .map(p => p.value)
+      .flat()
+
+    const errors = promises
+      .filter(p => p.status === 'rejected')
+      .map(p => p.reason)
+      .flat()
+
+    if (errors.length > 0) {
+      console.error(...errors)
+    }
+
+    if (data.length === 0) {
+      throw new Error('No data found!')
+    }
+
+    return upsert(data)
+  })
   .then(docs => {
     const errors = docs.filter(d => d.error)
     const newDocs = docs.filter(d => /^1-/.test(d.rev))
