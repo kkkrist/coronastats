@@ -28,6 +28,15 @@ const upsert = stats =>
             doc.date === stat.date.toISOString()
         )
 
+        if (
+          row &&
+          Object.keys(row.doc)
+            .filter(key => !/_id|_rev|date|last_modified/.test(key))
+            .every(key => row.doc[key] === stat[key])
+        ) {
+          return acc
+        }
+
         return [
           ...acc,
           {
