@@ -356,7 +356,7 @@ const App = () => {
         </p>
 
         <p>
-          <a href='https://github.com/kkkrist/coronastats-fl'>coronastats-fl</a>{' '}
+          <a href='https://github.com/kkkrist/coronastats'>coronastats-fl</a>{' '}
           v{version} by{' '}
           <a href='https://mundpropaganda.net'>
             &#123;M/<span style={{ color: '#eb0c00' }}>P</span>&#125;

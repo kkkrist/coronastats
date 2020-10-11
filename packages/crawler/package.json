@@ -1,12 +1,12 @@
 {
-  "name": "coronastats-fl-crawler",
+  "name": "coronastats-crawler",
   "version": "1.5.0",
-  "description": "Node.js-based crawler for coronastats-fl",
+  "description": "Node.js-based crawler for coronastats",
   "keywords": [
     "crawler"
   ],
   "author": "Christian Mund <git@mundpropaganda.net>",
-  "homepage": "https://coronastats-fl.mundpropaganda.net",
+  "homepage": "https://coronastats.mundpropaganda.net",
   "license": "GPL-3.0-or-later",
   "main": "lib/index.js",
   "directories": {
@@ -17,13 +17,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kkkrist/coronastats-fl.git"
+    "url": "git+https://github.com/kkkrist/coronastats.git"
   },
   "scripts": {
     "start": "node lib"
   },
   "bugs": {
-    "url": "https://github.com/kkkrist/coronastats-fl/issues"
+    "url": "https://github.com/kkkrist/coronastats/issues"
   },
   "dependencies": {
     "dotenv": "^8.2.0",

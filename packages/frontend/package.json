@@ -1,12 +1,12 @@
 {
-  "name": "coronastats-fl-frontend",
+  "name": "coronastats-frontend",
   "version": "1.5.0",
   "description": "Corona Dashboard for Flensburg",
   "keywords": [
     "react"
   ],
   "author": "Christian Mund <git@mundpropaganda.net>",
-  "homepage": "https://coronastats-fl.mundpropaganda.net",
+  "homepage": "https://coronastats.mundpropaganda.net",
   "license": "GPL-3.0-or-later",
   "directories": {
     "lib": "lib"
@@ -31,7 +31,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kkkrist/coronastats-fl.git"
+    "url": "git+https://github.com/kkkrist/coronastats.git"
   },
   "scripts": {
     "build": "react-scripts build",
@@ -42,7 +42,7 @@
     "test": "react-scripts test"
   },
   "bugs": {
-    "url": "https://github.com/kkkrist/coronastats-fl/issues"
+    "url": "https://github.com/kkkrist/coronastats/issues"
   },
   "dependencies": {
     "@nivo/line": "^0.62.0",
