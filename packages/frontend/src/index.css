@@ -17,6 +17,7 @@ select {
   font-weight: bold;
   padding: 0em 0.25em;
   text-align-last: center;
+  width: 100%;
 }
 
 table {
