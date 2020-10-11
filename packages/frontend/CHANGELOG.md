@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/kkkrist/coronastats/compare/v1.6.1...v1.6.2) (2020-10-11)
+
+
+### Bug Fixes
+
+* **frontend:** only max out select width on small screens ([0bcd259](https://github.com/kkkrist/coronastats/commit/0bcd25922b1d93bc49906affd25f3698907babbd))
+
+
+
+
+
 ## [1.6.1](https://github.com/kkkrist/coronastats/compare/v1.6.0...v1.6.1) (2020-10-11)
 
 
