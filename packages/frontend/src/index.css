@@ -17,7 +17,6 @@ select {
   font-weight: bold;
   padding: 0em 0.25em;
   text-align-last: center;
-  width: 100%;
 }
 
 table {
@@ -71,4 +70,10 @@ footer a {
   height: calc(100vh - 19.5rem);
   min-height: 450px;
   min-width: 1024px;
+}
+
+@media (max-width: 768px) {
+  select {
+    width: 100%;
+  }
 }
