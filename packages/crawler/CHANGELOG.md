@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/kkkrist/coronastats/compare/v1.5.0...v1.6.0) (2020-10-11)
+
+
+### Features
+
+* **crawler:** add crawler for "plö" areacode ([5dc93a1](https://github.com/kkkrist/coronastats/commit/5dc93a181a10969ea7ed0583b7ab822b9b1e5ae5))
+* **crawler:** also grab 7-day incidence value in "plö" crawler ([753f2c9](https://github.com/kkkrist/coronastats/commit/753f2c97fc7a233168bf3ce2cb7c9fed26727504))
+* **crawler:** only upsert records with actually have changed ([aeffa96](https://github.com/kkkrist/coronastats/commit/aeffa967ca6a0b1d410457034b744a40d3e098b9))
+* **crawler:** wrap crawler calls into `Promise.allSettled` instead of `Promise.all` to let crawlers fail gracefully ([feeb2ab](https://github.com/kkkrist/coronastats/commit/feeb2ab352b4a7b897dc79130f816bf9b1c54048))
+
+
+
+
+
 # [1.5.0](https://github.com/kkkrist/coronastats-fl/compare/v1.4.0...v1.5.0) (2020-10-07)
 
 
