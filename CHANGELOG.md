@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/kkkrist/coronastats/compare/v1.6.0...v1.6.1) (2020-10-11)
+
+
+### Bug Fixes
+
+* **frontend:** fix repo name ([605c2a3](https://github.com/kkkrist/coronastats/commit/605c2a31c186eaefc2c87ae96d5725c41fe0d909))
+* **frontend:** fix select width ([1c0511f](https://github.com/kkkrist/coronastats/commit/1c0511f478da2d5c490cd2b3578a078541e57910))
+
+
+
+
+
 # [1.6.0](https://github.com/kkkrist/coronastats/compare/v1.5.0...v1.6.0) (2020-10-11)
 
 
