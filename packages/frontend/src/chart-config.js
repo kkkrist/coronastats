@@ -50,7 +50,7 @@ const chartConfig = {
       value: new Date('2020-05-18'),
       lineStyle: { stroke: '#aaa', strokeWidth: 1 },
       legend: 'Erste Lockerungen',
-      legendPosition: 'top-right',
+      legendPosition: 'top-left',
       legendOrientation: 'vertical'
     },
     {
@@ -58,7 +58,7 @@ const chartConfig = {
       value: new Date('2020-06-29'),
       lineStyle: { stroke: '#aaa', strokeWidth: 1 },
       legend: 'Ferienanfang',
-      legendPosition: 'top-right',
+      legendPosition: 'top-left',
       legendOrientation: 'vertical'
     },
     {
@@ -66,14 +66,22 @@ const chartConfig = {
       value: new Date('2020-08-10'),
       lineStyle: { stroke: '#aaa', strokeWidth: 1 },
       legend: 'Schulanfang',
-      legendPosition: 'top-right',
+      legendPosition: 'top-left',
+      legendOrientation: 'vertical'
+    },
+    {
+      axis: 'x',
+      value: new Date('2020-10-05'),
+      lineStyle: { stroke: '#aaa', strokeWidth: 1 },
+      legend: 'Ferienanfang',
+      legendPosition: 'top-left',
       legendOrientation: 'vertical'
     },
     {
       axis: 'y',
       value: 50,
       legend: 'Grenzwert für 7-Tage-Inzidenz',
-      legendPosition: 'top',
+      legendPosition: 'top-left',
       lineStyle: { stroke: '#aaa', strokeWidth: 1 }
     }
   ],
