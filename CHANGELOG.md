@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.3](https://github.com/kkkrist/coronastats/compare/v1.6.2...v1.6.3) (2020-10-14)
+
+
+### Bug Fixes
+
+* **frontend:** use same 7-day incidence function as city administration does ([721058a](https://github.com/kkkrist/coronastats/commit/721058ae1b5e508dfc54921c933c745c31b5706a))
+
+
+### Features
+
+* **frontend:** add marker for autumn holiday start, tweak marker placement ([390cd6b](https://github.com/kkkrist/coronastats/commit/390cd6b040bca1d2c304dc1292151bbb9f417c30))
+
+
+
+
+
 ## [1.6.2](https://github.com/kkkrist/coronastats/compare/v1.6.1...v1.6.2) (2020-10-11)
 
 
