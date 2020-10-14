@@ -56,13 +56,13 @@ const App = () => {
                   y: cur.recovered ?? 0
                 })
 
-              if (index < arr.length - 6 && areacodes[areacode].population) {
-                const sums = [cur.infected]
+              if (index < arr.length - 8 && areacodes[areacode].population) {
+                const sums = []
 
-                for (let shift = 0; shift < 7; shift++) {
+                for (let shift = 1; shift < 9; shift++) {
                   if (
                     dayjs(arr[index + shift].date).isAfter(
-                      dayjs(cur.date).set('date', dayjs(cur.date).date() - 7)
+                      dayjs(cur.date).set('date', dayjs(cur.date).date() - 9)
                     )
                   ) {
                     sums.push(arr[index + shift].infected)
@@ -72,7 +72,7 @@ const App = () => {
                 if (sums.length > 1) {
                   acc[3].data.unshift({
                     x: new Date(cur.date),
-                    y: Math.round(
+                    y: Math.ceil(
                       ((sums[0] - sums[sums.length - 1]) /
                         areacodes[areacode].population) *
                         100000
