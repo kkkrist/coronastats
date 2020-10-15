@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/kkkrist/coronastats/compare/v1.6.4...v1.6.5) (2020-10-15)
+
+
+### Bug Fixes
+
+* **crawler:** don't even run bulk insert if input does not contain any updated or new records at all ([6957f47](https://github.com/kkkrist/coronastats/commit/6957f474fd79855ae6506780a4d4fb353024836b))
+
+
+
+
+
 ## [1.6.4](https://github.com/kkkrist/coronastats/compare/v1.6.3...v1.6.4) (2020-10-15)
 
 
