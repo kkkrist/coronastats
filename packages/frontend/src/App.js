@@ -14,6 +14,8 @@ const App = () => {
   const [lastModified, setLastModified] = useState()
   const [stats, setStats] = useState([])
 
+  const handlePopstate = ({ state: { areacode } }) => setAreacode(areacode)
+
   useEffect(() => {
     setStats([])
 
@@ -126,6 +128,19 @@ const App = () => {
           )
         )
       }, setError)
+  }, [areacode])
+
+  useEffect(() => {
+    const params = `?areacode=${areacode}`
+
+    if (!window.location.search) {
+      window.history.replaceState({ areacode }, '', params)
+    } else if (window.location.search !== params) {
+      window.history.pushState({ areacode }, '', params)
+    }
+
+    window.addEventListener('popstate', handlePopstate)
+    return () => window.removeEventListener('popstate', handlePopstate)
   }, [areacode])
 
   if (error) {
