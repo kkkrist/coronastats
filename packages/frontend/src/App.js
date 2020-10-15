@@ -194,12 +194,10 @@ const App = () => {
         <p>
           *) Die 7-Tage-Inzidenz wird mit einer Einwohnerzahl von{' '}
           {formatNum(areacodes[areacode].population)} errechnet (Quelle:{' '}
-          <a href={areacodes[areacode].populationUri}>
-            {areacodes[areacode].populationLabel}
+          <a href='https://www.statistik-nord.de/fileadmin/Dokumente/Statistische_Berichte/bevoelkerung/A_I_2_S/A_I_2_vj_194_Zensus_SH.xlsx'>
+            Statistikamt Nord
           </a>
-          ). Das Robert Koch-Institut verwendet für seine Berechnungen z.T.
-          abweichende Einwohnerzahlen, somit können sich die Werte
-          unterscheiden.
+          ).
         </p>
 
         <p>

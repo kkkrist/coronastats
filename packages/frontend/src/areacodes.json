@@ -1,22 +1,16 @@
 {
   "fl": {
-    "population": 96920,
-    "populationLabel": "Statistikstelle der Stadt Flensburg",
-    "populationUri": "https://www.flensburg.de/Politik-Verwaltung/Stadtverwaltung/Statistik",
+    "population": 90164,
     "sourceLabel": "flensburg.de",
     "sourceUri": "https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1"
   },
   "rz": {
     "population": 198019,
-    "populationLabel": "Statistikamt Nord",
-    "populationUri": "https://www.statistik-nord.de/fileadmin/Dokumente/Statistische_Berichte/bevoelkerung/A_I_2_S/A_I_2_vj_194_Zensus_SH.xlsx",
     "sourceLabel": "kreis-rz.de",
     "sourceUri": "https://www.kreis-rz.de/Corona"
   },
   "sl": {
     "population": 201156,
-    "populationLabel": "Statistikamt Nord",
-    "populationUri": "https://www.statistik-nord.de/fileadmin/Dokumente/Statistische_Berichte/bevoelkerung/A_I_2_S/A_I_2_vj_194_Zensus_SH.xlsx",
     "sourceLabel": "schleswig-flensburg.de",
     "sourceUri": "https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus"
   }
