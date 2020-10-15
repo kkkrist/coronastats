@@ -40,7 +40,7 @@ module.exports = () =>
         const content = dom.window.document.querySelectorAll('h1 ~ div > p')
 
         const dateMatch = content[0].textContent.match(
-          /Stand ([0-9]+)\.([0-9]+)\.([0-9]+), ([0-9]+):([0-9]+)/
+          /Stand ([0-9]+)\.([0-9]+)\.([0-9]+),\s(([0-9]+):([0-9]+))/
         )
 
         const infectedMatch = content[1].textContent.match(
@@ -49,6 +49,10 @@ module.exports = () =>
 
         const recoveredMatch = content[1].textContent.match(
           /([0-9]+) Personen sind genesen/
+        )
+
+        const quarantinedMatch = content[2].textContent.match(
+          /([0-9]+) Personen in Quarantäne/
         )
 
         const deathsMatch = content[1].textContent.match(/und (\w+) verstorben/)
@@ -61,13 +65,18 @@ module.exports = () =>
           return reject(new Error(`Couldn't parse string "${content[1]}"`))
         }
 
+        if (!quarantinedMatch) {
+          return reject(new Error(`Couldn't parse string "${content[2]}"`))
+        }
+
         const entry = {
           areacode: 'sl',
           date: new Date(
-            `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]} ${dateMatch[4]}:${dateMatch[5]}`
+            `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]} ${dateMatch[4]}`
           ),
           deaths: getInt(deathsMatch[1]),
           infected: Number(infectedMatch[1]),
+          quarantined: Number(quarantinedMatch[1]),
           recovered: Number(recoveredMatch[1])
         }
 
