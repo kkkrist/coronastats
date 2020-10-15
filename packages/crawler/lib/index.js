@@ -4,50 +4,55 @@ require('dotenv').config()
 const db = nano(process.env.COUCHDB_URI)
 
 const upsert = stats =>
-  db.get('_all_docs', { include_docs: true }).then(({ rows }) =>
-    db.bulk({
-      docs: stats.reduce((acc, stat) => {
-        const i = acc.findIndex(
-          ({ areacode, date }) =>
-            areacode === stat.areacode &&
-            date.toISOString() === stat.date.toISOString()
-        )
+  db.get('_all_docs', { include_docs: true }).then(({ rows }) => {
+    const docs = stats.reduce((acc, stat) => {
+      const i = acc.findIndex(
+        ({ areacode, date }) =>
+          areacode === stat.areacode &&
+          date.toISOString() === stat.date.toISOString()
+      )
 
-        if (i > -1) {
-          acc[i] = {
-            ...acc[i],
-            ...stat,
-            last_modified: new Date().toISOString()
-          }
-          return acc
+      if (i > -1) {
+        acc[i] = {
+          ...acc[i],
+          ...stat,
+          last_modified: new Date().toISOString()
         }
+        return acc
+      }
 
-        const row = rows.find(
-          ({ doc }) =>
-            doc.areacode === stat.areacode &&
-            doc.date === stat.date.toISOString()
-        )
+      const row = rows.find(
+        ({ doc }) =>
+          doc.areacode === stat.areacode && doc.date === stat.date.toISOString()
+      )
 
-        if (
-          row &&
-          Object.keys(row.doc)
-            .filter(key => !/_id|_rev|date|last_modified/.test(key))
-            .every(key => row.doc[key] === stat[key])
-        ) {
-          return acc
+      if (
+        row &&
+        Object.keys(row.doc)
+          .filter(key => !/_id|_rev|date|last_modified/.test(key))
+          .every(key => row.doc[key] === stat[key])
+      ) {
+        return acc
+      }
+
+      return [
+        ...acc,
+        {
+          ...(row ? row.doc : {}),
+          ...stat,
+          last_modified: new Date().toISOString()
         }
+      ]
+    }, [])
 
-        return [
-          ...acc,
-          {
-            ...(row ? row.doc : {}),
-            ...stat,
-            last_modified: new Date().toISOString()
-          }
-        ]
-      }, [])
-    })
-  )
+    if (docs.length > 0) {
+      return db.bulk({
+        docs
+      })
+    }
+
+    return Promise.resolve(docs)
+  })
 
 Promise.allSettled([
   require('./fl')(),
