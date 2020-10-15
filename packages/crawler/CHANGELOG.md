@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.4](https://github.com/kkkrist/coronastats/compare/v1.6.3...v1.6.4) (2020-10-15)
+
+
+### Bug Fixes
+
+* **crawler:** fix "sl" areacode crawler ([f465491](https://github.com/kkkrist/coronastats/commit/f465491e34d00677c412e1d3efdc5194d8e7c536))
+
+
+
+
+
 # [1.6.0](https://github.com/kkkrist/coronastats/compare/v1.5.0...v1.6.0) (2020-10-11)
 
 

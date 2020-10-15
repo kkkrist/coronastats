@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.4](https://github.com/kkkrist/coronastats/compare/v1.6.3...v1.6.4) (2020-10-15)
+
+
+### Bug Fixes
+
+* **frontend:** Always use Statistikamt Nord's population numbers ([f52e6e6](https://github.com/kkkrist/coronastats/commit/f52e6e6545f1cdd8fa5845570a23a2af349f51d1))
+* **frontend:** handle areacode url param front to back ([c73ff5f](https://github.com/kkkrist/coronastats/commit/c73ff5fe3e071329044adbe19bcd8624a0441f92))
+* **frontend:** tweak marker positions ([4ed002a](https://github.com/kkkrist/coronastats/commit/4ed002ac5377c6d8c661de9384920f05821cc13a))
+
+
+
+
+
 ## [1.6.3](https://github.com/kkkrist/coronastats/compare/v1.6.2...v1.6.3) (2020-10-14)
 
 
