@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.7](https://github.com/kkkrist/coronastats/compare/v1.6.6...v1.6.7) (2020-10-16)
+
+
+### Bug Fixes
+
+* **frontend:** fetch data from "areacode" view ([666b130](https://github.com/kkkrist/coronastats/commit/666b130193f207fb07e21faf03a6f1bf4629f2e3))
+
+
+
+
+
 ## [1.6.6](https://github.com/kkkrist/coronastats/compare/v1.6.5...v1.6.6) (2020-10-16)
 
 
