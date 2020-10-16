@@ -20,42 +20,35 @@ const App = () => {
     setStats([])
 
     window
-      .fetch('https://api.mundpropaganda.net/coronastats/_find', {
-        body: JSON.stringify({
-          limit: 9999,
-          selector: {
-            areacode: {
-              $eq: areacode
-            }
-          },
-          sort: [{ date: 'desc' }]
-        }),
-        headers: { 'content-type': 'application/json' },
-        method: 'POST'
-      })
+      .fetch(
+        `https://api.mundpropaganda.net/coronastats/_design/areacode/_view/${areacode}?descending=true`
+      )
       .then(res => res.json())
-      .then(({ docs }) => {
+      .then(({ rows }) => {
         setError()
 
         setLastModified(
-          docs.reduce((timestamp, cur) => {
-            const last_modified = Date.parse(cur.last_modified)
+          rows.reduce((timestamp, { value }) => {
+            const last_modified = Date.parse(value.last_modified)
             return last_modified > timestamp ? last_modified : timestamp
           }, 0)
         )
 
         setStats(
-          docs.reduce(
-            (acc, cur, index, arr) => {
-              acc[0].data.unshift({ x: new Date(cur.date), y: cur.deaths })
+          rows.reduce(
+            (acc, { value }, index, arr) => {
+              acc[0].data.unshift({ x: new Date(value.date), y: value.deaths })
 
-              cur.active &&
-                acc[1].data.unshift({ x: new Date(cur.date), y: cur.active })
+              value.active &&
+                acc[1].data.unshift({
+                  x: new Date(value.date),
+                  y: value.active
+                })
 
-              cur.recovered &&
+              value.recovered &&
                 acc[2].data.unshift({
-                  x: new Date(cur.date),
-                  y: cur.recovered ?? 0
+                  x: new Date(value.date),
+                  y: value.recovered ?? 0
                 })
 
               if (index < arr.length - 8 && areacodes[areacode].population) {
@@ -63,17 +56,20 @@ const App = () => {
 
                 for (let shift = 1; shift < 9; shift++) {
                   if (
-                    dayjs(arr[index + shift].date).isAfter(
-                      dayjs(cur.date).set('date', dayjs(cur.date).date() - 9)
+                    dayjs(arr[index + shift].value.date).isAfter(
+                      dayjs(value.date).set(
+                        'date',
+                        dayjs(value.date).date() - 9
+                      )
                     )
                   ) {
-                    sums.push(arr[index + shift].infected)
+                    sums.push(arr[index + shift].value.infected)
                   }
                 }
 
                 if (sums.length > 1) {
                   acc[3].data.unshift({
-                    x: new Date(cur.date),
+                    x: new Date(value.date),
                     y: Math.ceil(
                       ((sums[0] - sums[sums.length - 1]) /
                         areacodes[areacode].population) *
@@ -83,12 +79,15 @@ const App = () => {
                 }
               }
 
-              acc[4].data.unshift({ x: new Date(cur.date), y: cur.infected })
+              acc[4].data.unshift({
+                x: new Date(value.date),
+                y: value.infected
+              })
 
-              cur.quarantined &&
+              value.quarantined &&
                 acc[5].data.unshift({
-                  x: new Date(cur.date),
-                  y: cur.quarantined
+                  x: new Date(value.date),
+                  y: value.quarantined
                 })
 
               return acc
