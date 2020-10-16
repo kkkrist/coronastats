@@ -55,18 +55,26 @@ module.exports = () =>
           /([0-9]+) Personen in Quarantäne/
         )
 
-        const deathsMatch = content[1].textContent.match(/und (\w+) verstorben/)
+        const deathsMatch = content[1].textContent.match(/und (.*) verstorben/)
 
         if (!dateMatch) {
-          return reject(new Error(`Couldn't parse string "${content[0]}"`))
+          return reject(new Error(`Couldn't parse date string "${content[0]}"`))
         }
 
-        if (!infectedMatch || !recoveredMatch || !deathsMatch) {
-          return reject(new Error(`Couldn't parse string "${content[1]}"`))
+        if (!infectedMatch) {
+          return reject(new Error(`Couldn't parse infected string "${content[1]}"`))
+        }
+
+        if (!recoveredMatch) {
+          return reject(new Error(`Couldn't parse recovered string "${content[1]}"`))
+        }
+
+        if (!deathsMatch) {
+          return reject(new Error(`Couldn't parse deaths string "${content[1]}"`))
         }
 
         if (!quarantinedMatch) {
-          return reject(new Error(`Couldn't parse string "${content[2]}"`))
+          return reject(new Error(`Couldn't parse quarantined string "${content[2]}"`))
         }
 
         const entry = {
