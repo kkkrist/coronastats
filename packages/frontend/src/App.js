@@ -1,10 +1,17 @@
 import dayjs from 'dayjs'
 import React, { useEffect, useState } from 'react'
+import PouchDB from 'pouchdb'
 import { ResponsiveLine } from '@nivo/line'
 import areacodes from './areacodes.json'
 import chartConfig from './chart-config'
 import { formatNum, longDate } from './utils'
 import { version } from '../package.json'
+
+const db = new PouchDB('coronastats')
+const replication = db.replicate.from(
+  'https://api.mundpropaganda.net/coronastats',
+  { live: true, retry: true }
+)
 
 const App = () => {
   const [areacode, setAreacode] = useState(
@@ -12,19 +19,42 @@ const App = () => {
   )
   const [error, setError] = useState()
   const [lastModified, setLastModified] = useState()
+  const [repInfo, setRepInfo] = useState()
   const [stats, setStats] = useState([])
 
   const handlePopstate = ({ state: { areacode } }) => setAreacode(areacode)
 
   useEffect(() => {
+    if (!navigator.onLine) {
+      console.info('offline')
+    }
+    window.addEventListener('online',  console.info)
+    window.addEventListener('offline', console.info)
+    return () => {
+      window.removeEventListener('online',  console.info)
+      window.removeEventListener('offline', console.info)
+    }
+  }, [])
+
+  useEffect(() => {
+    replication.on('active', info => console.log('active', info))
+    replication.on('change', info => {
+      console.log('change', info)
+      setRepInfo(info)
+    })
+    replication.on('denied', error => console.error('denied', error))
+    replication.on('error', error => console.error('error', error))
+    return () => replication.cancel()
+  }, [])
+
+  useEffect(() => {
     setStats([])
 
-    window
-      .fetch(
-        `https://api.mundpropaganda.net/coronastats/_design/areacode/_view/${areacode}?descending=true`
-      )
-      .then(res => res.json())
-      .then(({ rows }) => {
+    db.query(`areacode/${areacode}`, {
+      descending: true,
+      include_docs: true
+    }).then(
+      ({ rows }) => {
         setError()
 
         setLastModified(
@@ -126,8 +156,10 @@ const App = () => {
             ]
           )
         )
-      }, setError)
-  }, [areacode])
+      },
+      error => error.reason !== 'missing' && setError(error)
+    )
+  }, [areacode, repInfo])
 
   useEffect(() => {
     const params = `?areacode=${areacode}`
