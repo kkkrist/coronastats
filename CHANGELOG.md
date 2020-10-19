@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/kkkrist/coronastats/compare/v1.6.7...v1.7.0) (2020-10-19)
+
+
+### Bug Fixes
+
+* **frontend:** go back to including current day in 7d incidence ([4a65e02](https://github.com/kkkrist/coronastats/commit/4a65e02e2c6f3424ab4a564f87a4684586d49d63))
+
+
+### Features
+
+* use pouchdb on top of couchdb as backend/api ([#3](https://github.com/kkkrist/coronastats/issues/3)) ([6765930](https://github.com/kkkrist/coronastats/commit/676593029256e35a61ef064d128f67dbd6ce8d64))
+
+
+
+
+
 ## [1.6.7](https://github.com/kkkrist/coronastats/compare/v1.6.6...v1.6.7) (2020-10-16)
 
 
