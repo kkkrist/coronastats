@@ -136,15 +136,15 @@ const App = () => {
                   y: value.recovered ?? 0
                 })
 
-              if (index < arr.length - 8 && areacodes[areacode].population) {
-                const sums = []
+              if (index < arr.length - 6 && areacodes[areacode].population) {
+                const sums = [value.infected]
 
-                for (let shift = 1; shift < 9; shift++) {
+                for (let shift = 0; shift < 7; shift++) {
                   if (
                     dayjs(arr[index + shift].value.date).isAfter(
                       dayjs(value.date).set(
                         'date',
-                        dayjs(value.date).date() - 9
+                        dayjs(value.date).date() - 7
                       )
                     )
                   ) {
@@ -155,11 +155,11 @@ const App = () => {
                 if (sums.length > 1) {
                   acc[3].data.unshift({
                     x: new Date(value.date),
-                    y: Math.ceil(
+                    y: (
                       ((sums[0] - sums[sums.length - 1]) /
                         areacodes[areacode].population) *
-                        100000
-                    )
+                      100000
+                    ).toFixed(1)
                   })
                 }
               }
