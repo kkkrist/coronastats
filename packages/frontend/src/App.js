@@ -99,8 +99,6 @@ const App = () => {
   }, [addNotification, removeNotification])
 
   useEffect(() => {
-    setStats([])
-
     db.query(`areacode/${areacode}`, {
       descending: true,
       include_docs: true
@@ -237,7 +235,10 @@ const App = () => {
 
       <div style={{ fontSize: '2em', marginBottom: '1.5rem' }}>
         <select
-          onChange={({ target: { value } }) => setAreacode(value)}
+          onChange={({ target: { value } }) => {
+            setStats([])
+            setAreacode(value)
+          }}
           value={areacode}
         >
           <option value='fl'>Flensburg</option>
@@ -256,7 +257,7 @@ const App = () => {
           }}
         >
           {stats.length === 0 ? (
-            <span>Lade…</span>
+            <span>Bitte warten…</span>
           ) : (
             <ResponsiveLine
               areaBlendMode='darken'
