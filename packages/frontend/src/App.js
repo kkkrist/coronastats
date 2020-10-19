@@ -84,7 +84,10 @@ const App = () => {
     replication.on('change', info => {
       setLastChange(info)
 
-      if (info.pending === 0) {
+      if (
+        info.pending === 0 &&
+        info.docs.some(doc => doc.areacode === areacode)
+      ) {
         addNotification('Neue Daten geladen.')
       }
     })
@@ -101,7 +104,7 @@ const App = () => {
     )
 
     return () => replication.cancel()
-  }, [addNotification, removeNotification])
+  }, [addNotification, areacode, removeNotification])
 
   useEffect(() => {
     db.query(`areacode/${areacode}`, {
