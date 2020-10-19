@@ -42,7 +42,12 @@ const App = () => {
   const addNotification = useCallback(
     (message, type) => {
       const id = Math.random().toString()
-      setNotifications(prevState => [...prevState, { id, message, type }])
+
+      setNotifications(prevState =>
+        window.innerWidth >= 768
+          ? [...prevState, { id, message, type }]
+          : [{ id, message, type }, ...prevState]
+      )
 
       if (!type) {
         setTimeout(() => removeNotification(id), 5000)
