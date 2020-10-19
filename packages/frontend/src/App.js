@@ -1,32 +1,117 @@
 import dayjs from 'dayjs'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import PouchDB from 'pouchdb'
 import { ResponsiveLine } from '@nivo/line'
 import areacodes from './areacodes.json'
 import chartConfig from './chart-config'
 import { formatNum, longDate } from './utils'
 import { version } from '../package.json'
 
+const db = new PouchDB('coronastats')
+const replication = db.replicate.from(
+  'https://api.mundpropaganda.net/coronastats',
+  { live: true, retry: true }
+)
+
 const App = () => {
   const [areacode, setAreacode] = useState(
     new URLSearchParams(window.location.search).get('areacode') || 'fl'
   )
-  const [error, setError] = useState()
+  const [lastChange, setLastChange] = useState()
   const [lastModified, setLastModified] = useState()
+  const [notifications, setNotifications] = useState([])
   const [stats, setStats] = useState([])
 
   const handlePopstate = ({ state: { areacode } }) => setAreacode(areacode)
 
-  useEffect(() => {
-    setStats([])
+  const removeNotification = useCallback(id => {
+    const el = document.querySelector(`div[data-id="${id}"]`)
 
-    window
-      .fetch(
-        `https://api.mundpropaganda.net/coronastats/_design/areacode/_view/${areacode}?descending=true`
+    if (el) {
+      el.classList.toggle('notification-in')
+      el.classList.toggle('notification-out')
+      setTimeout(
+        () => setNotifications(prevState => prevState.filter(n => n.id !== id)),
+        500
       )
-      .then(res => res.json())
-      .then(({ rows }) => {
-        setError()
+    } else {
+      setNotifications(prevState => prevState.filter(n => n.id !== id))
+    }
+  }, [])
 
+  const addNotification = useCallback(
+    (message, type) => {
+      const id = Math.random().toString()
+
+      setNotifications(prevState =>
+        window.innerWidth >= 768
+          ? [...prevState, { id, message, type }]
+          : [{ id, message, type }, ...prevState]
+      )
+
+      if (!type) {
+        setTimeout(() => removeNotification(id), 5000)
+      }
+
+      return id
+    },
+    [removeNotification]
+  )
+
+  useEffect(() => {
+    if (!navigator.onLine) {
+      addNotification('Es besteht keine Internetverbindung.', 'warning')
+    }
+
+    window.addEventListener('online', () => {
+      setNotifications(prevState => {
+        const id = prevState.find(n =>
+          /keine Internetverbindung/.test(n.message)
+        )?.id
+        id && removeNotification(id)
+        return prevState
+      })
+
+      addNotification('Die Internetverbindung wurde wiederhergestellt.')
+    })
+
+    window.addEventListener('offline', () =>
+      addNotification('Es besteht keine Internetverbindung.', 'warning')
+    )
+  }, [addNotification, removeNotification])
+
+  useEffect(() => {
+    replication.on('change', info => {
+      setLastChange(info)
+
+      if (
+        info.pending === 0 &&
+        info.docs.some(doc => doc.areacode === areacode)
+      ) {
+        addNotification('Neue Daten geladen.')
+      }
+    })
+
+    replication.on('denied', error =>
+      addNotification(
+        `Konnte nicht auf Datenbank zugreifen: ${error.message}`,
+        'warning'
+      )
+    )
+
+    replication.on('error', error =>
+      addNotification(`Datenbankfehler: ${error.message}`, 'danger')
+    )
+
+    return () => replication.cancel()
+  }, [addNotification, areacode, removeNotification])
+
+  useEffect(() => {
+    db.query(`areacode/${areacode}`, {
+      descending: true,
+      include_docs: true
+    }).then(
+      ({ rows }) => {
         setLastModified(
           rows.reduce((timestamp, { value }) => {
             const last_modified = Date.parse(value.last_modified)
@@ -126,8 +211,18 @@ const App = () => {
             ]
           )
         )
-      }, setError)
-  }, [areacode])
+      },
+      error => {
+        if (error.status !== 404) {
+          console.error(error)
+          addNotification(
+            `Es ist ein Fehler aufgetreten: ${error.message}`,
+            'danger'
+          )
+        }
+      }
+    )
+  }, [addNotification, areacode, lastChange])
 
   useEffect(() => {
     const params = `?areacode=${areacode}`
@@ -142,17 +237,16 @@ const App = () => {
     return () => window.removeEventListener('popstate', handlePopstate)
   }, [areacode])
 
-  if (error) {
-    console.log(error)
-  }
-
   return (
     <div id='app'>
       <h1>Zeitverlauf der Corona-Fälle in </h1>
 
       <div style={{ fontSize: '2em', marginBottom: '1.5rem' }}>
         <select
-          onChange={({ target: { value } }) => setAreacode(value)}
+          onChange={({ target: { value } }) => {
+            setStats([])
+            setAreacode(value)
+          }}
           value={areacode}
         >
           <option value='fl'>Flensburg</option>
@@ -170,10 +264,8 @@ const App = () => {
             justifyContent: 'center'
           }}
         >
-          {error ? (
-            <code>{error.message || error.toString()}</code>
-          ) : stats.length === 0 ? (
-            <span>Lade…</span>
+          {stats.length === 0 ? (
+            <span>Bitte warten…</span>
           ) : (
             <ResponsiveLine
               areaBlendMode='darken'
@@ -228,6 +320,19 @@ const App = () => {
           </a>
         </p>
       </footer>
+
+      <div id='notifications'>
+        {notifications.map(n => (
+          <div
+            className='notification-in'
+            data-id={n.id}
+            key={n.id}
+            onClick={() => removeNotification(n.id)}
+          >
+            <span className={n.type}>{n.message}</span>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
