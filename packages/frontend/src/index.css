@@ -9,9 +9,9 @@ h1 {
 }
 
 select {
-  background: transparent;
   border-color: lightgray;
   border-radius: 4px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   font-family: monospace;
   font-size: 1em;
   font-weight: bold;
@@ -70,6 +70,81 @@ footer a {
   height: calc(100vh - 19.5rem);
   min-height: 450px;
   min-width: 1024px;
+}
+
+#notifications {
+  top: 1em;
+  color: white;
+  hyphens: auto;
+  position: fixed;
+  right: 1em;
+  text-align: right;
+  width: 350px;
+}
+
+#notifications span {
+  background-color: black;
+  border-radius: 4px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: inline-block;
+  cursor: pointer;
+  font-style: italic;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  text-align: left;
+}
+
+#notifications > div {
+  position: relative;
+}
+
+#notifications .danger {
+  background-color: #fa5c3a;
+}
+
+#notifications .warning {
+  background-color: #f79f39;
+}
+
+.notification-in {
+  animation: notification-in 0.5s ease-out forwards;
+}
+
+.notification-out {
+  animation: notification-out 0.5s ease-in forwards;
+}
+
+@keyframes notification-in {
+  0% {
+    opacity: 0;
+    top: -100vh;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@keyframes notification-out {
+  0% {
+    opacity: 1;
+    top: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    top: -100vh;
+  }
 }
 
 @media (max-width: 768px) {
