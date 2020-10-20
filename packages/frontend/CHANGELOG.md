@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/kkkrist/coronastats/compare/v1.8.0...v1.8.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* **frontend:** don't cancel replication on unmount ([fb6c6df](https://github.com/kkkrist/coronastats/commit/fb6c6df23db679f76c07322172ac96cc5793b965))
+
+
+
+
+
 # [1.8.0](https://github.com/kkkrist/coronastats/compare/v1.7.0...v1.8.0) (2020-10-20)
 
 
