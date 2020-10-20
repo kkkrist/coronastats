@@ -6,6 +6,7 @@ import areacodes from './areacodes.json'
 import chartConfig from './chart-config'
 import { formatNum, longDate } from './utils'
 import { version } from '../package.json'
+import { register as registerServiceWorker } from './service-worker'
 
 const db = new PouchDB('coronastats')
 const replication = db.replicate.from(
@@ -59,10 +60,6 @@ const App = () => {
   )
 
   useEffect(() => {
-    if (!navigator.onLine) {
-      addNotification('Es besteht keine Internetverbindung.', 'warning')
-    }
-
     window.addEventListener('online', () => {
       setNotifications(prevState => {
         const id = prevState.find(n =>
@@ -76,7 +73,10 @@ const App = () => {
     })
 
     window.addEventListener('offline', () =>
-      addNotification('Es besteht keine Internetverbindung.', 'warning')
+      addNotification(
+        'Es besteht keine Internetverbindung. Die App befindet sich im Offline-Modus.',
+        'warning'
+      )
     )
   }, [addNotification, removeNotification])
 
@@ -236,6 +236,10 @@ const App = () => {
     window.addEventListener('popstate', handlePopstate)
     return () => window.removeEventListener('popstate', handlePopstate)
   }, [areacode])
+
+  useEffect(() => {
+    registerServiceWorker(addNotification)
+  }, [addNotification])
 
   return (
     <div id='app'>
