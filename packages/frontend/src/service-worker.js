@@ -74,19 +74,17 @@ export const register = addNotification => {
       return
     }
 
-    window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`
+    const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`
 
-      if (isLocalhost) {
-        checkValidServiceWorker(swUrl, addNotification)
+    if (isLocalhost) {
+      checkValidServiceWorker(swUrl, addNotification)
 
-        navigator.serviceWorker.ready.then(() => {
-          console.log('Service worker is active')
-        })
-      } else {
-        registerValidSW(swUrl, addNotification)
-      }
-    })
+      navigator.serviceWorker.ready.then(() => {
+        console.log('Service worker is active')
+      })
+    } else {
+      registerValidSW(swUrl, addNotification)
+    }
   }
 }
 
