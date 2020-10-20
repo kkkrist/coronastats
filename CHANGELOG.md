@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/kkkrist/coronastats/compare/v1.7.0...v1.8.0) (2020-10-20)
+
+
+### Features
+
+* add a service worker ([#4](https://github.com/kkkrist/coronastats/issues/4)) ([4c2cc07](https://github.com/kkkrist/coronastats/commit/4c2cc071a03c7f52664dad9203641be6ea0f17d3))
+
+
+
+
+
 # [1.7.0](https://github.com/kkkrist/coronastats/compare/v1.6.7...v1.7.0) (2020-10-19)
 
 
