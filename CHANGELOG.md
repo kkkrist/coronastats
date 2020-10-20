@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.3](https://github.com/kkkrist/coronastats/compare/v1.8.2...v1.8.3) (2020-10-20)
+
+
+### Bug Fixes
+
+* **frontend:** always display notification if app boots while offline ([51d3c0e](https://github.com/kkkrist/coronastats/commit/51d3c0ef48ed9d4389acb36ae0e8eda318c63bd7))
+
+
+
+
+
 ## [1.8.2](https://github.com/kkkrist/coronastats/compare/v1.8.1...v1.8.2) (2020-10-20)
 
 
