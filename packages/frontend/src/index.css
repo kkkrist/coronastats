@@ -78,10 +78,12 @@ footer a {
 }
 
 #notifications {
-  bottom: 1em;
+  bottom: 0;
   color: white;
   hyphens: auto;
   left: 0;
+  margin: -1rem;
+  padding: 1rem;
   position: fixed;
   right: 0;
   text-align: center;
@@ -89,17 +91,17 @@ footer a {
 }
 
 #notifications > div {
+  margin: 1rem;
   position: relative;
 }
 
 #notifications span {
   background-color: #48AFF3;
-  border: 1px solid white;
+  border: 1px solid lightgrey;
   border-radius: 4px;
   display: inline-block;
   cursor: pointer;
   font-style: italic;
-  margin-top: 1em;
   padding: 1em;
   text-align: left;
 }
@@ -188,15 +190,9 @@ footer a {
   #notifications {
     bottom: initial;
     left: initial;
-    right: 1em;
     text-align: right;
-    top: 1em;
+    top: 0;
     width: 350px;
-  }
-
-  #notifications span {
-    margin-bottom: 1em;
-    margin-top: 0;
   }
 
   .notification-in {
