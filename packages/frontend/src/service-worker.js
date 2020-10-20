@@ -50,12 +50,7 @@ const checkValidServiceWorker = (swUrl, addNotification) => {
         registerValidSW(swUrl, addNotification)
       }
     })
-    .catch(() => {
-      addNotification(
-        'Es besteht keine Internetverbindung. Die App befindet sich im Offline-Modus.',
-        'warning'
-      )
-    })
+    .catch(() => {})
 }
 
 const isLocalhost = Boolean(

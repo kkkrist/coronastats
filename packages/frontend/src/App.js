@@ -60,6 +60,13 @@ const App = () => {
   )
 
   useEffect(() => {
+    if (!navigator.onLine) {
+      addNotification(
+        'Es besteht keine Internetverbindung. Die App befindet sich im Offline-Modus.',
+        'warning'
+      )
+    }
+
     window.addEventListener('online', () => {
       setNotifications(prevState => {
         const id = prevState.find(n =>
