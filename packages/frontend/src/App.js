@@ -102,8 +102,6 @@ const App = () => {
     replication.on('error', error =>
       addNotification(`Datenbankfehler: ${error.message}`, 'danger')
     )
-
-    return () => replication.cancel()
   }, [addNotification, areacode, removeNotification])
 
   useEffect(() => {
