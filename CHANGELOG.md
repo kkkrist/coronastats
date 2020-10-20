@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/kkkrist/coronastats/compare/v1.8.1...v1.8.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **frontend:** don't wait for "load" event to register service worker (somehow wouldn't trigger in Safari) ([ab8a29c](https://github.com/kkkrist/coronastats/commit/ab8a29c1b50ba32c597b6eeb8101ed189523d361))
+* **frontend:** fix html meta tags ([cca56a4](https://github.com/kkkrist/coronastats/commit/cca56a406db0576b841bc38309c65e6a5278add1))
+
+
+
+
+
 ## [1.8.1](https://github.com/kkkrist/coronastats/compare/v1.8.0...v1.8.1) (2020-10-20)
 
 
