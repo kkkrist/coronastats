@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
 import { linearGradientDef } from '@nivo/core'
-import { formatNum, shortDate } from './utils'
+import { formatNum, longDate, shortDate } from './utils'
 
 const chartConfig = {
+  areaBlendMode: 'darken',
   axisBottom: {
     format: shortDate,
     legend: 'Zeitverlauf',
@@ -26,12 +27,18 @@ const chartConfig = {
     tickPadding: 8,
     tickSize: 0
   },
+  colors: a => a.color || '#000',
   defs: [
     linearGradientDef('gradientA', [
       { offset: 0, color: 'inherit' },
       { offset: 100, color: 'inherit', opacity: 0.1 }
     ])
   ],
+  enableArea: true,
+  enableGridX: false,
+  enableGridY: false,
+  enablePoints: false,
+  enableSlices: 'x',
   fill: [{ match: '*', id: 'gradientA' }],
   legends: [
     {
@@ -113,7 +120,11 @@ const chartConfig = {
         </Fragment>
       ))}
     </table>
-  )
+  ),
+  xFormat: longDate,
+  xScale: { type: 'time' },
+  yFormat: formatNum,
+  yScale: { type: 'linear' }
 }
 
 export default chartConfig

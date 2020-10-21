@@ -4,7 +4,7 @@ import PouchDB from 'pouchdb'
 import { ResponsiveLine } from '@nivo/line'
 import areacodes from './areacodes.json'
 import chartConfig from './chart-config'
-import { formatNum, longDate } from './utils'
+import { formatNum } from './utils'
 import { version } from '../package.json'
 import { register as registerServiceWorker } from './service-worker'
 
@@ -278,21 +278,7 @@ const App = () => {
           {stats.length === 0 ? (
             <span>Bitte warten…</span>
           ) : (
-            <ResponsiveLine
-              areaBlendMode='darken'
-              colors={a => a.color || '#000'}
-              data={stats}
-              enableArea
-              enableGridX={false}
-              enableGridY={false}
-              enablePoints={false}
-              enableSlices='x'
-              xFormat={longDate}
-              xScale={{ type: 'time' }}
-              yFormat={formatNum}
-              yScale={{ type: 'linear' }}
-              {...chartConfig}
-            />
+            <ResponsiveLine data={stats} {...chartConfig} />
           )}
         </div>
       </div>
