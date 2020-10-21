@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/kkkrist/coronastats/compare/v1.8.3...v1.9.0) (2020-10-21)
+
+
+### Bug Fixes
+
+* **frontend:** move all of chart config to chart config module ([96e1354](https://github.com/kkkrist/coronastats/commit/96e1354b98ab295bc442e7e35522356efb9ffc57))
+
+
+### Features
+
+* **crawler:** add crawler for "lg" areacode ([f312ff4](https://github.com/kkkrist/coronastats/commit/f312ff45e88e9e9e02427a26107ef41306a4cb05))
+* **frontend:** add "lg", "plö" areacodes ([c04e7c3](https://github.com/kkkrist/coronastats/commit/c04e7c3310263a74ad65bf6f2f19772c7f658b25))
+
+
+
+
+
 ## [1.8.3](https://github.com/kkkrist/coronastats/compare/v1.8.2...v1.8.3) (2020-10-20)
 
 
