@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/kkkrist/coronastats/compare/v1.9.0...v1.9.1) (2020-10-21)
+
+
+### Bug Fixes
+
+* **frontend:** refactor 7d incidence calc ([817bdaf](https://github.com/kkkrist/coronastats/commit/817bdaf1a6e169b0a56055265bfcc44388c5fea8))
+
+
+
+
+
 # [1.9.0](https://github.com/kkkrist/coronastats/compare/v1.8.3...v1.9.0) (2020-10-21)
 
 
