@@ -259,8 +259,10 @@ const App = () => {
           value={areacode}
         >
           <option value='fl'>Flensburg</option>
-          <option value='sl'>Kreis Schleswig-Flensburg</option>
+          <option value='lg'>Landkreis Lüneburg</option>
+          <option value='plö'>Kreis Plön</option>
           <option value='rz'>Kreis Herzogtum Lauenburg</option>
+          <option value='sl'>Kreis Schleswig-Flensburg</option>
         </select>
       </div>
 
@@ -309,8 +311,8 @@ const App = () => {
         <p>
           *) Die 7-Tage-Inzidenz wird mit einer Einwohnerzahl von{' '}
           {formatNum(areacodes[areacode].population)} errechnet (Quelle:{' '}
-          <a href='https://www.statistik-nord.de/fileadmin/Dokumente/Statistische_Berichte/bevoelkerung/A_I_2_S/A_I_2_vj_194_Zensus_SH.xlsx'>
-            Statistikamt Nord
+          <a href={areacodes[areacode].populationSourceUri}>
+            {areacodes[areacode].populationSourceLabel}
           </a>
           ).
         </p>
