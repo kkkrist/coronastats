@@ -141,32 +141,29 @@ const App = () => {
                   y: value.recovered ?? 0
                 })
 
-              if (index < arr.length - 6 && areacodes[areacode].population) {
-                const sums = [value.infected]
+              const d = dayjs(value.date)
 
-                for (let shift = 0; shift < 7; shift++) {
-                  if (
-                    dayjs(arr[index + shift].value.date).isAfter(
-                      dayjs(value.date).set(
-                        'date',
-                        dayjs(value.date).date() - 7
-                      )
-                    )
-                  ) {
-                    sums.push(arr[index + shift].value.infected)
-                  }
-                }
+              const rangeEnd = arr.find(
+                doc =>
+                  dayjs(doc.value.date).format('YYYY-MM-DD') ===
+                  d.set('date', d.date() - 1).format('YYYY-MM-DD')
+              )?.value
 
-                if (sums.length > 1) {
-                  acc[3].data.unshift({
-                    x: new Date(value.date),
-                    y: (
-                      ((sums[0] - sums[sums.length - 1]) /
-                        areacodes[areacode].population) *
-                      100000
-                    ).toFixed(1)
-                  })
-                }
+              const rangeStart = arr.find(
+                doc =>
+                  dayjs(doc.value.date).format('YYYY-MM-DD') ===
+                  d.set('date', d.date() - 8).format('YYYY-MM-DD')
+              )?.value
+
+              if (rangeEnd && rangeStart) {
+                acc[3].data.unshift({
+                  x: new Date(value.date),
+                  y: (
+                    ((rangeEnd.infected - rangeStart.infected) /
+                      areacodes[areacode].population) *
+                    100000
+                  ).toFixed(1)
+                })
               }
 
               acc[4].data.unshift({
