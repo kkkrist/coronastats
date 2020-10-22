@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/kkkrist/coronastats/compare/v1.9.1...v1.10.0) (2020-10-22)
+
+
+### Bug Fixes
+
+* **crawler:** improve regexes in "od" crawler ([a4cdc15](https://github.com/kkkrist/coronastats/commit/a4cdc15dd61b44c3b30ee2ac0f4aada7ad3b29a9))
+
+
+### Features
+
+* **crawler:** add crawler for "od" areacode ([d03c41e](https://github.com/kkkrist/coronastats/commit/d03c41e4259fed2faed285feffeef3af81f8747c))
+
+
+
+
+
 # [1.9.0](https://github.com/kkkrist/coronastats/compare/v1.8.3...v1.9.0) (2020-10-21)
 
 

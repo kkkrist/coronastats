@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/kkkrist/coronastats/compare/v1.9.1...v1.10.0) (2020-10-22)
+
+
+### Bug Fixes
+
+* **crawler:** improve regexes in "od" crawler ([a4cdc15](https://github.com/kkkrist/coronastats/commit/a4cdc15dd61b44c3b30ee2ac0f4aada7ad3b29a9))
+* **frontend:** fix markers for non-sh municipalities ([b92d1b0](https://github.com/kkkrist/coronastats/commit/b92d1b06937d799866a18dd5825df7befbe7e020))
+* **frontend:** tweak/refactor 7d-incidence calc ([3c5841b](https://github.com/kkkrist/coronastats/commit/3c5841be3784f0187193e72da9d6217298be45c3))
+
+
+### Features
+
+* **crawler:** add crawler for "od" areacode ([d03c41e](https://github.com/kkkrist/coronastats/commit/d03c41e4259fed2faed285feffeef3af81f8747c))
+* **frontend:** add "od"" areacode ([4c731e1](https://github.com/kkkrist/coronastats/commit/4c731e1605a0678c0ab33a89f985c858c7a0f707))
+
+
+
+
+
 ## [1.9.1](https://github.com/kkkrist/coronastats/compare/v1.9.0...v1.9.1) (2020-10-21)
 
 
