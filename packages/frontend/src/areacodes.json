@@ -4,34 +4,39 @@
     "populationSourceLabel": "Statistikamt Nord",
     "populationSourceUri": "https://www.statistik-nord.de/",
     "sourceLabel": "flensburg.de",
-    "sourceUri": "https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1"
+    "sourceUri": "https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1",
+    "state": "sh"
   },
   "rz": {
     "population": 198019,
     "populationSourceLabel": "Statistikamt Nord",
     "populationSourceUri": "https://www.statistik-nord.de/",
     "sourceLabel": "kreis-rz.de",
-    "sourceUri": "https://www.kreis-rz.de/Corona"
+    "sourceUri": "https://www.kreis-rz.de/Corona",
+    "state": "sh"
   },
   "lg": {
     "population": 184139,
     "populationSourceLabel": "Landesamt für Statistik Niedersachsen",
     "populationSourceUri": "https://www.statistik.niedersachsen.de/startseite/",
     "sourceLabel": "spezial.lklg.net",
-    "sourceUri": "https://spezial.lklg.net/?p=64"
+    "sourceUri": "https://spezial.lklg.net/?p=64",
+    "state": "ns"
   },
   "plö": {
     "population": 128686,
     "populationSourceLabel": "Statistikamt Nord",
     "populationSourceUri": "https://www.statistik-nord.de/",
     "sourceLabel": "corona.rki.de",
-    "sourceUri": "https://corona.rki.de/"
+    "sourceUri": "https://corona.rki.de/",
+    "state": "sh"
   },
   "sl": {
     "population": 201156,
     "populationSourceLabel": "Statistikamt Nord",
     "populationSourceUri": "https://www.statistik-nord.de/",
     "sourceLabel": "schleswig-flensburg.de",
-    "sourceUri": "https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus"
+    "sourceUri": "https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus",
+    "state": "sh"
   }
 }

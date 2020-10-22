@@ -4,6 +4,7 @@ import PouchDB from 'pouchdb'
 import { ResponsiveLine } from '@nivo/line'
 import areacodes from './areacodes.json'
 import chartConfig from './chart-config'
+import markers from './markers'
 import { formatNum } from './utils'
 import { version } from '../package.json'
 import { register as registerServiceWorker } from './service-worker'
@@ -275,7 +276,11 @@ const App = () => {
           {stats.length === 0 ? (
             <span>Bitte warten…</span>
           ) : (
-            <ResponsiveLine data={stats} {...chartConfig} />
+            <ResponsiveLine
+              data={stats}
+              markers={markers[areacodes[areacode].state]}
+              {...chartConfig}
+            />
           )}
         </div>
       </div>
