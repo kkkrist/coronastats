@@ -37,44 +37,43 @@ module.exports = () =>
         'https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus'
       )
       .then(dom => {
-        const content = dom.window.document.querySelectorAll('h1 ~ div > p')
+        const content = dom.window.document.querySelector('div#read')
+          .textContent
 
-        const dateMatch = content[0].textContent.match(
-          /Stand ([0-9]+)\.([0-9]+)\.([0-9]+),\s(([0-9]+):([0-9]+))/
+        const dateMatch = content.match(
+          /Stand: ([0-9]+)\.([0-9]+)\.([0-9]+),\s(([0-9]+):([0-9]+))/
         )
 
-        const infectedMatch = content[1].textContent.match(
-          /derzeit bei ([0-9]+) Personen/
+        const infectedMatch = content.match(
+          /positiv getesteten Personen.*bei ([0-9]+)/
         )
 
-        const recoveredMatch = content[1].textContent.match(
-          /([0-9]+) Personen sind genesen/
-        )
+        const recoveredMatch = content.match(/([0-9]+) Personen sind genesen/)
 
-        const quarantinedMatch = content[2].textContent.match(
+        const quarantinedMatch = content.match(
           /([0-9]+) Personen in Quarantäne/
         )
 
-        const deathsMatch = content[1].textContent.match(/und (.*) verstorben/)
+        const deathsMatch = content.match(/und (.*) verstorben/)
 
         if (!dateMatch) {
-          return reject(new Error(`Couldn't parse date string "${content[0]}"`))
+          return reject(new Error("Couldn't parse date"))
         }
 
         if (!infectedMatch) {
-          return reject(new Error(`Couldn't parse infected string "${content[1]}"`))
+          return reject(new Error("Couldn't parse infected"))
         }
 
         if (!recoveredMatch) {
-          return reject(new Error(`Couldn't parse recovered string "${content[1]}"`))
+          return reject(new Error("Couldn't parse recovered"))
         }
 
         if (!deathsMatch) {
-          return reject(new Error(`Couldn't parse deaths string "${content[1]}"`))
+          return reject(new Error("Couldn't parse deaths"))
         }
 
         if (!quarantinedMatch) {
-          return reject(new Error(`Couldn't parse quarantined string "${content[2]}"`))
+          return reject(new Error("Couldn't parse quarantined"))
         }
 
         const entry = {
