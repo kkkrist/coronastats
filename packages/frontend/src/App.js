@@ -127,40 +127,34 @@ const App = () => {
 
         setStats(
           rows.reduce(
-            (acc, { value }, index, arr) => {
-              acc[0].data.unshift({ x: new Date(value.date), y: value.deaths })
+            (acc, { value: doc }, index, arr) => {
+              acc[0].data.unshift({ x: new Date(doc.date), y: doc.deaths })
 
-              value.active &&
+              doc.active &&
                 acc[1].data.unshift({
-                  x: new Date(value.date),
-                  y: value.active
+                  x: new Date(doc.date),
+                  y: doc.active
                 })
 
-              value.recovered &&
+              doc.recovered &&
                 acc[2].data.unshift({
-                  x: new Date(value.date),
-                  y: value.recovered ?? 0
+                  x: new Date(doc.date),
+                  y: doc.recovered ?? 0
                 })
 
-              const d = dayjs(value.date)
-
-              const rangeEnd = arr.find(
-                doc =>
-                  dayjs(doc.value.date).format('YYYY-MM-DD') ===
-                  d.set('date', d.date() - 1).format('YYYY-MM-DD')
-              )?.value
+              const d = dayjs(doc.date)
 
               const rangeStart = arr.find(
-                doc =>
-                  dayjs(doc.value.date).format('YYYY-MM-DD') ===
-                  d.set('date', d.date() - 8).format('YYYY-MM-DD')
+                ({ value }) =>
+                  dayjs(value.date).format('YYYY-MM-DD') ===
+                  d.set('date', d.date() - 7).format('YYYY-MM-DD')
               )?.value
 
-              if (rangeEnd && rangeStart) {
+              if (rangeStart) {
                 acc[3].data.unshift({
-                  x: new Date(value.date),
+                  x: new Date(doc.date),
                   y: (
-                    ((rangeEnd.infected - rangeStart.infected) /
+                    ((doc.infected - rangeStart.infected) /
                       areacodes[areacode].population) *
                     100000
                   ).toFixed(1)
@@ -168,14 +162,14 @@ const App = () => {
               }
 
               acc[4].data.unshift({
-                x: new Date(value.date),
-                y: value.infected
+                x: new Date(doc.date),
+                y: doc.infected
               })
 
-              value.quarantined &&
+              doc.quarantined &&
                 acc[5].data.unshift({
-                  x: new Date(value.date),
-                  y: value.quarantined
+                  x: new Date(doc.date),
+                  y: doc.quarantined
                 })
 
               return acc
