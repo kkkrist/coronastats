@@ -1,7 +1,7 @@
 {
   "name": "coronastats-frontend",
   "version": "1.10.0",
-  "description": "Corona Dashboard for Flensburg",
+  "description": "Corona Dashboard",
   "keywords": [
     "react"
   ],
