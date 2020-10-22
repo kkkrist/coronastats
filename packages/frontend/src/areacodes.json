@@ -23,6 +23,14 @@
     "sourceUri": "https://spezial.lklg.net/?p=64",
     "state": "ns"
   },
+  "od": {
+    "population": 244156,
+    "populationSourceLabel": "Statistikamt Nord",
+    "populationSourceUri": "https://www.statistik-nord.de/",
+    "sourceLabel": "kreis-stormarn.de",
+    "sourceUri": "https://www.kreis-stormarn.de/aktuelles/pressemeldungen/2020/zahl-der-bestaetigten-corona-faelle-in-stormarn.html",
+    "state": "sh"
+  },
   "plö": {
     "population": 128686,
     "populationSourceLabel": "Statistikamt Nord",

@@ -252,6 +252,7 @@ const App = () => {
         >
           <option value='fl'>Flensburg</option>
           <option value='lg'>Landkreis Lüneburg</option>
+          <option value='od'>Kreis Stormarn</option>
           <option value='plö'>Kreis Plön</option>
           <option value='rz'>Kreis Herzogtum Lauenburg</option>
           <option value='sl'>Kreis Schleswig-Flensburg</option>
