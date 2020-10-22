@@ -55,10 +55,10 @@ module.exports = () =>
             )
 
             if (
-              !infectedMatch ||
-              !recoveredMatch ||
+              !dateMatch ||
               !deathsMatch ||
-              !dateMatch
+              !infectedMatch ||
+              !recoveredMatch
             ) {
               return acc
             }
@@ -66,12 +66,12 @@ module.exports = () =>
             const entry = {
               areacode: 'od',
               date: new Date(`${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`),
-              deaths: deathsMatch ? Number(deathsMatch[1]) : null,
+              deaths: Number(deathsMatch[1]),
               infected: Number(infectedMatch[1]),
               quarantined: quarantinedMatch
                 ? Number(quarantinedMatch[1])
                 : null,
-              recovered: recoveredMatch ? Number(recoveredMatch[1]) : null
+              recovered: Number(recoveredMatch[1])
             }
 
             return [
