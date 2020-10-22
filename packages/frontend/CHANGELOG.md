@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/kkkrist/coronastats/compare/v1.10.0...v1.10.1) (2020-10-22)
+
+
+### Bug Fixes
+
+* use a more generic project name/desc ([b2fb80b](https://github.com/kkkrist/coronastats/commit/b2fb80b8b07b5d623182080ef00ea9f56ec5e4ba))
+
+
+
+
+
 # [1.10.0](https://github.com/kkkrist/coronastats/compare/v1.9.1...v1.10.0) (2020-10-22)
 
 
