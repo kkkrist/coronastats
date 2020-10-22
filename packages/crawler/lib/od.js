@@ -23,13 +23,13 @@ module.exports = () =>
             let path = 'nextElementSibling'
 
             while (_get(cur, `${path}.tagName`) === 'P') {
-              content += _get(cur, `${path}.textContent`, '')
+              content += '\n' + _get(cur, `${path}.textContent`, '')
               path += '.nextElementSibling'
             }
 
             const infectedMatch =
               content.match(
-                /(?:COVID-19-Fälle|positiv getesteten Personen)(?:[A-Za-z0-9\W\s-]+)beträgt(?:[A-Za-z\W\s]+)([0-9]+)/
+                /(?:COVID-19-Fälle|positiv getesteten Personen)(?:[A-Za-z0-9\W\s-]+?)beträgt(?:[A-Za-z\W\s]+)([0-9]+)/
               ) ||
               content.match(
                 /bestätigten.*Fälle ist auf ([0-9]+) (an|)gestiegen/
@@ -37,22 +37,29 @@ module.exports = () =>
               content.match(/([0-9]+) bestätigte.*Fälle/)
 
             const recoveredMatch = content.match(
-              /([0-9]+)\*? Personen wieder genesen/
+              /([0-9]+)\*? Personen.*genesen/
             )
 
             const quarantinedMatch = content.match(
               /([0-9]+)\*? aktuell in Quarantäne/
             )
 
-            const deathsMatch = content.match(
-              /([0-9]+)\*? Personen sind.*verstorben/
-            )
+            const deathsMatch =
+              content.match(/([0-9]+)\*? Personen sind.*verstorben/) ||
+              content.match(
+                /verstorbenen Personen(?:[A-Za-z0-9\W\s-]+)beträgt(?:[A-Za-z\W\s]+)([0-9]+)/
+              )
 
             const dateMatch = cur.textContent.match(
               /^([0-9]+)\.([0-9]+)\.([0-9]+)$/
             )
 
-            if (!infectedMatch || !dateMatch) {
+            if (
+              !infectedMatch ||
+              !recoveredMatch ||
+              !deathsMatch ||
+              !dateMatch
+            ) {
               return acc
             }
 
