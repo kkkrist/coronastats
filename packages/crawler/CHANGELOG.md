@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.10.2 (2020-10-22)</small>
+
+* chore(crawler): clean-up "od" crawler ([f89bd68](https://github.com/kkkrist/coronastats/commit/f89bd68))
+
+
+
+
+
 # [1.10.0](https://github.com/kkkrist/coronastats/compare/v1.9.1...v1.10.0) (2020-10-22)
 
 

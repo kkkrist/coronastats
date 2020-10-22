@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.10.2 (2020-10-22)</small>
+
+* fix: configure lerna conventionalcommits properly ([587f96d](https://github.com/kkkrist/coronastats/commit/587f96d))
+* fix(frontend): memorize areacode in localStorage ([6f887a1](https://github.com/kkkrist/coronastats/commit/6f887a1))
+* chore(crawler): clean-up "od" crawler ([f89bd68](https://github.com/kkkrist/coronastats/commit/f89bd68))
+
+
+
+
+
 ## [1.10.1](https://github.com/kkkrist/coronastats/compare/v1.10.0...v1.10.1) (2020-10-22)
 
 
