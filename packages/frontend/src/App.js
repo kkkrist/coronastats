@@ -17,7 +17,9 @@ const replication = db.replicate.from(
 
 const App = () => {
   const [areacode, setAreacode] = useState(
-    new URLSearchParams(window.location.search).get('areacode') || 'fl'
+    new URLSearchParams(window.location.search).get('areacode') ||
+      localStorage.areacode ||
+      'fl'
   )
   const [lastChange, setLastChange] = useState()
   const [lastModified, setLastModified] = useState()
@@ -223,6 +225,7 @@ const App = () => {
 
   useEffect(() => {
     const params = `?areacode=${areacode}`
+    localStorage.areacode = areacode
 
     if (!window.location.search) {
       window.history.replaceState({ areacode }, '', params)
