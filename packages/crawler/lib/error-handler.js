@@ -5,6 +5,10 @@ const { spawn } = require('child_process')
 module.exports = error => {
   console.error(error)
 
+  if (!process.env.ERROR_EMAIL) {
+    return console.info('No error email defined!')
+  }
+
   const mail = spawn('mail', [
     '-s',
     'Crawler error',
@@ -23,6 +27,6 @@ module.exports = error => {
     console.log('Mail:', data)
   })
 
-  mail.stdin.write(error.toString())
+  mail.stdin.write(error.stack)
   mail.stdin.end()
 }
