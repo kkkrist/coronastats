@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.10.4 (2020-10-23)</small>
+
+* fix(crawler):use error handler to handle errors ([918b2a8](https://github.com/kkkrist/coronastats/commit/918b2a8))
+* fix(crawler): add error handler w/ email cap ([3ef32cb](https://github.com/kkkrist/coronastats/commit/3ef32cb))
+* fix(crawler): mail whole stack, don't run mailer if ERROR_EMAIL is undefined in error handler ([6a4f065](https://github.com/kkkrist/coronastats/commit/6a4f065))
+* fix(crawler): support arrays of errors in error handler ([8cb63ff](https://github.com/kkkrist/coronastats/commit/8cb63ff))
+
+
+
+
+
 ## <small>1.10.3 (2020-10-22)</small>
 
 * fix(crawler): fix "sl" crawler ([c10cdad](https://github.com/kkkrist/coronastats/commit/c10cdad))
