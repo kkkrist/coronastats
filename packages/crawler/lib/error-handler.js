@@ -2,18 +2,18 @@
 
 const { spawn } = require('child_process')
 
-module.exports = error => {
-  console.error(error)
+module.exports = errors => {
+  if (!Array.isArray(errors)) {
+    errors = [errors]
+  }
+
+  errors.forEach(error => console.error(error))
 
   if (!process.env.ERROR_EMAIL) {
     return console.info('No error email defined!')
   }
 
-  const mail = spawn('mail', [
-    '-s',
-    'Crawler error',
-    process.env.ERROR_EMAIL
-  ])
+  const mail = spawn('mail', ['-s', 'Crawler error', process.env.ERROR_EMAIL])
 
   mail.on('close', code => {
     console.log(`Mail sent (${code})`)
@@ -27,6 +27,6 @@ module.exports = error => {
     console.log('Mail:', data)
   })
 
-  mail.stdin.write(error.stack)
+  mail.stdin.write(errors.map(error => error.stack).join('\n\n'))
   mail.stdin.end()
 }
