@@ -1,4 +1,5 @@
 const nano = require('nano')
+const errorHandler = require('./error-handler')
 require('dotenv').config()
 
 const db = nano(process.env.COUCHDB_URI)
@@ -74,7 +75,7 @@ Promise.allSettled([
       .flat()
 
     if (errors.length > 0) {
-      console.error(...errors)
+      errorHandler(errors)
     }
 
     if (data.length === 0) {
@@ -96,4 +97,4 @@ Promise.allSettled([
       console.log(errors)
     }
   })
-  .catch(console.error)
+  .catch(errorHandler)
