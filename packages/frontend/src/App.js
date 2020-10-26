@@ -21,9 +21,11 @@ const App = () => {
       localStorage.areacode ||
       'fl'
   )
+  const [installEvent, setInstallEvent] = useState()
   const [lastChange, setLastChange] = useState()
   const [lastModified, setLastModified] = useState()
   const [notifications, setNotifications] = useState([])
+  const [sharebutton, setSharebutton] = useState(false)
   const [stats, setStats] = useState([])
 
   const handlePopstate = ({ state: { areacode } }) => setAreacode(areacode)
@@ -61,6 +63,21 @@ const App = () => {
     },
     [removeNotification]
   )
+
+  const handleInstall = () => {
+    if (
+      sharebutton &&
+      !window.matchMedia('(display-mode: standalone)').matches
+    ) {
+      return alert(
+        'Bitte klicken Sie auf den Teilen-Button und wählen Sie "Zum Startbildschirm hinzufügen" aus!'
+      )
+    }
+
+    if (installEvent) {
+      installEvent.prompt()
+    }
+  }
 
   useEffect(() => {
     if (!navigator.onLine) {
@@ -241,6 +258,21 @@ const App = () => {
     registerServiceWorker(addNotification)
   }, [addNotification])
 
+  useEffect(() => {
+    if (!window.matchMedia('(display-mode: standalone)').matches) {
+      return
+    }
+
+    if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) {
+      return setSharebutton(true)
+    }
+
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault()
+      setInstallEvent(e)
+    })
+  }, [])
+
   return (
     <div id='app'>
       <h1>Zeitverlauf der Corona-Fälle in </h1>
@@ -301,6 +333,12 @@ const App = () => {
             {areacodes[areacode].populationSourceLabel}
           </a>
           ).
+        </p>
+
+        <p>
+          {(installEvent || sharebutton) && (
+            <button onClick={() => handleInstall()}>Installieren</button>
+          )}
         </p>
 
         <p>
