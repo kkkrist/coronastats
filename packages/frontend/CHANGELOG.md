@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.11.0 (2020-10-26)
+
+* feat(frontend): add optional install button ([79d2f5b](https://github.com/kkkrist/coronastats/commit/79d2f5b))
+
+
+
+
+
 ## <small>1.10.2 (2020-10-22)</small>
 
 * fix(frontend): memorize areacode in localStorage ([6f887a1](https://github.com/kkkrist/coronastats/commit/6f887a1))
