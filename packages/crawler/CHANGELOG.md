@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.11.1 (2020-10-27)</small>
+
+* fix(crawler): make lg crawler more flexible ([18352df](https://github.com/kkkrist/coronastats/commit/18352df))
+
+
+
+
+
 ## <small>1.10.4 (2020-10-23)</small>
 
 * fix(crawler):use error handler to handle errors ([918b2a8](https://github.com/kkkrist/coronastats/commit/918b2a8))

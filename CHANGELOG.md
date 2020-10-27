@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.11.1 (2020-10-27)</small>
+
+* fix(crawler): make lg crawler more flexible ([18352df](https://github.com/kkkrist/coronastats/commit/18352df))
+
+
+
+
+
 ## 1.11.0 (2020-10-26)
 
 * feat(frontend): add optional install button ([79d2f5b](https://github.com/kkkrist/coronastats/commit/79d2f5b))
