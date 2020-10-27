@@ -51,19 +51,25 @@ module.exports = () =>
         ]
       }
     ]) => {
-      const content = dom.window.document.querySelectorAll(
-        '.row:not(.container) > div > p'
+      const elements = dom.window.document.querySelectorAll(
+        '.row:not(.container) > div > *'
       )
 
-      const dateMatch = content[1].textContent.match(
+      let index = 0
+      let content = ''
+
+      while (index < elements.length && elements[index].tagName !== 'TABLE') {
+        content += elements[index].textContent
+        index++
+      }
+
+      const dateMatch = content.match(
         /\+\+\+ Update ([0-9]+)\. ([A-Za-z]+) ([0-9]+)/
       )
 
-      const infectedMatch = content[2].textContent.match(
-        /gemeldeten Fälle[A-Za-z\s]+([0-9]+)/
-      )
+      const infectedMatch = content.match(/gemeldeten Fälle[A-Za-z\s]+([0-9]+)/)
 
-      const recoveredMatch = content[4].textContent.match(
+      const recoveredMatch = content.match(
         /([0-9]+) Personen haben die Corona-Infektion überwunden/
       )
 
