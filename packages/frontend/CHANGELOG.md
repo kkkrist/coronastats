@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.11.2 (2020-10-28)</small>
+
+* chore(frontend): lint ([b72fecb](https://github.com/kkkrist/coronastats/commit/b72fecb))
+* fix(frontend): fix share button condition ([1d35eeb](https://github.com/kkkrist/coronastats/commit/1d35eeb))
+* fix(frontend): fix standalone mode detection ([9733a7e](https://github.com/kkkrist/coronastats/commit/9733a7e))
+
+
+
+
+
 ## 1.11.0 (2020-10-26)
 
 * feat(frontend): add optional install button ([79d2f5b](https://github.com/kkkrist/coronastats/commit/79d2f5b))
