@@ -263,7 +263,7 @@ const App = () => {
       return
     }
 
-    if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) {
+    if (/iPhone|MacIntel/.test(navigator.platform) && navigator.maxTouchPoints > 1) {
       return setSharebutton(true)
     }
 
