@@ -80,7 +80,7 @@ module.exports = () =>
           areacode: 'sl',
           date: new Date(
             `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]} ${dateMatch[4]}`
-          ),
+          ).toISOString(),
           deaths: getInt(deathsMatch[1]),
           infected: Number(infectedMatch[1]),
           quarantined: Number(quarantinedMatch[1]),

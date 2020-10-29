@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "fast-json-patch": "^3.0.0-1",
     "jsdom": "^16.4.0",
     "lodash": "^4.17.20",
     "nano": "^8.2.2",

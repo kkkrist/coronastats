@@ -34,7 +34,7 @@ module.exports = () =>
             areacode: 'plö',
             date: new Date(
               `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}, ${dateMatch[4]}`
-            ),
+            ).toISOString(),
             deaths,
             infected: cases,
             infected7p100k: cases7_per_100k,

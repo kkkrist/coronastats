@@ -1,55 +1,67 @@
+const { compare } = require('fast-json-patch')
 const nano = require('nano')
 const errorHandler = require('./error-handler')
 require('dotenv').config()
 
 const db = nano(process.env.COUCHDB_URI)
 
+const getNewRecord = (newData, oldRecord) => {
+  const oldData = Object.keys(oldRecord).reduce(
+    (acc, key) =>
+      /_id|_rev|history|last_modified/.test(key)
+        ? acc
+        : {
+          ...acc,
+          [key]: oldRecord[key]
+        },
+    {}
+  )
+
+  const patch = compare(newData, oldData)
+
+  if (patch.length > 0) {
+    return {
+      ...oldRecord,
+      ...newData,
+      history: [...(oldRecord.history || []), patch],
+      last_modified: new Date().toISOString()
+    }
+  }
+
+  return oldRecord
+}
+
 const upsert = stats =>
   db.get('_all_docs', { include_docs: true }).then(({ rows }) => {
     const docs = stats.reduce((acc, stat) => {
       const i = acc.findIndex(
-        ({ areacode, date }) =>
-          areacode === stat.areacode &&
-          date.toISOString() === stat.date.toISOString()
+        ({ areacode, date }) => areacode === stat.areacode && date === stat.date
       )
 
       if (i > -1) {
-        acc[i] = {
-          ...acc[i],
-          ...stat,
-          last_modified: new Date().toISOString()
+        const newRecord = getNewRecord(stat, acc[i])
+        if (newRecord !== acc[i]) {
+          acc[i] = newRecord
         }
         return acc
       }
 
       const row = rows.find(
-        ({ doc }) =>
-          doc.areacode === stat.areacode && doc.date === stat.date.toISOString()
+        ({ doc }) => doc.areacode === stat.areacode && doc.date === stat.date
       )
 
-      if (
-        row &&
-        Object.keys(row.doc)
-          .filter(key => !/_id|_rev|date|last_modified/.test(key))
-          .every(key => row.doc[key] === stat[key])
-      ) {
-        return acc
+      if (row) {
+        const newRecord = getNewRecord(stat, row.doc)
+        if (newRecord !== row.doc) {
+          return [...acc, newRecord]
+        }
       }
 
-      return [
-        ...acc,
-        {
-          ...(row ? row.doc : {}),
-          ...stat,
-          last_modified: new Date().toISOString()
-        }
-      ]
+      return acc
     }, [])
 
     if (docs.length > 0) {
-      return db.bulk({
-        docs
-      })
+      return db.bulk({ docs })
     }
 
     return Promise.resolve(docs)
