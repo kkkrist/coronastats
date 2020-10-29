@@ -55,9 +55,16 @@ const upsert = stats =>
         if (newRecord !== row.doc) {
           return [...acc, newRecord]
         }
+        return acc
       }
 
-      return acc
+      return [
+        ...acc,
+        {
+          ...stat,
+          last_modified: new Date().toISOString()
+        }
+      ]
     }, [])
 
     if (docs.length > 0) {
