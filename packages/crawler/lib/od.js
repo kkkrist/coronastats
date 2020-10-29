@@ -1,6 +1,5 @@
 'use strict'
 
-const _get = require('lodash/get')
 const jsdom = require('jsdom').JSDOM
 
 module.exports = () =>
@@ -20,11 +19,11 @@ module.exports = () =>
             }
 
             let content = ''
-            let path = 'nextElementSibling'
+            let nextEl = cur.nextElementSibling
 
-            while (_get(cur, `${path}.tagName`) === 'P') {
-              content += '\n' + _get(cur, `${path}.textContent`, '')
-              path += '.nextElementSibling'
+            while (nextEl && nextEl.tagName === 'P') {
+              content += '\n' + nextEl.textContent
+              nextEl = nextEl.nextElementSibling
             }
 
             const infectedMatch =
