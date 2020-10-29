@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.12.0 (2020-10-29)
+
+* refactor(crawler): remove lodash dep in "od" crawler ([e79c6a2](https://github.com/kkkrist/coronastats/commit/e79c6a2))
+* feat(crawler): add json-patch history to records ([505f45b](https://github.com/kkkrist/coronastats/commit/505f45b))
+* feat(crawler): re-write "fl" crawler ([7c3c67c](https://github.com/kkkrist/coronastats/commit/7c3c67c))
+
+
+
+
+
 ## <small>1.11.2 (2020-10-28)</small>
 
 * chore(frontend): lint ([b72fecb](https://github.com/kkkrist/coronastats/commit/b72fecb))
