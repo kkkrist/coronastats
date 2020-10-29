@@ -26,9 +26,7 @@ module.exports = () =>
                   /([0-9]+)\*? nachweislich Infizierte/
                 )
 
-                const recoveredMatch = content.match(
-                  /([0-9]+)\*?\s\w*genesen/
-                )
+                const recoveredMatch = content.match(/([0-9]+)\*?.*genesen/)
 
                 const quarantinedMatch = content.match(
                   /([0-9]+)\*? Verdachtsfälle in Qua?rantäne/
