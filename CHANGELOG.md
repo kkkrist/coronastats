@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.12.2 (2020-10-29)</small>
+
+* fix(crawler): fix `getMatch()` helper in "fl" crawler ([d65973d](https://github.com/kkkrist/coronastats/commit/d65973d))
+* fix(crawler): fix `upsert()` helper ([824a412](https://github.com/kkkrist/coronastats/commit/824a412))
+* fix(crawler): more fixes for "fl" crawler ([d30fbd2](https://github.com/kkkrist/coronastats/commit/d30fbd2))
+* feat(crawler): re-write "fl" crawler once more (are those people fat-fingering the data in on a type ([898580e](https://github.com/kkkrist/coronastats/commit/898580e))
+* chore(crawler): lint ([8934fc6](https://github.com/kkkrist/coronastats/commit/8934fc6))
+
+
+
+
+
 ## <small>1.12.1 (2020-10-29)</small>
 
 * fix(crawler): fix recovered regex in "fl" crawler ([dc77f33](https://github.com/kkkrist/coronastats/commit/dc77f33))
