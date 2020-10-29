@@ -33,6 +33,14 @@ export default {
       legendOrientation: 'vertical'
     },
     {
+      axis: 'x',
+      value: new Date('2020-10-26'),
+      lineStyle: { stroke: '#aaa', strokeWidth: 1 },
+      legend: 'Schulanfang',
+      legendPosition: 'top-right',
+      legendOrientation: 'vertical'
+    },
+    {
       axis: 'y',
       value: 50,
       legend: 'Grenzwert für 7-Tage-Inzidenz',
