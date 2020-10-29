@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.12.1 (2020-10-29)</small>
+
+* fix(crawler): fix recovered regex in "fl" crawler ([dc77f33](https://github.com/kkkrist/coronastats/commit/dc77f33))
+* fix(crawler): make "fl" crawler more prone to typos ([8acd1ec](https://github.com/kkkrist/coronastats/commit/8acd1ec))
+* fix(crawler): make "fl" crawler throw when trying to parse unexpected content ([be00903](https://github.com/kkkrist/coronastats/commit/be00903))
+
+
+
+
+
 ## 1.12.0 (2020-10-29)
 
 * refactor(crawler): remove lodash dep in "od" crawler ([e79c6a2](https://github.com/kkkrist/coronastats/commit/e79c6a2))
