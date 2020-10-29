@@ -42,14 +42,24 @@ module.exports = () =>
 
                 const timeMatch = content.match(/Stand ([0-9]+)\.([0-9]+) Uhr/)
 
-                if (
-                  !infectedMatch ||
-                  !recoveredMatch ||
-                  !quarantinedMatch ||
-                  !deathsMatch ||
-                  !dateMatch
-                ) {
-                  return data
+                if (!infectedMatch) {
+                  throw new Error(`Couldn't parse infected of ${date.textContent}`)
+                }
+
+                if (!recoveredMatch) {
+                  throw new Error(`Couldn't parse recovered of ${date.textContent}`)
+                }
+
+                if (!quarantinedMatch) {
+                  throw new Error(`Couldn't parse quarantined of ${date.textContent}`)
+                }
+
+                if (!deathsMatch) {
+                  throw new Error(`Couldn't parse deaths of ${date.textContent}`)
+                }
+
+                if (!dateMatch) {
+                  throw new Error(`Couldn't parse date of ${date.textContent}`)
                 }
 
                 const entry = {
