@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.12.3 (2020-10-29)</small>
+
+* fix(crawler): fix `upsert()` helper ([acc2ec4](https://github.com/kkkrist/coronastats/commit/acc2ec4))
+
+
+
+
+
 ## <small>1.12.2 (2020-10-29)</small>
 
 * fix(crawler): fix `getMatch()` helper in "fl" crawler ([d65973d](https://github.com/kkkrist/coronastats/commit/d65973d))

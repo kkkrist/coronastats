@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.12.3 (2020-10-29)</small>
+
+* fix(frontend): add post-autumn-holidays marker to "ns" region ([d513cbd](https://github.com/kkkrist/coronastats/commit/d513cbd))
+
+
+
+
+
 ## <small>1.11.2 (2020-10-28)</small>
 
 * chore(frontend): lint ([b72fecb](https://github.com/kkkrist/coronastats/commit/b72fecb))
