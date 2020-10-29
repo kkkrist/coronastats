@@ -9,7 +9,12 @@ const rQuarantined = /([0-9]+)[\D]+ (?<!Lehrer )in Qua?rantäne/
 const rRecovered = /([0-9]+)[\D]+gen?en?sen/
 
 const getMatch = (el, regex, isOptional) => {
-  let match
+  let match = el.textContent.match(regex)
+
+  if (match) {
+    return match
+  }
+
   let nextEl = el.previousSibling
 
   while (nextEl && !match) {
