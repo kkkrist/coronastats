@@ -31,7 +31,7 @@ module.exports = () =>
                 )
 
                 const quarantinedMatch = content.match(
-                  /([0-9]+)\*? Verdachtsfälle in Quarantäne/
+                  /([0-9]+)\*? Verdachtsfälle in Qua?rantäne/
                 )
 
                 const deathsMatch = content.match(/([0-9]+)\*? Verstorbene/)
