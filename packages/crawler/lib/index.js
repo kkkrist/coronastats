@@ -33,39 +33,51 @@ const getNewRecord = (newData, oldRecord) => {
 
 const upsert = stats =>
   db.get('_all_docs', { include_docs: true }).then(({ rows }) => {
-    const docs = stats.reduce((acc, stat) => {
-      const i = acc.findIndex(
-        ({ areacode, date }) => areacode === stat.areacode && date === stat.date
+    const docs = stats
+      .reduce(
+        (acc, stat) =>
+          acc.findIndex(
+            ({ areacode, date }) =>
+              areacode === stat.areacode && date === stat.date
+          ) > -1
+            ? acc
+            : [...acc, stat],
+        []
       )
+      .reduce((acc, stat) => {
+        const i = acc.findIndex(
+          ({ areacode, date }) =>
+            areacode === stat.areacode && date === stat.date
+        )
 
-      if (i > -1) {
-        const newRecord = getNewRecord(stat, acc[i])
-        if (newRecord !== acc[i]) {
-          acc[i] = newRecord
+        if (i > -1) {
+          const newRecord = getNewRecord(stat, acc[i])
+          if (newRecord !== acc[i]) {
+            acc[i] = newRecord
+          }
+          return acc
         }
-        return acc
-      }
 
-      const row = rows.find(
-        ({ doc }) => doc.areacode === stat.areacode && doc.date === stat.date
-      )
+        const row = rows.find(
+          ({ doc }) => doc.areacode === stat.areacode && doc.date === stat.date
+        )
 
-      if (row) {
-        const newRecord = getNewRecord(stat, row.doc)
-        if (newRecord !== row.doc) {
-          return [...acc, newRecord]
+        if (row) {
+          const newRecord = getNewRecord(stat, row.doc)
+          if (newRecord !== row.doc) {
+            return [...acc, newRecord]
+          }
+          return acc
         }
-        return acc
-      }
 
-      return [
-        ...acc,
-        {
-          ...stat,
-          last_modified: new Date().toISOString()
-        }
-      ]
-    }, [])
+        return [
+          ...acc,
+          {
+            ...stat,
+            last_modified: new Date().toISOString()
+          }
+        ]
+      }, [])
 
     if (docs.length > 0) {
       return db.bulk({ docs })
