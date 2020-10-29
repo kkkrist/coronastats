@@ -8,80 +8,72 @@ module.exports = () =>
       .fromURL(
         'https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1'
       )
-      .then(dom => {
-        const stats = [...dom.window.document.querySelectorAll('h3')].reduce(
-          (acc, cur) => {
-            if (
-              !cur.textContent.startsWith('Fallzahlen') ||
-              !cur.nextElementSibling
-            ) {
-              return acc
-            }
+      .then(
+        dom =>
+          resolve(
+            [...dom.window.document.querySelectorAll('h2')]
+              .filter(el => /^([0-9]+)\.([0-9]+)\.2[0-9]$/.test(el.textContent))
+              .reduce((data, date) => {
+                let content = ''
+                let nextEl = date.nextElementSibling
 
-            const infectedMatch = cur.nextElementSibling.textContent.match(
-              /([0-9]+)\*? nachweislich Infizierte/
-            )
+                while (nextEl && nextEl.tagName !== 'H2') {
+                  content = `${nextEl.textContent}\n${content}`
+                  nextEl = nextEl.nextElementSibling
+                }
 
-            const recoveredMatch = cur.nextElementSibling.textContent.match(
-              /([0-9]+)\*? davon gelten als genesen/
-            )
-
-            const quarantinedMatch = cur.nextElementSibling.textContent.match(
-              /([0-9]+)\*? Verdachtsfälle in Quarantäne/
-            )
-
-            const deathsMatch = cur.nextElementSibling.textContent.match(
-              /([0-9]+)\*? Verstorbene/
-            )
-
-            let dateMatch
-
-            while (dateMatch === undefined) {
-              if (!cur.previousElementSibling) {
-                cur = cur.parentElement
-              }
-
-              if (cur.previousElementSibling.tagName === 'H2') {
-                dateMatch = cur.previousElementSibling.textContent.match(
-                  /^([0-9]+)\.([0-9]+)\.([0-9]+)/
+                const infectedMatch = content.match(
+                  /([0-9]+)\*? nachweislich Infizierte/
                 )
-              } else {
-                cur = cur.previousElementSibling
-              }
-            }
 
-            if (
-              !infectedMatch ||
-              !recoveredMatch ||
-              !quarantinedMatch ||
-              !deathsMatch ||
-              !dateMatch
-            ) {
-              return acc
-            }
+                const recoveredMatch = content.match(
+                  /([0-9]+)\*? davon gelten als genesen/
+                )
 
-            const entry = {
-              areacode: 'fl',
-              date: new Date(
-                `20${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`
-              ).toISOString(),
-              deaths: Number(deathsMatch[1]),
-              infected: Number(infectedMatch[1]),
-              quarantined: Number(quarantinedMatch[1]),
-              recovered: Number(recoveredMatch[1])
-            }
+                const quarantinedMatch = content.match(
+                  /([0-9]+)\*? Verdachtsfälle in Quarantäne/
+                )
 
-            return [
-              ...acc,
-              {
-                ...entry,
-                active: entry.infected - entry.recovered - entry.deaths
-              }
-            ]
-          },
-          []
-        )
+                const deathsMatch = content.match(/([0-9]+)\*? Verstorbene/)
 
-        resolve(stats)
-      }, reject)
+                const dateMatch = date.textContent.match(
+                  /([0-9]+)\.([0-9]+)\.([0-9]+)/
+                )
+
+                const timeMatch = content.match(/Stand ([0-9]+)\.([0-9]+) Uhr/)
+
+                if (
+                  !infectedMatch ||
+                  !recoveredMatch ||
+                  !quarantinedMatch ||
+                  !deathsMatch ||
+                  !dateMatch
+                ) {
+                  return data
+                }
+
+                const entry = {
+                  areacode: 'fl',
+                  date: new Date(
+                    `20${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}${
+                      timeMatch ? ` ${timeMatch[1]}:${timeMatch[2]}` : ''
+                    }`
+                  ),
+                  deaths: Number(deathsMatch[1]),
+                  infected: Number(infectedMatch[1]),
+                  quarantined: Number(quarantinedMatch[1]),
+                  recovered: Number(recoveredMatch[1])
+                }
+
+                return [
+                  ...data,
+                  {
+                    ...entry,
+                    active: entry.infected - entry.recovered - entry.deaths
+                  }
+                ]
+              }, [])
+          ),
+        reject
+      )
   })
