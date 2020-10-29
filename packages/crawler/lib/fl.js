@@ -27,7 +27,7 @@ module.exports = () =>
                 )
 
                 const recoveredMatch = content.match(
-                  /([0-9]+)\*? davon gelten als genesen/
+                  /([0-9]+)\*?\s\w*genesen/
                 )
 
                 const quarantinedMatch = content.match(
