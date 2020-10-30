@@ -67,11 +67,9 @@ module.exports = () =>
         /\+\+\+ Update ([0-9]+)\. ([A-Za-z]+) ([0-9]+)/
       )
 
-      const infectedMatch = content.match(/gemeldeten Fälle[A-Za-z\s]+([0-9]+)/)
+      const infectedMatch = content.match(/([0-9]+)[\D]+ gemeldet/)
 
-      const recoveredMatch = content.match(
-        /([0-9]+) Personen haben die Corona-Infektion überwunden/
-      )
+      const recoveredMatch = content.match(/([0-9]+)[\D]+ genesen/)
 
       if (!dateMatch) {
         throw new Error(`Couldn't parse date string "${content[1]}"`)
