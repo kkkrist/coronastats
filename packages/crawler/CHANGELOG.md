@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.12.4 (2020-10-30)</small>
+
+* fix(crawler): fix "lg" areacode crawler ([24621c1](https://github.com/kkkrist/coronastats/commit/24621c1))
+
+
+
+
+
 ## <small>1.12.3 (2020-10-29)</small>
 
 * fix(crawler): fix `upsert()` helper ([acc2ec4](https://github.com/kkkrist/coronastats/commit/acc2ec4))
