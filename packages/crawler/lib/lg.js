@@ -14,7 +14,7 @@ const numberStrings = {
   August: 8,
   September: 9,
   Oktober: 10,
-  Novemer: 11,
+  November: 11,
   Dezember: 12
 }
 
