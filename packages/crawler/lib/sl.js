@@ -45,13 +45,13 @@ module.exports = () =>
         )
 
         const infectedMatch = content.match(
-          /positiv getesteten Personen.*bei ([0-9]+)/
+          /positiv getesteten Personen.*bei ([0-9.]+)/
         )
 
-        const recoveredMatch = content.match(/([0-9]+) Personen sind genesen/)
+        const recoveredMatch = content.match(/([0-9.]+) Personen sind genesen/)
 
         const quarantinedMatch = content.match(
-          /([0-9]+) Personen in Quarantäne/
+          /([0-9.]+) Personen in Quarantäne/
         )
 
         const deathsMatch = content.match(/und (.*) verstorben/)
@@ -82,9 +82,9 @@ module.exports = () =>
             `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]} ${dateMatch[4]}`
           ).toISOString(),
           deaths: getInt(deathsMatch[1]),
-          infected: Number(infectedMatch[1]),
-          quarantined: Number(quarantinedMatch[1]),
-          recovered: Number(recoveredMatch[1])
+          infected: Number(infectedMatch[1].replace('.', '')),
+          quarantined: Number(quarantinedMatch[1].replace('.', '')),
+          recovered: Number(recoveredMatch[1].replace('.', ''))
         }
 
         resolve([
