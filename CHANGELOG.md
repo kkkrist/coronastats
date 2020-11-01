@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.12.7 (2020-11-01)</small>
+
+* fix(crawler): consider delimiters in "sl" area code crawler ([4ccf018](https://github.com/kkkrist/coronastats/commit/4ccf018))
+* fix(crawler): fix typo in "lg" areacode crawler ([2decb69](https://github.com/kkkrist/coronastats/commit/2decb69))
+
+
+
+
+
 ## <small>1.12.6 (2020-11-01)</small>
 
 * fix(crawler): fix "lg" areacode crawler ([dea3f43](https://github.com/kkkrist/coronastats/commit/dea3f43))
