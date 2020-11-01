@@ -67,7 +67,7 @@ module.exports = () =>
         /\+\+\+ Update ([0-9]+)\. ([A-Za-z]+) ([0-9]+)/
       )
 
-      const infectedMatch = content.match(/([0-9]+)[\D]+ gemeldet/)
+      const infectedMatch = content.match(/gesamt[\D]+ ([0-9]+) [\D]+ gemeldet/i)
 
       const recoveredMatch = content.match(/([0-9]+)[\D]+ genesen/)
 
