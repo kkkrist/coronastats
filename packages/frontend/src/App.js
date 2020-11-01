@@ -1,13 +1,16 @@
 import dayjs from 'dayjs'
 import React, { useCallback, useEffect, useState } from 'react'
 import PouchDB from 'pouchdb'
-import { ResponsiveLine } from '@nivo/line'
-import areacodes from './areacodes.json'
-import chartConfig from './chart-config'
-import markers from './markers'
-import { formatNum } from './utils'
+import IconChart from './components/IconChart'
+import IconTable from './components/IconTable'
+import LineChart from './components/LineChart'
+import Loading from './components/Loading'
+import Table from './components/Table'
+import areacodes from './data/areacodes.json'
+import { formatNum } from './utils/numbers'
 import { version } from '../package.json'
 import { register as registerServiceWorker } from './service-worker'
+import './styles.css'
 
 const db = new PouchDB('coronastats')
 const replication = db.replicate.from(
@@ -21,12 +24,13 @@ const App = () => {
       localStorage.areacode ||
       'fl'
   )
+  const [docs, setDocs] = useState([])
   const [installEvent, setInstallEvent] = useState()
   const [lastChange, setLastChange] = useState()
   const [lastModified, setLastModified] = useState()
   const [notifications, setNotifications] = useState([])
   const [sharebutton, setSharebutton] = useState(false)
-  const [stats, setStats] = useState([])
+  const [tableview, setTableview] = useState(false)
 
   const handlePopstate = ({ state: { areacode } }) => setAreacode(areacode)
 
@@ -137,95 +141,33 @@ const App = () => {
       include_docs: true
     }).then(
       ({ rows }) => {
+        setDocs(
+          rows.map(({ doc }) => {
+            const d = dayjs(doc.date)
+
+            const rangeStart = rows.find(
+              row =>
+                dayjs(row.doc.date).format('YYYY-MM-DD') ===
+                d.set('date', d.date() - 7).format('YYYY-MM-DD')
+            )
+
+            if (rangeStart) {
+              doc.incidence = (
+                ((doc.infected - rangeStart.doc.infected) /
+                  areacodes[areacode].population) *
+                100000
+              ).toFixed(1)
+            }
+
+            return doc
+          })
+        )
+
         setLastModified(
           rows.reduce((timestamp, { value }) => {
             const last_modified = Date.parse(value.last_modified)
             return last_modified > timestamp ? last_modified : timestamp
           }, 0)
-        )
-
-        setStats(
-          rows.reduce(
-            (acc, { value: doc }, index, arr) => {
-              acc[0].data.unshift({ x: new Date(doc.date), y: doc.deaths })
-
-              doc.active &&
-                acc[1].data.unshift({
-                  x: new Date(doc.date),
-                  y: doc.active
-                })
-
-              doc.recovered &&
-                acc[2].data.unshift({
-                  x: new Date(doc.date),
-                  y: doc.recovered ?? 0
-                })
-
-              const d = dayjs(doc.date)
-
-              const rangeStart = arr.find(
-                ({ value }) =>
-                  dayjs(value.date).format('YYYY-MM-DD') ===
-                  d.set('date', d.date() - 7).format('YYYY-MM-DD')
-              )?.value
-
-              if (rangeStart) {
-                acc[3].data.unshift({
-                  x: new Date(doc.date),
-                  y: (
-                    ((doc.infected - rangeStart.infected) /
-                      areacodes[areacode].population) *
-                    100000
-                  ).toFixed(1)
-                })
-              }
-
-              acc[4].data.unshift({
-                x: new Date(doc.date),
-                y: doc.infected
-              })
-
-              doc.quarantined &&
-                acc[5].data.unshift({
-                  x: new Date(doc.date),
-                  y: doc.quarantined
-                })
-
-              return acc
-            },
-            [
-              {
-                color: '#FA5C3A',
-                id: 'Todesfälle',
-                data: []
-              },
-              {
-                color: '#F79F39',
-                id: 'aktive Fälle',
-                data: []
-              },
-              {
-                color: '#76CE6D',
-                id: 'Genesene',
-                data: []
-              },
-              {
-                color: '#BB8DEE',
-                id: '7-Tage-Inzidenz*',
-                data: []
-              },
-              {
-                color: '#E6B539',
-                id: 'Infizierte',
-                data: []
-              },
-              {
-                color: '#48AFF3',
-                id: 'unter Quarantäne',
-                data: []
-              }
-            ]
-          )
         )
       },
       error => {
@@ -280,42 +222,57 @@ const App = () => {
     <div id='app'>
       <h1>Zeitverlauf der Corona-Fälle in </h1>
 
-      <div style={{ fontSize: '2em', marginBottom: '1.5rem' }}>
-        <select
-          onChange={({ target: { value } }) => {
-            setStats([])
-            setAreacode(value)
-          }}
-          value={areacode}
-        >
-          <option value='fl'>Flensburg</option>
-          <option value='lg'>Landkreis Lüneburg</option>
-          <option value='od'>Kreis Stormarn</option>
-          <option value='plö'>Kreis Plön</option>
-          <option value='rz'>Kreis Herzogtum Lauenburg</option>
-          <option value='sl'>Kreis Schleswig-Flensburg</option>
-        </select>
+      <div
+        style={{
+          fontSize: '2em',
+          margin: '-0.5rem -0.5rem 2rem',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <div style={{ width: 'auto' }}>
+          <select
+            onChange={({ target: { value } }) => setAreacode(value)}
+            style={{ margin: '0.5rem', width: 'calc(100% - 1.5rem)' }}
+            value={areacode}
+          >
+            <option value='fl'>Flensburg</option>
+            <option value='lg'>Landkreis Lüneburg</option>
+            <option value='od'>Kreis Stormarn</option>
+            <option value='plö'>Kreis Plön</option>
+            <option value='rz'>Kreis Herzogtum Lauenburg</option>
+            <option value='sl'>Kreis Schleswig-Flensburg</option>
+          </select>
+        </div>
+
+        <div style={{ width: 'auto' }}>
+          <button
+            className='selectbutton'
+            onClick={() => setTableview(prevState => !prevState)}
+            style={{ margin: '0.5rem' }}
+            type='button'
+          >
+            {tableview ? (
+              <IconTable width='1rem' />
+            ) : (
+              <IconChart width='1rem' />
+            )}
+          </button>
+        </div>
       </div>
 
       <div id='container'>
-        <div
-          id='linechart'
-          style={{
-            alignItems: 'center',
-            display: 'flex',
-            justifyContent: 'center'
-          }}
-        >
-          {stats.length === 0 ? (
-            <span>Bitte warten…</span>
-          ) : (
-            <ResponsiveLine
-              data={stats}
-              markers={markers[areacodes[areacode].state]}
-              {...chartConfig}
-            />
-          )}
-        </div>
+        {docs.length === 0 ? (
+          <Loading />
+        ) : tableview ? (
+          <Table docs={docs} />
+        ) : (
+          <LineChart
+            areacode={areacode}
+            docs={docs.filter(d => d.areacode === areacode)}
+          />
+        )}
       </div>
 
       <footer>
@@ -340,7 +297,9 @@ const App = () => {
 
         <p>
           {(installEvent || sharebutton) && (
-            <button onClick={() => handleInstall()}>Installieren</button>
+            <button className='sharebutton' onClick={() => handleInstall()}>
+              Installieren
+            </button>
           )}
         </p>
 

@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
 import { linearGradientDef } from '@nivo/core'
-import { formatNum, longDate, shortDate } from './utils'
+import { formatNum } from '../../utils/numbers'
+import { longDate, shortDate } from '../../utils/dates'
 
-const chartConfig = {
+const config = {
   areaBlendMode: 'darken',
   axisBottom: {
     format: shortDate,
@@ -86,4 +87,4 @@ const chartConfig = {
   yScale: { type: 'linear' }
 }
 
-export default chartConfig
+export default config

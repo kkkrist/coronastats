@@ -4,7 +4,16 @@ body {
   margin: 2rem;
 }
 
-button {
+button.selectbutton {
+  padding: 0.625rem;
+  width: 2.375rem;
+}
+
+button.selectbutton > svg {
+  display: block;
+}
+
+button.sharebutton {
   padding: 0.25em 0.5em;
   border: 1px solid #48AFF3;
   color: #48AFF3;
@@ -24,8 +33,14 @@ h1 {
   margin-bottom: 0.25em;
 }
 
+button.selectbutton,
 select {
-  border-color: lightgray;
+  border: 1px solid lightgray;
+  margin: 0 auto;
+  width: auto;
+}
+
+select {
   max-width: 100%;
   padding: 0em 0.25em;
   text-align-last: center;
@@ -83,9 +98,20 @@ footer a {
 }
 
 #linechart {
+  min-width: 1024px;
+}
+
+#linechart,
+#loading,
+#tableview {
   height: calc(100vh - 19.5rem);
   min-height: 450px;
-  min-width: 1024px;
+}
+
+#loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 #notifications {
