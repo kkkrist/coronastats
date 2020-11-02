@@ -30,9 +30,16 @@ const App = () => {
   const [lastModified, setLastModified] = useState()
   const [notifications, setNotifications] = useState([])
   const [sharebutton, setSharebutton] = useState(false)
-  const [tableview, setTableview] = useState(false)
+  const [tableview, setTableview] = useState(
+    new URLSearchParams(window.location.search).get('tableview') === 'true' ||
+      localStorage.tableview === 'true' ||
+      false
+  )
 
-  const handlePopstate = ({ state: { areacode } }) => setAreacode(areacode)
+  const handlePopstate = ({ state: { areacode, tableview } }) => {
+    setAreacode(areacode)
+    setTableview(tableview)
+  }
 
   const removeNotification = useCallback(id => {
     const el = document.querySelector(`div[data-id="${id}"]`)
@@ -183,18 +190,24 @@ const App = () => {
   }, [addNotification, areacode, lastChange])
 
   useEffect(() => {
-    const params = `?areacode=${areacode}`
-    localStorage.areacode = areacode
+    const params = new URLSearchParams(window.location.search)
+    params.set('areacode', areacode)
+    params.set('tableview', tableview)
 
-    if (!window.location.search) {
-      window.history.replaceState({ areacode }, '', params)
-    } else if (window.location.search !== params) {
-      window.history.pushState({ areacode }, '', params)
+    localStorage.areacode = areacode
+    localStorage.tableview = tableview
+
+    if (window.location.search !== '?' + params.toString()) {
+      window.history.pushState(
+        { areacode, tableview },
+        '',
+        '?' + params.toString()
+      )
     }
 
     window.addEventListener('popstate', handlePopstate)
     return () => window.removeEventListener('popstate', handlePopstate)
-  }, [areacode])
+  }, [areacode, tableview])
 
   useEffect(() => {
     registerServiceWorker(addNotification)
