@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.13.0 (2020-11-02)
+
+* feat(frontend): Add optional table view ([0081afd](https://github.com/kkkrist/coronastats/commit/0081afd)), closes [#6](https://github.com/kkkrist/coronastats/issues/6)
+
+
+
+
+
 ## <small>1.12.7 (2020-11-01)</small>
 
 * fix(crawler): consider delimiters in "sl" area code crawler ([4ccf018](https://github.com/kkkrist/coronastats/commit/4ccf018))
