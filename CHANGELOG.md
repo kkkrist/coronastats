@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.13.2 (2020-11-03)</small>
+
+* fix(crawler): fix "sl" area code crawler ([eb109bd](https://github.com/kkkrist/coronastats/commit/eb109bd))
+
+
+
+
+
 ## <small>1.13.1 (2020-11-02)</small>
 
 * fix(frontend): persists `tableview` setting ([38c5e0b](https://github.com/kkkrist/coronastats/commit/38c5e0b))
