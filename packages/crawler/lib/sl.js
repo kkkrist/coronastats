@@ -37,8 +37,9 @@ module.exports = () =>
         'https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus'
       )
       .then(dom => {
-        const content = dom.window.document.querySelector('div#read')
-          .textContent
+        const content = dom.window.document
+          .querySelector('div#read')
+          .textContent.replace(/\u00A0/g, ' ')
 
         const dateMatch = content.match(
           /Stand: ([0-9]+)\.([0-9]+)\.([0-9]+),\s(([0-9]+):([0-9]+))/
