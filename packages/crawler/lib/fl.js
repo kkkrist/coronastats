@@ -75,7 +75,13 @@ const reducer = (acc, el) => {
 
 module.exports = () =>
   fetch(
-    'https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1'
+    'https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1',
+    {
+      headers: {
+        'cache-control': 'no-cache',
+        pragma: 'no-cache'
+      }
+    }
   )
     .then(res => res.text())
     .then(text => {

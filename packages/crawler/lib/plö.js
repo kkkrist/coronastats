@@ -4,7 +4,13 @@ const fetch = require('node-fetch')
 
 module.exports = () =>
   fetch(
-    'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?f=json&objectIds=10&outFields=*'
+    'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?f=json&objectIds=10&outFields=*',
+    {
+      headers: {
+        'cache-control': 'no-cache',
+        pragma: 'no-cache'
+      }
+    }
   )
     .then(res => res.json())
     .then(

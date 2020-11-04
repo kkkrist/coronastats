@@ -38,7 +38,13 @@ module.exports = () =>
   Promise.all([
     jsdom.fromURL('https://spezial.lklg.net/?p=64'),
     fetch(
-      'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?f=json&objectIds=38&outFields=*'
+      'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?f=json&objectIds=38&outFields=*',
+      {
+        headers: {
+          'cache-control': 'no-cache',
+          pragma: 'no-cache'
+        }
+      }
     ).then(res => res.json())
   ]).then(
     ([
@@ -67,7 +73,9 @@ module.exports = () =>
         /\+\+\+ Update ([0-9]+)\. ([A-Za-z]+) ([0-9]+)/
       )
 
-      const infectedMatch = content.match(/gesamt[\D]+ ([0-9]+) [\D]+ gemeldet/i)
+      const infectedMatch = content.match(
+        /gesamt[\D]+ ([0-9]+) [\D]+ gemeldet/i
+      )
 
       const recoveredMatch = content.match(/([0-9]+)[\D]+ genesen/)
 
