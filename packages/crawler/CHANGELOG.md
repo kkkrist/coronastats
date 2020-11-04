@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.13.3 (2020-11-04)</small>
+
+* fix(crawler): modify http reqest headers ([a71e11f](https://github.com/kkkrist/coronastats/commit/a71e11f))
+
+
+
+
+
 ## <small>1.13.2 (2020-11-03)</small>
 
 * fix(crawler): fix "sl" area code crawler ([eb109bd](https://github.com/kkkrist/coronastats/commit/eb109bd))
