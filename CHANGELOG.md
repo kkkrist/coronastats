@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.13.4 (2020-11-04)</small>
+
+* fix(crawler): fix "od" area code crawler ([97b8d7c](https://github.com/kkkrist/coronastats/commit/97b8d7c))
+
+
+
+
+
 ## <small>1.13.3 (2020-11-04)</small>
 
 * fix(crawler): modify http reqest headers ([a71e11f](https://github.com/kkkrist/coronastats/commit/a71e11f))
