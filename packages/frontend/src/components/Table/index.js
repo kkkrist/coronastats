@@ -5,7 +5,7 @@ import columns from './columns'
 import IconArrowDownRight from '../IconArrowDownRight'
 import IconArrowUpRight from '../IconArrowUpRight'
 import IconDot from '../IconDot'
-import { shortDate } from '../../utils/dates'
+import { shortDate } from '../../utils/display'
 import './styles.css'
 
 const initialSort = { key: 'date', order: SortOrder.DESC }

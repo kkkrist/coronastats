@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { linearGradientDef } from '@nivo/core'
-import { formatNum } from '../../utils/numbers'
-import { longDate, shortDate } from '../../utils/dates'
+import { formatNum, longDate, shortDate } from '../../utils/display'
 
 const config = {
   areaBlendMode: 'darken',
