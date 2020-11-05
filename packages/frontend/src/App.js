@@ -8,6 +8,7 @@ import Loading from './components/Loading'
 import Table from './components/Table'
 import areacodes from './data/areacodes.json'
 import { formatNum } from './utils/display'
+import { forecast } from './utils/maths'
 import { version } from '../package.json'
 import { register as registerServiceWorker } from './service-worker'
 import './styles.css'
@@ -230,6 +231,22 @@ const App = () => {
       setInstallEvent(e)
     })
   }, [])
+
+  useEffect(() => {
+    if (docs.length === 0) {
+      return
+    }
+
+    console.log(
+      'forecast:',
+      forecast([...docs].reverse(), [
+        'infected',
+        'quarantined',
+        'recovered',
+        'deaths'
+      ])
+    )
+  }, [docs])
 
   return (
     <div id='app'>
