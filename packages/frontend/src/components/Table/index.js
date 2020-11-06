@@ -10,6 +10,9 @@ import './styles.css'
 
 const initialSort = { key: 'date', order: SortOrder.DESC }
 
+const getClassName = ({ rowData: { forecast } }) =>
+  forecast ? 'is-forecast' : undefined
+
 const getColWidth = (innerWidth, numCols) => {
   const newColWidth = (innerWidth - 80) / numCols
   return newColWidth > 125 ? newColWidth : 125
@@ -130,7 +133,7 @@ const Table = ({ docs }) => {
             {...autoProps}
           >
             {columns.map(column => (
-              <Column {...column} width={colWidth} />
+              <Column {...column} className={getClassName} width={colWidth} />
             ))}
           </BaseTable>
         )}
