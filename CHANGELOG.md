@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.14.1 (2020-11-06)</small>
+
+* fix(frontend): fix table cell width ([e140709](https://github.com/kkkrist/coronastats/commit/e140709))
+* fix(frontend): guard against race conditions during transitional renders ([fa993b8](https://github.com/kkkrist/coronastats/commit/fa993b8)), closes [#8](https://github.com/kkkrist/coronastats/issues/8)
+* fix(frontend): save forecast setting to localStorage and query string ([3478371](https://github.com/kkkrist/coronastats/commit/3478371)), closes [#9](https://github.com/kkkrist/coronastats/issues/9)
+
+
+
+
+
 ## 1.14.0 (2020-11-06)
 
 * fix(crawler): rewrite "lg" area code crawler ([4adc882](https://github.com/kkkrist/coronastats/commit/4adc882))
