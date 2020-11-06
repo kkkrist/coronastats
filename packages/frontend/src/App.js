@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import PouchDB from 'pouchdb'
 import React, { useCallback, useEffect, useReducer } from 'react'
 import IconChart from './components/IconChart'
@@ -8,7 +7,7 @@ import Loading from './components/Loading'
 import Table from './components/Table'
 import areacodes from './data/areacodes.json'
 import { formatNum } from './utils/display'
-import { addIncidence, forecast } from './utils/math'
+import { addIncidence, addPredictions } from './utils/math'
 import { version } from '../package.json'
 import { register as registerServiceWorker } from './service-worker'
 import './styles.css'
@@ -18,6 +17,11 @@ const replication = db.replicate.from(
   'https://api.mundpropaganda.net/coronastats',
   { live: true, retry: true }
 )
+
+const getDocs = (docs, areacode, forecast) => {
+  docs = docs.filter(d => !d.forecast && d.areacode === areacode)
+  return forecast ? addPredictions(docs) : docs
+}
 
 const getLastModified = data =>
   data.reduce((timestamp, doc) => {
@@ -48,27 +52,33 @@ const reducer = (state, { type, ...values }) => {
       const nextState = {
         ...state,
         areacode: values.areacode,
-        data: state.docs.filter(d => d.areacode === values.areacode)
+        docs: getDocs(state.docs, values.areacode, state.forecast)
       }
 
       return {
         ...nextState,
-        lastModified: getLastModified(nextState.data)
+        lastModified: getLastModified(nextState.docs)
       }
     }
 
     case 'SET_DOCS': {
       const nextState = {
         ...state,
-        docs: values.docs,
-        data: values.docs.filter(d => d.areacode === state.areacode)
+        docs: getDocs(values.docs, state.areacode, state.forecast)
       }
 
       return {
         ...nextState,
-        lastModified: getLastModified(nextState.data)
+        lastModified: getLastModified(nextState.docs)
       }
     }
+
+    case 'SET_FORECAST':
+      return {
+        ...state,
+        docs: getDocs(state.docs, state.areacode, values.forecast),
+        forecast: values.forecast
+      }
 
     case 'SET_VALUES':
       return {
@@ -87,13 +97,12 @@ const App = () => {
       new URLSearchParams(window.location.search).get('areacode') ||
       localStorage.areacode ||
       'fl',
-    data: [],
     docs: [],
+    forecast: false,
     installEvent: undefined,
     lastChange: undefined,
     lastModified: undefined,
     notifications: [],
-    predictions: [],
     sharebutton: false,
     tableview:
       new URLSearchParams(window.location.search).get('tableview') === 'true' ||
@@ -272,51 +281,10 @@ const App = () => {
     })
   }, [])
 
-  useEffect(() => {
-    if (state.docs.length === 0) {
-      return
-    }
-
-    const lastDate = dayjs(state.docs[0].date)
-    const nextPredictions = []
-
-    for (let i = 1; i < 4; i++) {
-      const nextForcast = forecast(
-        [...nextPredictions, ...state.docs].reverse()
-      )
-      const date = lastDate.set('date', lastDate.date() + i).toISOString()
-
-      nextPredictions.unshift({
-        areacode: state.areacode,
-        date,
-        last_modified: new Date().toISOString(),
-        prediction: true,
-        _id: `${date}-${state.areacode}`,
-        ...nextForcast
-      })
-    }
-
-    dispatch({
-      type: 'SET_VALUES',
-      predictions: nextPredictions.map(doc =>
-        addIncidence(
-          {
-            ...doc,
-            active:
-              doc.recovered !== undefined
-                ? doc.infected - doc.recovered - doc.deaths
-                : undefined
-          },
-          [...nextPredictions, ...state.docs],
-          areacodes[state.areacode].population
-        )
-      )
-    })
-  }, [state.areacode, state.docs])
-
   const {
     areacode,
     docs,
+    forecast,
     lastModified,
     notifications,
     sharebutton,
@@ -375,16 +343,26 @@ const App = () => {
         {docs.length === 0 ? (
           <Loading />
         ) : tableview ? (
-          <Table docs={[...state.predictions, ...docs]} />
+          <Table docs={docs} />
         ) : (
-          <LineChart
-            areacode={areacode}
-            docs={docs.filter(d => d.areacode === areacode)}
-          />
+          <LineChart areacode={areacode} docs={docs} />
         )}
       </div>
 
       <footer>
+        <p>
+          <label>
+            <input
+              checked={forecast}
+              onChange={({ target: { checked } }) =>
+                dispatch({ type: 'SET_FORECAST', forecast: checked })
+              }
+              type='checkbox'
+            />
+            Vorhersage (3 Tage)
+          </label>
+        </p>
+
         <p>
           Datenquelle:{' '}
           <a href={areacodes[areacode].sourceUri}>

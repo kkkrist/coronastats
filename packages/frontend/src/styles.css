@@ -29,15 +29,22 @@ select {
   font-weight: bold;
 }
 
-h1 {
-  margin-bottom: 0.25em;
-}
-
 button.selectbutton,
 select {
   border: 1px solid lightgray;
   margin: 0 auto;
   width: auto;
+}
+
+h1 {
+  margin-bottom: 0.25em;
+}
+
+input[type="checkbox"] {
+  vertical-align: sub;
+  height: 1rem;
+  margin-right: 0.5rem;
+  width: 1rem;
 }
 
 select {
