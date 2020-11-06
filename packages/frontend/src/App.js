@@ -98,7 +98,10 @@ const App = () => {
       localStorage.areacode ||
       'fl',
     docs: [],
-    forecast: false,
+    forecast:
+      new URLSearchParams(window.location.search).get('forecast') === 'true' ||
+      localStorage.forecast === 'true' ||
+      false,
     installEvent: undefined,
     lastChange: undefined,
     lastModified: undefined,
@@ -110,8 +113,8 @@ const App = () => {
       false
   })
 
-  const handlePopstate = ({ state: { areacode, tableview } }) =>
-    dispatch({ type: 'SET_AREACODE', areacode, tableview })
+  const handlePopstate = ({ state: { areacode, forecast, tableview } }) =>
+    dispatch({ type: 'SET_AREACODE', areacode, forecast, tableview })
 
   const removeNotification = useCallback(id => {
     const el = document.querySelector(`div[data-id="${id}"]`)
@@ -242,14 +245,20 @@ const App = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     params.set('areacode', state.areacode)
+    params.set('forecast', state.forecast)
     params.set('tableview', state.tableview)
 
     localStorage.areacode = state.areacode
+    localStorage.forecast = state.forecast
     localStorage.tableview = state.tableview
 
     if (window.location.search !== '?' + params.toString()) {
       window.history.pushState(
-        { areacode: state.areacode, tableview: state.tableview },
+        {
+          areacode: state.areacode,
+          forecast: state.forecast,
+          tableview: state.tableview
+        },
         '',
         '?' + params.toString()
       )
@@ -257,7 +266,7 @@ const App = () => {
 
     window.addEventListener('popstate', handlePopstate)
     return () => window.removeEventListener('popstate', handlePopstate)
-  }, [state.areacode, state.tableview])
+  }, [state.areacode, state.forecast, state.tableview])
 
   useEffect(() => {
     registerServiceWorker(addNotification)
