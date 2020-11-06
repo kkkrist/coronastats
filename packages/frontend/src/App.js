@@ -8,7 +8,7 @@ import Loading from './components/Loading'
 import Table from './components/Table'
 import areacodes from './data/areacodes.json'
 import { formatNum } from './utils/display'
-import { forecast } from './utils/maths'
+import { addIncidence, forecast } from './utils/math'
 import { version } from '../package.json'
 import { register as registerServiceWorker } from './service-worker'
 import './styles.css'
@@ -26,6 +26,7 @@ const App = () => {
       'fl'
   )
   const [docs, setDocs] = useState([])
+  const [predictions, setPredictions] = useState([])
   const [installEvent, setInstallEvent] = useState()
   const [lastChange, setLastChange] = useState()
   const [lastModified, setLastModified] = useState()
@@ -150,25 +151,13 @@ const App = () => {
     }).then(
       ({ rows }) => {
         setDocs(
-          rows.map(({ doc }) => {
-            const d = dayjs(doc.date)
-
-            const rangeStart = rows.find(
-              row =>
-                dayjs(row.doc.date).format('YYYY-MM-DD') ===
-                d.set('date', d.date() - 7).format('YYYY-MM-DD')
+          rows.map(({ doc }) =>
+            addIncidence(
+              doc,
+              rows.map(r => r.doc),
+              areacodes[areacode].population
             )
-
-            if (rangeStart) {
-              doc.incidence = (
-                ((doc.infected - rangeStart.doc.infected) /
-                  areacodes[areacode].population) *
-                100000
-              ).toFixed(1)
-            }
-
-            return doc
-          })
+          )
         )
 
         setLastModified(
@@ -237,16 +226,39 @@ const App = () => {
       return
     }
 
-    console.log(
-      'forecast:',
-      forecast([...docs].reverse(), [
-        'infected',
-        'quarantined',
-        'recovered',
-        'deaths'
-      ])
+    const lastDate = dayjs(docs[0].date)
+    const nextPredictions = []
+
+    for (let i = 1; i < 4; i++) {
+      const nextForcast = forecast([...nextPredictions, ...docs].reverse())
+      const date = lastDate.set('date', lastDate.date() + i).toISOString()
+
+      nextPredictions.unshift({
+        areacode,
+        date,
+        last_modified: new Date().toISOString(),
+        prediction: true,
+        _id: `${date}-${areacode}`,
+        ...nextForcast
+      })
+    }
+
+    setPredictions(
+      nextPredictions.map(doc =>
+        addIncidence(
+          {
+            ...doc,
+            active:
+              doc.recovered !== undefined
+                ? doc.infected - doc.recovered - doc.deaths
+                : undefined
+          },
+          [...nextPredictions, ...docs],
+          areacodes[areacode].population
+        )
+      )
     )
-  }, [docs])
+  }, [areacode, docs])
 
   return (
     <div id='app'>
@@ -296,7 +308,7 @@ const App = () => {
         {docs.length === 0 ? (
           <Loading />
         ) : tableview ? (
-          <Table docs={docs} />
+          <Table docs={[...predictions, ...docs]} />
         ) : (
           <LineChart
             areacode={areacode}

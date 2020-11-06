@@ -11,6 +11,6 @@ export const docs = PropTypes.arrayOf(
     quarantined: PropTypes.number,
     recovered: PropTypes.number,
     _id: PropTypes.string.isRequired,
-    _rev: PropTypes.string.isRequired
+    _rev: PropTypes.string
   })
 )

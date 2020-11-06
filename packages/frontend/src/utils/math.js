@@ -1,8 +1,28 @@
+import dayjs from 'dayjs'
 import TimeSeries from 'timeseries-analysis'
 
-export const forecast = (data, keys) =>
-  keys.reduce((acc, key) => {
-    const sample = 3
+export const addIncidence = (doc, docs, population) => {
+  const d = dayjs(doc.date)
+
+  const rangeStart = docs.find(
+    doc =>
+      dayjs(doc.date).format('YYYY-MM-DD') ===
+      d.set('date', d.date() - 7).format('YYYY-MM-DD')
+  )
+
+  if (rangeStart) {
+    doc.incidence = (
+      ((doc.infected - rangeStart.infected) / population) *
+      100000
+    ).toFixed(1)
+  }
+
+  return doc
+}
+
+export const forecast = (data, sample = 3) =>
+  ['infected', 'quarantined', 'recovered', 'deaths'].reduce((acc, key, i) => {
+    sample = sample + i
 
     const t = new TimeSeries.main(
       TimeSeries.adapter.fromDB(data, {
