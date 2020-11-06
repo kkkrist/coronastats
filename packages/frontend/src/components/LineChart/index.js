@@ -7,7 +7,7 @@ import { docs as docsPropTypes } from '../../types/docs'
 import config from './config'
 import markers from './markers'
 
-const LineChart = ({ areacode, docs }) => {
+const LineChart = ({ areacode, docs, ...props }) => {
   const [stats, setStats] = useState([])
 
   useEffect(() => {
@@ -91,6 +91,7 @@ const LineChart = ({ areacode, docs }) => {
         display: 'flex',
         justifyContent: 'center'
       }}
+      {...props}
     >
       <ResponsiveLine
         data={stats}

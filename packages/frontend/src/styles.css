@@ -104,15 +104,20 @@ footer a {
   overflow-y: hidden;
 }
 
-#linechart {
-  min-width: 1024px;
-}
-
 #linechart,
 #loading,
 #tableview {
   height: calc(100vh - 19.5rem);
   min-height: 450px;
+}
+
+#linechart {
+  min-width: 1024px;
+}
+
+#linechart.with-forecast svg > g > rect:nth-last-child(-n+4) {
+  fill-opacity: 0.5;
+  fill: white;
 }
 
 #loading {

@@ -345,7 +345,11 @@ const App = () => {
         ) : tableview ? (
           <Table docs={docs} />
         ) : (
-          <LineChart areacode={areacode} docs={docs} />
+          <LineChart
+            areacode={areacode}
+            className={forecast ? 'with-forecast' : undefined}
+            docs={docs}
+          />
         )}
       </div>
 
