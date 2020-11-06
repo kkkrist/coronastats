@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import PouchDB from 'pouchdb'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useReducer } from 'react'
 import IconChart from './components/IconChart'
 import IconTable from './components/IconTable'
 import LineChart from './components/LineChart'
@@ -19,29 +19,90 @@ const replication = db.replicate.from(
   { live: true, retry: true }
 )
 
+const getLastModified = data =>
+  data.reduce((timestamp, doc) => {
+    const last_modified = Date.parse(doc.last_modified)
+    return last_modified > timestamp ? last_modified : timestamp
+  }, 0)
+
+const reducer = (state, { type, ...values }) => {
+  switch (type) {
+    case 'ADD_NOTIFICATION':
+      return {
+        ...state,
+        notifications:
+          window.innerWidth >= 576
+            ? [...state.notifications, values.notification]
+            : [values.notification, ...state.notifications]
+      }
+
+    case 'REMOVE_NOTIFICATION':
+      return {
+        ...state,
+        notifications: state.notifications.filter(
+          n => !Object.values(n).some(v => v.includes(values.id))
+        )
+      }
+
+    case 'SET_AREACODE': {
+      const nextState = {
+        ...state,
+        areacode: values.areacode,
+        data: state.docs.filter(d => d.areacode === values.areacode)
+      }
+
+      return {
+        ...nextState,
+        lastModified: getLastModified(nextState.data)
+      }
+    }
+
+    case 'SET_DOCS': {
+      const nextState = {
+        ...state,
+        docs: values.docs,
+        data: values.docs.filter(d => d.areacode === state.areacode)
+      }
+
+      return {
+        ...nextState,
+        lastModified: getLastModified(nextState.data)
+      }
+    }
+
+    case 'SET_VALUES':
+      return {
+        ...state,
+        ...values
+      }
+
+    default:
+      throw new Error(`Unknown action type: ${type}`)
+  }
+}
+
 const App = () => {
-  const [areacode, setAreacode] = useState(
-    new URLSearchParams(window.location.search).get('areacode') ||
+  const [state, dispatch] = useReducer(reducer, {
+    areacode:
+      new URLSearchParams(window.location.search).get('areacode') ||
       localStorage.areacode ||
-      'fl'
-  )
-  const [docs, setDocs] = useState([])
-  const [predictions, setPredictions] = useState([])
-  const [installEvent, setInstallEvent] = useState()
-  const [lastChange, setLastChange] = useState()
-  const [lastModified, setLastModified] = useState()
-  const [notifications, setNotifications] = useState([])
-  const [sharebutton, setSharebutton] = useState(false)
-  const [tableview, setTableview] = useState(
-    new URLSearchParams(window.location.search).get('tableview') === 'true' ||
+      'fl',
+    data: [],
+    docs: [],
+    installEvent: undefined,
+    lastChange: undefined,
+    lastModified: undefined,
+    notifications: [],
+    predictions: [],
+    sharebutton: false,
+    tableview:
+      new URLSearchParams(window.location.search).get('tableview') === 'true' ||
       localStorage.tableview === 'true' ||
       false
-  )
+  })
 
-  const handlePopstate = ({ state: { areacode, tableview } }) => {
-    setAreacode(areacode)
-    setTableview(tableview)
-  }
+  const handlePopstate = ({ state: { areacode, tableview } }) =>
+    dispatch({ type: 'SET_AREACODE', areacode, tableview })
 
   const removeNotification = useCallback(id => {
     const el = document.querySelector(`div[data-id="${id}"]`)
@@ -49,24 +110,25 @@ const App = () => {
     if (el) {
       el.classList.toggle('notification-in')
       el.classList.toggle('notification-out')
-      setTimeout(
-        () => setNotifications(prevState => prevState.filter(n => n.id !== id)),
-        500
-      )
+      return new Promise(resolve => {
+        setTimeout(
+          () => resolve(dispatch({ type: 'REMOVE_NOTIFICATION', id })),
+          500
+        )
+      })
     } else {
-      setNotifications(prevState => prevState.filter(n => n.id !== id))
+      return Promise.resolve(dispatch({ type: 'REMOVE_NOTIFICATION', id }))
     }
   }, [])
 
   const addNotification = useCallback(
-    (message, type) => {
-      const id = Math.random().toString()
+    (message, type, id) => {
+      id = id || Math.random().toString()
 
-      setNotifications(prevState =>
-        window.innerWidth >= 768
-          ? [...prevState, { id, message, type }]
-          : [{ id, message, type }, ...prevState]
-      )
+      dispatch({
+        type: 'ADD_NOTIFICATION',
+        notification: { id, message, type }
+      })
 
       if (!type) {
         setTimeout(() => removeNotification(id), 5000)
@@ -79,7 +141,7 @@ const App = () => {
 
   const handleInstall = () => {
     if (
-      sharebutton &&
+      state.sharebutton &&
       !window.matchMedia('(display-mode: standalone)').matches
     ) {
       return alert(
@@ -87,8 +149,8 @@ const App = () => {
       )
     }
 
-    if (installEvent) {
-      installEvent.prompt()
+    if (state.installEvent) {
+      state.installEvent.prompt()
     }
   }
 
@@ -96,37 +158,33 @@ const App = () => {
     if (!navigator.onLine) {
       addNotification(
         'Es besteht keine Internetverbindung. Die App befindet sich im Offline-Modus.',
-        'warning'
+        'warning',
+        'offline'
       )
     }
 
     window.addEventListener('online', () => {
-      setNotifications(prevState => {
-        const id = prevState.find(n =>
-          /keine Internetverbindung/.test(n.message)
-        )?.id
-        id && removeNotification(id)
-        return prevState
-      })
-
-      addNotification('Die Internetverbindung wurde wiederhergestellt.')
+      removeNotification('offline').then(() =>
+        addNotification('Die Internetverbindung wurde wiederhergestellt.')
+      )
     })
 
     window.addEventListener('offline', () =>
       addNotification(
         'Es besteht keine Internetverbindung. Die App befindet sich im Offline-Modus.',
-        'warning'
+        'warning',
+        'offline'
       )
     )
   }, [addNotification, removeNotification])
 
   useEffect(() => {
     replication.on('change', info => {
-      setLastChange(info)
+      dispatch({ type: 'SET_VALUES', lastChange: info })
 
       if (
         info.pending === 0 &&
-        info.docs.some(doc => doc.areacode === areacode)
+        info.docs.some(doc => doc.areacode === state.areacode)
       ) {
         addNotification('Neue Daten geladen.')
       }
@@ -142,31 +200,24 @@ const App = () => {
     replication.on('error', error =>
       addNotification(`Datenbankfehler: ${error.message}`, 'danger')
     )
-  }, [addNotification, areacode, removeNotification])
+  }, [addNotification, removeNotification, state.areacode])
 
   useEffect(() => {
-    db.query(`areacode/${areacode}`, {
+    db.query(`areacode/${state.areacode}`, {
       descending: true,
       include_docs: true
     }).then(
-      ({ rows }) => {
-        setDocs(
-          rows.map(({ doc }) =>
+      ({ rows }) =>
+        dispatch({
+          type: 'SET_DOCS',
+          docs: rows.map(({ doc }) =>
             addIncidence(
               doc,
               rows.map(r => r.doc),
-              areacodes[areacode].population
+              areacodes[state.areacode].population
             )
           )
-        )
-
-        setLastModified(
-          rows.reduce((timestamp, { value }) => {
-            const last_modified = Date.parse(value.last_modified)
-            return last_modified > timestamp ? last_modified : timestamp
-          }, 0)
-        )
-      },
+        }),
       error => {
         if (error.status !== 404) {
           console.error(error)
@@ -177,19 +228,19 @@ const App = () => {
         }
       }
     )
-  }, [addNotification, areacode, lastChange])
+  }, [addNotification, state.areacode, state.lastChange])
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    params.set('areacode', areacode)
-    params.set('tableview', tableview)
+    params.set('areacode', state.areacode)
+    params.set('tableview', state.tableview)
 
-    localStorage.areacode = areacode
-    localStorage.tableview = tableview
+    localStorage.areacode = state.areacode
+    localStorage.tableview = state.tableview
 
     if (window.location.search !== '?' + params.toString()) {
       window.history.pushState(
-        { areacode, tableview },
+        { areacode: state.areacode, tableview: state.tableview },
         '',
         '?' + params.toString()
       )
@@ -197,7 +248,7 @@ const App = () => {
 
     window.addEventListener('popstate', handlePopstate)
     return () => window.removeEventListener('popstate', handlePopstate)
-  }, [areacode, tableview])
+  }, [state.areacode, state.tableview])
 
   useEffect(() => {
     registerServiceWorker(addNotification)
@@ -212,39 +263,42 @@ const App = () => {
       /iPhone|MacIntel/.test(navigator.platform) &&
       navigator.maxTouchPoints > 1
     ) {
-      return setSharebutton(true)
+      return dispatch({ type: 'SET_VALUES', sharebutton: true })
     }
 
     window.addEventListener('beforeinstallprompt', e => {
       e.preventDefault()
-      setInstallEvent(e)
+      dispatch({ type: 'SET_VALUES', installEvent: e })
     })
   }, [])
 
   useEffect(() => {
-    if (docs.length === 0) {
+    if (state.docs.length === 0) {
       return
     }
 
-    const lastDate = dayjs(docs[0].date)
+    const lastDate = dayjs(state.docs[0].date)
     const nextPredictions = []
 
     for (let i = 1; i < 4; i++) {
-      const nextForcast = forecast([...nextPredictions, ...docs].reverse())
+      const nextForcast = forecast(
+        [...nextPredictions, ...state.docs].reverse()
+      )
       const date = lastDate.set('date', lastDate.date() + i).toISOString()
 
       nextPredictions.unshift({
-        areacode,
+        areacode: state.areacode,
         date,
         last_modified: new Date().toISOString(),
         prediction: true,
-        _id: `${date}-${areacode}`,
+        _id: `${date}-${state.areacode}`,
         ...nextForcast
       })
     }
 
-    setPredictions(
-      nextPredictions.map(doc =>
+    dispatch({
+      type: 'SET_VALUES',
+      predictions: nextPredictions.map(doc =>
         addIncidence(
           {
             ...doc,
@@ -253,12 +307,21 @@ const App = () => {
                 ? doc.infected - doc.recovered - doc.deaths
                 : undefined
           },
-          [...nextPredictions, ...docs],
-          areacodes[areacode].population
+          [...nextPredictions, ...state.docs],
+          areacodes[state.areacode].population
         )
       )
-    )
-  }, [areacode, docs])
+    })
+  }, [state.areacode, state.docs])
+
+  const {
+    areacode,
+    docs,
+    lastModified,
+    notifications,
+    sharebutton,
+    tableview
+  } = state
 
   return (
     <div id='app'>
@@ -275,7 +338,9 @@ const App = () => {
       >
         <div style={{ width: 'auto' }}>
           <select
-            onChange={({ target: { value } }) => setAreacode(value)}
+            onChange={({ target: { value } }) =>
+              dispatch({ type: 'SET_AREACODE', areacode: value })
+            }
             style={{ margin: '0.5rem', width: 'calc(100% - 1.5rem)' }}
             value={areacode}
           >
@@ -291,7 +356,9 @@ const App = () => {
         <div style={{ width: 'auto' }}>
           <button
             className='selectbutton'
-            onClick={() => setTableview(prevState => !prevState)}
+            onClick={() =>
+              dispatch({ type: 'SET_VALUES', tableview: !tableview })
+            }
             style={{ margin: '0.5rem' }}
             type='button'
           >
@@ -308,7 +375,7 @@ const App = () => {
         {docs.length === 0 ? (
           <Loading />
         ) : tableview ? (
-          <Table docs={[...predictions, ...docs]} />
+          <Table docs={[...state.predictions, ...docs]} />
         ) : (
           <LineChart
             areacode={areacode}
@@ -338,7 +405,7 @@ const App = () => {
         </p>
 
         <p>
-          {(installEvent || sharebutton) && (
+          {(state.installEvent || sharebutton) && (
             <button className='sharebutton' onClick={() => handleInstall()}>
               Installieren
             </button>
