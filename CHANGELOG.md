@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.14.0 (2020-11-06)
+
+* fix(crawler): rewrite "lg" area code crawler ([4adc882](https://github.com/kkkrist/coronastats/commit/4adc882))
+* feat(frontend): add optional forecast (#7) ([d929af8](https://github.com/kkkrist/coronastats/commit/d929af8)), closes [#7](https://github.com/kkkrist/coronastats/issues/7)
+* refactor(frontend): re-org util modules ([a123742](https://github.com/kkkrist/coronastats/commit/a123742))
+
+
+
+
+
 ## <small>1.13.4 (2020-11-04)</small>
 
 * fix(crawler): fix "od" area code crawler ([97b8d7c](https://github.com/kkkrist/coronastats/commit/97b8d7c))

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.14.0 (2020-11-06)
+
+* feat(frontend): add optional forecast (#7) ([d929af8](https://github.com/kkkrist/coronastats/commit/d929af8)), closes [#7](https://github.com/kkkrist/coronastats/issues/7)
+* refactor(frontend): re-org util modules ([a123742](https://github.com/kkkrist/coronastats/commit/a123742))
+
+
+
+
+
 ## <small>1.13.1 (2020-11-02)</small>
 
 * fix(frontend): persists `tableview` setting ([38c5e0b](https://github.com/kkkrist/coronastats/commit/38c5e0b))
