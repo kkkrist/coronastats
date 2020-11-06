@@ -3,37 +3,6 @@
 const fetch = require('node-fetch')
 const jsdom = require('jsdom').JSDOM
 
-const numberStrings = {
-  Januar: 1,
-  Februar: 2,
-  März: 3,
-  April: 4,
-  Mai: 5,
-  Juni: 6,
-  Juli: 7,
-  August: 8,
-  September: 9,
-  Oktober: 10,
-  November: 11,
-  Dezember: 12
-}
-
-const getInt = val => {
-  if (val !== null && val !== undefined && !isNaN(val)) {
-    return Number(val)
-  }
-
-  const key = Object.keys(numberStrings).find(str =>
-    new RegExp(str, 'i').test(val)
-  )
-
-  if (key) {
-    return numberStrings[key]
-  }
-
-  throw new Error(`Couldn't convert string to number: ${val}`)
-}
-
 module.exports = () =>
   Promise.all([
     jsdom.fromURL('https://spezial.lklg.net/?p=64'),
@@ -56,59 +25,53 @@ module.exports = () =>
           }
         ]
       }
-    ]) => {
-      const elements = dom.window.document.querySelectorAll(
-        '.row:not(.container) > div > *'
-      )
+    ]) =>
+      [...dom.window.document.querySelectorAll('tr')]
+        .slice(2)
+        .reduce((acc, row) => {
+          const dateMatch = row.children[0].textContent.match(
+            /([0-9]+)\.([0-9]+)\.([0-9]+)/
+          )
 
-      let index = 0
-      let content = ''
+          const infectedMatch = row.children[3].textContent.match(/([0-9.]+)/)
 
-      while (index < elements.length && elements[index].tagName !== 'TABLE') {
-        content += elements[index].textContent
-        index++
-      }
+          const recoveredMatch = row.children[4].textContent.match(/([0-9.]+)/)
 
-      const dateMatch = content.match(
-        /\+\+\+ Update ([0-9]+)\. ([A-Za-z]+) ([0-9]+)/
-      )
+          if (!dateMatch) {
+            throw new Error(
+              `Couldn't parse date string "${row.children[0].textContent}"`
+            )
+          }
 
-      const infectedMatch = content.match(
-        /gesamt[\D]+ ([0-9]+) [\D]+ gemeldet/i
-      )
+          if (!infectedMatch) {
+            throw new Error(
+              `Couldn't parse infected string "${row.children[3].textContent}"`
+            )
+          }
 
-      const recoveredMatch = content.match(/([0-9]+)[\D]+ genesen/)
+          if (!recoveredMatch) {
+            throw new Error(
+              `Couldn't parse recovered string "${row.children[4].textContent}"`
+            )
+          }
 
-      if (!dateMatch) {
-        throw new Error(`Couldn't parse date string "${content[1]}"`)
-      }
+          const entry = {
+            areacode: 'lg',
+            date: `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}T00:00:00.000Z`,
+            deaths,
+            infected: Number(infectedMatch[1]),
+            quarantined: null,
+            recovered: Number(recoveredMatch[1])
+          }
 
-      if (!infectedMatch) {
-        throw new Error(`Couldn't parse infected string "${content[2]}"`)
-      }
-
-      if (!recoveredMatch) {
-        throw new Error(`Couldn't parse recovered string "${content[4]}"`)
-      }
-
-      const entry = {
-        areacode: 'lg',
-        date: new Date(
-          `${dateMatch[3]}-${getInt(dateMatch[2])}-${dateMatch[1]}`
-        ).toISOString(),
-        deaths,
-        infected: Number(infectedMatch[1]),
-        quarantined: null,
-        recovered: Number(recoveredMatch[1])
-      }
-
-      return [
-        {
-          ...entry,
-          active: entry.infected - entry.recovered - entry.deaths
-        }
-      ]
-    },
+          return [
+            ...acc,
+            {
+              ...entry,
+              active: entry.infected - entry.recovered - entry.deaths
+            }
+          ]
+        }, []),
     error => {
       throw error
     }
