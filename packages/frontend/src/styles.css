@@ -158,6 +158,10 @@ footer a {
   background-color: #f79f39;
 }
 
+.is-forecast {
+  color: #aaa;
+}
+
 .notification-in {
   animation: notification-up-in 0.5s ease-out forwards;
 }
