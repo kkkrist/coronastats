@@ -14,7 +14,7 @@ const getClassName = ({ rowData: { forecast } }) =>
   forecast ? 'is-forecast' : undefined
 
 const getColWidth = (innerWidth, numCols) => {
-  const newColWidth = (innerWidth - 80) / numCols
+  const newColWidth = (innerWidth - 96) / numCols
   return newColWidth > 125 ? newColWidth : 125
 }
 
