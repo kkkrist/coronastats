@@ -50,6 +50,10 @@ const Table = ({ docs }) => {
   const Cell = ({ column: { key }, rowData: { _id } }) => {
     const docIndex = docs.findIndex(doc => doc._id === _id)
 
+    if (docIndex < 0) {
+      return null
+    }
+
     if (key === 'date') {
       return shortDate(new Date(docs[docIndex][key]))
     }
