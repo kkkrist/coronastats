@@ -50,9 +50,7 @@ module.exports = () =>
           }
 
           if (!recoveredMatch) {
-            throw new Error(
-              `Couldn't parse recovered string "${row.children[4].textContent}"`
-            )
+            return acc
           }
 
           const entry = {
