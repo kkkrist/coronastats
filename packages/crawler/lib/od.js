@@ -36,11 +36,11 @@ module.exports = () =>
               content.match(/([0-9]+) bestätigte.*Fälle/)
 
             const recoveredMatch = content.match(
-              /([0-9]+)\*? Personen.*genesen/
+              /([0-9.]+)\*? Personen.*genesen/
             )
 
             const quarantinedMatch = content.match(
-              /([0-9]+)\*? aktuell in Quarantäne/
+              /([0-9.]+)\*? aktuell in Quarantäne/
             )
 
             const deathsMatch =
@@ -70,9 +70,9 @@ module.exports = () =>
               deaths: Number(deathsMatch[1]),
               infected: Number(infectedMatch[1].replace('.', '')),
               quarantined: quarantinedMatch
-                ? Number(quarantinedMatch[1])
+                ? Number(quarantinedMatch[1].replace('.', ''))
                 : null,
-              recovered: Number(recoveredMatch[1])
+              recovered: Number(recoveredMatch[1].replace('.', ''))
             }
 
             return [
