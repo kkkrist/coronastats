@@ -46,6 +46,15 @@ export default {
       textStyle: { fill: '#aaa' }
     },
     {
+      axis: 'x',
+      value: new Date('2020-11-02'),
+      lineStyle: { stroke: '#ddd', strokeWidth: 1 },
+      legend: `"Lockdown Light"`,
+      legendPosition: 'top-right',
+      legendOrientation: 'vertical',
+      textStyle: { fill: '#aaa' }
+    },
+    {
       axis: 'y',
       value: 50,
       legend: 'Grenzwert für 7-Tage-Inzidenz',
@@ -95,6 +104,15 @@ export default {
       value: new Date('2020-10-19'),
       lineStyle: { stroke: '#ddd', strokeWidth: 1 },
       legend: 'Schulanfang',
+      legendPosition: 'top-right',
+      legendOrientation: 'vertical',
+      textStyle: { fill: '#aaa' }
+    },
+    {
+      axis: 'x',
+      value: new Date('2020-11-02'),
+      lineStyle: { stroke: '#ddd', strokeWidth: 1 },
+      legend: `"Lockdown Light"`,
       legendPosition: 'top-right',
       legendOrientation: 'vertical',
       textStyle: { fill: '#aaa' }
