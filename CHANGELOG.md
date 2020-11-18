@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.15.0 (2020-11-18)
+
+* feat(frontend): add "Lockdown Light" marker ([cb95372](https://github.com/kkkrist/coronastats/commit/cb95372))
+* fix(frontend): fix twitter card image url ([3bccadb](https://github.com/kkkrist/coronastats/commit/3bccadb))
+
+
+
+
+
 ## <small>1.14.3 (2020-11-16)</small>
 
 * fix(crawler): fix "od" area code crawler ([1b05a99](https://github.com/kkkrist/coronastats/commit/1b05a99))
