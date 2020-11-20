@@ -1,34 +1,17 @@
 'use strict'
 
-const fetch = require('node-fetch')
 const jsdom = require('jsdom').JSDOM
 
 module.exports = () =>
-  Promise.all([
-    jsdom.fromURL('https://spezial.lklg.net/?p=64'),
-    fetch(
-      'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?f=json&objectIds=38&outFields=*',
-      {
-        headers: {
-          'cache-control': 'no-cache',
-          pragma: 'no-cache'
-        }
-      }
-    ).then(res => res.json())
-  ]).then(
-    ([
-      dom,
-      {
-        features: [
-          {
-            attributes: { deaths }
-          }
-        ]
-      }
-    ]) =>
+  jsdom.fromURL('https://spezial.lklg.net/?p=64').then(
+    dom =>
       [...dom.window.document.querySelectorAll('tr')]
         .slice(2)
         .reduce((acc, row) => {
+          if (row.children.length < 6) {
+            return acc
+          }
+
           const dateMatch = row.children[0].textContent.match(
             /([0-9]+)\.([0-9]+)\.([0-9]+)/
           )
@@ -36,6 +19,12 @@ module.exports = () =>
           const infectedMatch = row.children[3].textContent.match(/([0-9.]+)/)
 
           const recoveredMatch = row.children[4].textContent.match(/([0-9.]+)/)
+
+          const deathsMatch = row.children[5].textContent.match(/([0-9.]+)/)
+
+          if (!recoveredMatch) {
+            return acc
+          }
 
           if (!dateMatch) {
             throw new Error(
@@ -49,14 +38,16 @@ module.exports = () =>
             )
           }
 
-          if (!recoveredMatch) {
-            return acc
+          if (!deathsMatch) {
+            throw new Error(
+              `Couldn't parse deaths string "${row.children[4].textContent}"`
+            )
           }
 
           const entry = {
             areacode: 'lg',
             date: `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}T00:00:00.000Z`,
-            deaths,
+            deaths: Number(deathsMatch[1]),
             infected: Number(infectedMatch[1]),
             quarantined: null,
             recovered: Number(recoveredMatch[1])
