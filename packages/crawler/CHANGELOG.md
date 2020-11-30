@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.0 (2020-11-30)
+
+* feat(crawler): add "ks" area code crawler ([66adc1c](https://github.com/kkkrist/coronastats/commit/66adc1c))
+* feat(crawler): add "l" area code crawler ([8eb8d42](https://github.com/kkkrist/coronastats/commit/8eb8d42))
+
+
+
+
+
 ## <small>1.15.1 (2020-11-20)</small>
 
 * fix(crawler): fix "lg" area code crawler ([1d2fc6c](https://github.com/kkkrist/coronastats/commit/1d2fc6c))

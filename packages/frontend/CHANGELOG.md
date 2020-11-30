@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.0 (2020-11-30)
+
+* fix(frontend): fine-tune forecast sample rate ([5151af3](https://github.com/kkkrist/coronastats/commit/5151af3))
+
+
+
+
+
 ## 1.15.0 (2020-11-18)
 
 * feat(frontend): add "Lockdown Light" marker ([cb95372](https://github.com/kkkrist/coronastats/commit/cb95372))
