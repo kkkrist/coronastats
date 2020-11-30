@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import TimeSeries from 'timeseries-analysis'
 import areacodes from '../data/areacodes'
 
-const forecast = (data, sample = 3) =>
+const forecast = (data, sample = 5) =>
   ['infected', 'quarantined', 'recovered', 'deaths'].reduce((acc, key, i) => {
     sample = sample + i
 
