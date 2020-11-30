@@ -90,6 +90,7 @@ Promise.allSettled([
   require('./fl')(),
   require('./l')(),
   require('./lg')(),
+  require('./ks')(),
   require('./od')(),
   require('./plö')(),
   require('./rz')(),
