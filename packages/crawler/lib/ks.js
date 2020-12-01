@@ -25,8 +25,8 @@ module.exports = () =>
     )
     .then(
       dom => {
-        const dateMatch = dom.window.document
-          .querySelector('h3')
+        const dateMatch = [...dom.window.document.querySelectorAll('h3')]
+          .find(el => /^Stand/.test(el.textContent))
           .textContent.match(/Stand: \w+, ([0-9]+). (\w+) ([0-9]+)/)
 
         if (!dateMatch) {
@@ -56,9 +56,9 @@ module.exports = () =>
         const entryS = {
           areacode: 'ks-s',
           active: Number(activeMatchS[0].replace('.', '')),
-          date: `${dateMatch[3]}-${getMonthNumber(dateMatch[2])}-${
-            dateMatch[1]
-          }T00:00:00.000Z`,
+          date: `${dateMatch[3]}-${getMonthNumber(
+            dateMatch[2]
+          )}-${dateMatch[1].padStart(2, '0')}T00:00:00.000Z`,
           deaths: Number(deathsMatchS[0]),
           infected: Number(infectedMatchS[0].replace('.', '')),
           quarantined: null,
@@ -68,9 +68,9 @@ module.exports = () =>
         const entryLk = {
           areacode: 'ks-lk',
           active: Number(activeMatchLk[0].replace('.', '')),
-          date: `${dateMatch[3]}-${getMonthNumber(dateMatch[2])}-${
-            dateMatch[1]
-          }T00:00:00.000Z`,
+          date: `${dateMatch[3]}-${getMonthNumber(
+            dateMatch[2]
+          )}-${dateMatch[1].padStart(2, '0')}T00:00:00.000Z`,
           deaths: Number(deathsMatchLk[0]),
           infected: Number(infectedMatchLk[0].replace('.', '')),
           quarantined: null,
