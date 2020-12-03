@@ -134,9 +134,7 @@ const App = () => {
   }, [])
 
   const addNotification = useCallback(
-    (message, type, id) => {
-      id = id || Math.random().toString()
-
+    (message = '', type = '', id = Math.random().toString()) => {
       dispatch({
         type: 'ADD_NOTIFICATION',
         notification: { id, message, type }
