@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.17.0 (2020-12-03)
+
+* feat(frontend): wrap App in ErrorBoundary ([9b33d82](https://github.com/kkkrist/coronastats/commit/9b33d82))
+* fix(frontend): add default args to `addNotification()` ([e4387f3](https://github.com/kkkrist/coronastats/commit/e4387f3))
+
+
+
+
+
 ## <small>1.16.1 (2020-12-01)</small>
 
 * fix(crawler): fix "ks" area code crawler ([148d9ae](https://github.com/kkkrist/coronastats/commit/148d9ae))
