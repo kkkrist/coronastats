@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.17.1 (2020-12-04)</small>
+
+* fix(crawler): Fix "l" area code crawler ([801b108](https://github.com/kkkrist/coronastats/commit/801b108))
+
+
+
+
+
 ## 1.17.0 (2020-12-03)
 
 * feat(frontend): wrap App in ErrorBoundary ([9b33d82](https://github.com/kkkrist/coronastats/commit/9b33d82))
