@@ -27,7 +27,7 @@ module.exports = () =>
         )
 
         const quarantinedMatch = content.match(
-          /in häuslicher Quarantäne. [0-9]+ positiv Getestete, ([0-9.]+) Kontaktpersonen/
+          /in häuslicher Quarantäne. [0-9.]+ positiv Getestete, ([0-9.]+) Kontaktpersonen/
         )
 
         ;[
