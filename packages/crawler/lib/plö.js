@@ -1,16 +1,12 @@
 'use strict'
 
 const fetch = require('node-fetch')
+const fetchOptions = require('./fetch-options.json')
 
 module.exports = () =>
   fetch(
     'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?f=json&objectIds=10&outFields=*',
-    {
-      headers: {
-        'cache-control': 'no-cache',
-        pragma: 'no-cache'
-      }
-    }
+    fetchOptions
   )
     .then(res => res.json())
     .then(

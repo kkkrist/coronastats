@@ -1,6 +1,7 @@
 'use strict'
 
 const jsdom = require('jsdom').JSDOM
+const fetchOptions = require('./fetch-options.json')
 
 const numberStrings = {
   ein: 1,
@@ -34,7 +35,10 @@ module.exports = () =>
   new Promise((resolve, reject) => {
     jsdom
       .fromURL(
-        'https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus'
+        'https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus',
+        {
+          userAgent: fetchOptions.headers['user-agent']
+        }
       )
       .then(dom => {
         const content = dom.window.document

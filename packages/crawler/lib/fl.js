@@ -2,6 +2,7 @@
 
 const fetch = require('node-fetch')
 const JSDOM = require('jsdom').JSDOM
+const fetchOptions = require('./fetch-options.json')
 
 const rDate = /([0-9]+)\.([0-9]+)\.([0-9]+)/
 const rDeaths = /([0-9]+)[\D]+Verst(?:or|ro)?ben/i
@@ -76,12 +77,7 @@ const reducer = (acc, el) => {
 module.exports = () =>
   fetch(
     'https://www.flensburg.de/Startseite/Informationen-zum-Coronavirus.php?object=tx,2306.5&ModID=7&FID=2306.20374.1',
-    {
-      headers: {
-        'cache-control': 'no-cache',
-        pragma: 'no-cache'
-      }
-    }
+    fetchOptions
   )
     .then(res => res.text())
     .then(text => {

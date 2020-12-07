@@ -1,6 +1,7 @@
 'use strict'
 
 const jsdom = require('jsdom').JSDOM
+const fetchOptions = require('./fetch-options.json')
 
 const getMonthNumber = key =>
   ({
@@ -21,7 +22,10 @@ const getMonthNumber = key =>
 module.exports = () =>
   jsdom
     .fromURL(
-      'https://www.kassel.de/aktuelles/aktuelle-meldungen/coronavirus.php'
+      'https://www.kassel.de/aktuelles/aktuelle-meldungen/coronavirus.php',
+      {
+        userAgent: fetchOptions.headers['user-agent']
+      }
     )
     .then(
       dom => {

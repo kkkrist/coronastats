@@ -1,11 +1,15 @@
 'use strict'
 
 const jsdom = require('jsdom').JSDOM
+const fetchOptions = require('./fetch-options.json')
 
 module.exports = () =>
   jsdom
     .fromURL(
-      'https://www.leipzig.de/jugend-familie-und-soziales/gesundheit/neuartiges-coronavirus-2019-n-cov/'
+      'https://www.leipzig.de/jugend-familie-und-soziales/gesundheit/neuartiges-coronavirus-2019-n-cov/',
+      {
+        userAgent: fetchOptions.headers['user-agent']
+      }
     )
     .then(
       dom => {
