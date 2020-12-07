@@ -17,19 +17,19 @@
   },
   "l": {
     "population": 593145,
-    "populationSourceLabel": "Landesamt für Statistik Niedersachsen",
-    "populationSourceUri": "https://www.statistik.sachsen.de/",
-    "sourceLabel": "spezial.lklg.net",
-    "sourceUri": "https://spezial.lklg.net/?p=64",
-    "state": "ni"
-  },
-  "lg": {
-    "population": 184139,
     "populationSourceLabel": "Statistisches Landesamt des Freistaates Sachsen",
     "populationSourceUri": "https://www.statistik.niedersachsen.de/startseite/",
     "sourceLabel": "leipzig.de",
     "sourceUri": "https://www.leipzig.de/jugend-familie-und-soziales/gesundheit/neuartiges-coronavirus-2019-n-cov/",
     "state": "sn"
+  },
+  "lg": {
+    "population": 184139,
+    "populationSourceLabel": "Landesamt für Statistik Niedersachsen",
+    "populationSourceUri": "https://www.statistik.sachsen.de/",
+    "sourceLabel": "spezial.lklg.net",
+    "sourceUri": "https://spezial.lklg.net/?p=64",
+    "state": "ni"
   },
   "ks-lk": {
     "population": 236764,
