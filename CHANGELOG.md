@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.18.0 (2020-12-07)
+
+* fix(crawler): add user-agent to http headers… ([3fbc6a3](https://github.com/kkkrist/coronastats/commit/3fbc6a3))
+* feat(frontend): add "l", "ks-lk", "ks-s" area codes ([8ccc30b](https://github.com/kkkrist/coronastats/commit/8ccc30b))
+
+
+
+
+
 ## <small>1.17.1 (2020-12-04)</small>
 
 * fix(crawler): Fix "l" area code crawler ([801b108](https://github.com/kkkrist/coronastats/commit/801b108))

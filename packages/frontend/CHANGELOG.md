@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.18.0 (2020-12-07)
+
+* feat(frontend): add "l", "ks-lk", "ks-s" area codes ([8ccc30b](https://github.com/kkkrist/coronastats/commit/8ccc30b))
+
+
+
+
+
 ## 1.17.0 (2020-12-03)
 
 * feat(frontend): wrap App in ErrorBoundary ([9b33d82](https://github.com/kkkrist/coronastats/commit/9b33d82))
