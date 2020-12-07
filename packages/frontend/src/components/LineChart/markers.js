@@ -1,5 +1,14 @@
 export default {
-  ns: [
+  he: [
+    {
+      axis: 'y',
+      value: 50,
+      legend: 'Grenzwert für 7-Tage-Inzidenz',
+      legendPosition: 'top-right',
+      lineStyle: { stroke: '#aaa', strokeWidth: 1 }
+    }
+  ],
+  ni: [
     {
       axis: 'x',
       value: new Date('2020-05-25'),
@@ -117,6 +126,15 @@ export default {
       legendOrientation: 'vertical',
       textStyle: { fill: '#aaa' }
     },
+    {
+      axis: 'y',
+      value: 50,
+      legend: 'Grenzwert für 7-Tage-Inzidenz',
+      legendPosition: 'top-right',
+      lineStyle: { stroke: '#aaa', strokeWidth: 1 }
+    }
+  ],
+  sn: [
     {
       axis: 'y',
       value: 50,

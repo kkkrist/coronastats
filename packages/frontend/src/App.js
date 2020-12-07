@@ -12,6 +12,18 @@ import { version } from '../package.json'
 import { register as registerServiceWorker } from './service-worker'
 import './styles.css'
 
+const locations = {
+  fl: 'Flensburg',
+  'ks-s': 'Kassel',
+  'ks-lk': 'Landkreis Kassel',
+  lg: 'Landkreis Lüneburg',
+  l: 'Leipzig',
+  rz: 'Kreis Herzogtum Lauenburg',
+  plö: 'Kreis Plön',
+  sl: 'Kreis Schleswig-Flensburg',
+  od: 'Kreis Stormarn'
+}
+
 const db = new PouchDB('coronastats')
 const replication = db.replicate.from(
   'https://api.mundpropaganda.net/coronastats',
@@ -319,12 +331,11 @@ const App = () => {
             style={{ margin: '0.5rem', width: 'calc(100% - 1.5rem)' }}
             value={areacode}
           >
-            <option value='fl'>Flensburg</option>
-            <option value='lg'>Landkreis Lüneburg</option>
-            <option value='od'>Kreis Stormarn</option>
-            <option value='plö'>Kreis Plön</option>
-            <option value='rz'>Kreis Herzogtum Lauenburg</option>
-            <option value='sl'>Kreis Schleswig-Flensburg</option>
+            {Object.entries(locations).map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
           </select>
         </div>
 

@@ -15,13 +15,37 @@
     "sourceUri": "https://www.kreis-rz.de/Corona",
     "state": "sh"
   },
-  "lg": {
-    "population": 184139,
+  "l": {
+    "population": 593145,
     "populationSourceLabel": "Landesamt für Statistik Niedersachsen",
-    "populationSourceUri": "https://www.statistik.niedersachsen.de/startseite/",
+    "populationSourceUri": "https://www.statistik.sachsen.de/",
     "sourceLabel": "spezial.lklg.net",
     "sourceUri": "https://spezial.lklg.net/?p=64",
-    "state": "ns"
+    "state": "ni"
+  },
+  "lg": {
+    "population": 184139,
+    "populationSourceLabel": "Statistisches Landesamt des Freistaates Sachsen",
+    "populationSourceUri": "https://www.statistik.niedersachsen.de/startseite/",
+    "sourceLabel": "leipzig.de",
+    "sourceUri": "https://www.leipzig.de/jugend-familie-und-soziales/gesundheit/neuartiges-coronavirus-2019-n-cov/",
+    "state": "sn"
+  },
+  "ks-lk": {
+    "population": 236764,
+    "populationSourceLabel": "Hessisches Statistisches Landesamt",
+    "populationSourceUri": "https://statistik.hessen.de/zahlen-fakten/bevoelkerung-gebiet-haushalte-familien/bevoelkerung/tabellen/#Bevoelkerungsveraenderung",
+    "sourceLabel": "kassel.de",
+    "sourceUri": "https://www.kassel.de/aktuelles/aktuelle-meldungen/coronavirus.php",
+    "state": "he"
+  },
+  "ks-s": {
+    "population": 202137,
+    "populationSourceLabel": "Hessisches Statistisches Landesamt",
+    "populationSourceUri": "https://statistik.hessen.de/zahlen-fakten/bevoelkerung-gebiet-haushalte-familien/bevoelkerung/tabellen/#Bevoelkerungsveraenderung",
+    "sourceLabel": "kassel.de",
+    "sourceUri": "https://www.kassel.de/aktuelles/aktuelle-meldungen/coronavirus.php",
+    "state": "he"
   },
   "od": {
     "population": 244156,
