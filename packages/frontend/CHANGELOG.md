@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.18.1 (2020-12-07)</small>
+
+* fix(crawler): fix area code list ([070c308](https://github.com/kkkrist/coronastats/commit/070c308))
+
+
+
+
+
 ## 1.18.0 (2020-12-07)
 
 * feat(frontend): add "l", "ks-lk", "ks-s" area codes ([8ccc30b](https://github.com/kkkrist/coronastats/commit/8ccc30b))
