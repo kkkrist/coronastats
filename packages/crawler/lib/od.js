@@ -40,15 +40,15 @@ module.exports = () =>
               content.match(/([0-9]+) bestätigte.*Fälle/)
 
             const recoveredMatch = content.match(
-              /([0-9.]+)\*? Personen.*genesen/
+              /([0-9.]+)\*?\sPersonen.*genesen/
             )
 
             const quarantinedMatch = content.match(
-              /([0-9.]+)\*? aktuell in Quarantäne/
+              /([0-9.]+)\*?\saktuell in Quarantäne/
             )
 
             const deathsMatch =
-              content.match(/([0-9]+)\*? Personen sind.*verstorben/) ||
+              content.match(/([0-9]+)\*?\sPersonen sind.*verstorben/) ||
               content.match(
                 /verstorbenen Personen(?:[A-Za-z0-9\W\s-]+)beträgt(?:[A-Za-z\W\s]+)([0-9]+)/
               )
