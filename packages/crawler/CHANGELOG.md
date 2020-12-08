@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.18.2 (2020-12-08)</small>
+
+* fix(crawler): fix "od" area code crawler ([82affa7](https://github.com/kkkrist/coronastats/commit/82affa7))
+
+
+
+
+
 ## 1.18.0 (2020-12-07)
 
 * fix(crawler): add user-agent to http headers… ([3fbc6a3](https://github.com/kkkrist/coronastats/commit/3fbc6a3))
