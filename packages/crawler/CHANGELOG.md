@@ -5,7 +5,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## <small>1.18.3 (2020-12-09)</small>
 
-* fix(crawler/l): compare with last entry, don't same if numbers match up ([c4940e8](https://github.com/kkkrist/coronastats/commit/c4940e8))
+* fix(crawler/l): compare with last entry, discard if numbers match up ([c4940e8](https://github.com/kkkrist/coronastats/commit/c4940e8))
 
 
 
