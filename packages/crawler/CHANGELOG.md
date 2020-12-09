@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.18.3 (2020-12-09)</small>
+
+* fix(crawler/l): compare with last entry, don't same if numbers match up ([c4940e8](https://github.com/kkkrist/coronastats/commit/c4940e8))
+
+
+
+
+
 ## <small>1.18.2 (2020-12-08)</small>
 
 * fix(crawler): fix "od" area code crawler ([82affa7](https://github.com/kkkrist/coronastats/commit/82affa7))
