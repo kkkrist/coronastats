@@ -24,7 +24,9 @@ module.exports = () =>
       }
     ]) => {
       const content =
-        dom.window.document.querySelector('h2').nextElementSibling.textContent +
+        [...dom.window.document.querySelectorAll('h2')].find(el =>
+          el.textContent.includes('Fallzahlen')
+        ).nextElementSibling.textContent +
         '\n' +
         dom.window.document.querySelector('div.schlaglichter-container')
           .textContent
