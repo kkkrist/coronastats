@@ -17,7 +17,7 @@ const getMatch = (el, regex, isOptional) => {
     return match
   }
 
-  let nextEl = el.previousElementSibling
+  let nextEl = el.previousElementSibling || el.parentElement
 
   while (nextEl && !match) {
     match = nextEl.textContent.match(regex)
@@ -81,7 +81,7 @@ module.exports = () =>
   )
     .then(res => res.text())
     .then(text => {
-      const dom = new JSDOM(text.replace(/<\/?span.*?>/gi, ''))
+      const dom = new JSDOM(text.replace(/<\/?(span|strong).*?>/gi, ''))
       return [
         ...dom.window.document.querySelector(
           '.einleitung + div > div > .toggler_container'
