@@ -45,13 +45,7 @@ module.exports = () =>
         /in häuslicher Quarantäne. [0-9.]+ positiv Getestete, ([0-9.]+) Kontaktpersonen/
       )
 
-      ;[
-        activeMatch,
-        dateMatch,
-        deathsMatch,
-        infectedMatch,
-        quarantinedMatch
-      ].forEach(match => {
+      ;[activeMatch, dateMatch, deathsMatch, infectedMatch].forEach(match => {
         if (!match) {
           throw new Error(`Couldn't parse ${match}`)
         }
@@ -63,7 +57,8 @@ module.exports = () =>
         date: `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}T00:00:00.000Z`,
         deaths: Number(deathsMatch[1]),
         infected: Number(infectedMatch[1].replace('.', '')),
-        quarantined: Number(quarantinedMatch[1].replace('.', ''))
+        quarantined:
+          quarantinedMatch && Number(quarantinedMatch[1].replace('.', ''))
       }
 
       if (
