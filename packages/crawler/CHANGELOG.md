@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.18.8 (2020-12-30)</small>
+
+* fix(crawler): fix "l" area code crawler, re-enable ([c6511c4](https://github.com/kkkrist/coronastats/commit/c6511c4))
+* fix(crawler): fix "od" area code crawler ([07867d8](https://github.com/kkkrist/coronastats/commit/07867d8))
+
+
+
+
+
 ## <small>1.18.7 (2020-12-29)</small>
 
 * fix(crawler): fix "sl" area code crawler ([907a811](https://github.com/kkkrist/coronastats/commit/907a811))
