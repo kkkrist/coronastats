@@ -57,12 +57,11 @@ module.exports = () =>
               /^([0-9]+)\.([0-9]+)\.([0-9]+)$/
             )
 
-            if (
-              !dateMatch ||
-              !deathsMatch ||
-              !infectedMatch ||
-              !recoveredMatch
-            ) {
+            const incidenceMatch = content.match(
+              /Inzidenzwert von ([0-9,]+) Infektionen/
+            )
+
+            if (!dateMatch || !deathsMatch || !infectedMatch) {
               return acc
             }
 
@@ -73,17 +72,22 @@ module.exports = () =>
               ).toISOString(),
               deaths: Number(deathsMatch[1]),
               infected: Number(infectedMatch[1].replace('.', '')),
-              quarantined: quarantinedMatch
-                ? Number(quarantinedMatch[1].replace('.', ''))
-                : null,
-              recovered: Number(recoveredMatch[1].replace('.', ''))
+              infected7p100k:
+                incidenceMatch && Number(incidenceMatch[1].replace(',', '.')),
+              quarantined:
+                quarantinedMatch &&
+                Number(quarantinedMatch[1].replace('.', '')),
+              recovered:
+                recoveredMatch && Number(recoveredMatch[1].replace('.', ''))
             }
 
             return [
               ...acc,
               {
                 ...entry,
-                active: entry.infected - entry.recovered - entry.deaths
+                active: entry.recovered
+                  ? entry.infected - entry.recovered - entry.deaths
+                  : null
               }
             ]
           },
