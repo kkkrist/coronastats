@@ -14,7 +14,16 @@ const numberStrings = {
   sieben: 7,
   acht: 8,
   neun: 9,
-  zehn: 10
+  zehn: 10,
+  elf: 11,
+  zwölf: 12,
+  dreizehn: 13,
+  vierzehn: 14,
+  fünfzehn: 15,
+  sechzehn: 16,
+  siebzehn: 17,
+  achtzehn: 18,
+  neunzehn: 19
 }
 
 const getInt = val => {
@@ -22,7 +31,9 @@ const getInt = val => {
     return Number(val)
   }
 
-  const key = Object.keys(numberStrings).find(str => val.startsWith(str))
+  const key = Object.keys(numberStrings).find(str =>
+    val.toLowerCase().startsWith(str)
+  )
 
   if (key) {
     return numberStrings[key]
@@ -53,13 +64,17 @@ module.exports = () =>
           /nachgewiesenen Infizierten .* auf ([0-9.]+)/
         )
 
-        const recoveredMatch = content.match(/Wieder genesen sind davon ([0-9.]+) Personen/)
+        const recoveredMatch = content.match(
+          /Wieder genesen sind davon ([0-9.]+) Personen/
+        )
 
         const quarantinedMatch = content.match(
           /In Quarantäne befinden sich derzeit ([0-9.]+) Personen/
         )
 
-        const deathsMatch = content.match(/Die Gesamtzahl der Verstorbenen beträgt (.*)/)
+        const deathsMatch = content.match(
+          /Die Gesamtzahl der Verstorbenen beträgt (.*?)\./
+        )
 
         if (!dateMatch) {
           return reject(new Error("Couldn't parse date"))
