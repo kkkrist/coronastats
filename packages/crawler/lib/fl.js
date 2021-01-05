@@ -4,7 +4,7 @@ const fetch = require('node-fetch')
 const JSDOM = require('jsdom').JSDOM
 const fetchOptions = require('./fetch-options.json')
 
-const rDate = /([0-9]+)\.([0-9]+)\.([0-9]+)/
+const rDate = /^([0-9]+)\.([0-9]+)\.([0-9]+)$/
 const rDeaths = /([0-9]+)[\D]+Verst(?:or|ro)?ben/i
 const rInfected = /([0-9]+)[\D]+Infizierte/
 const rQuarantined = /([0-9]+)[\D]+ (?<!Lehrer )in Qua?rantäne/
