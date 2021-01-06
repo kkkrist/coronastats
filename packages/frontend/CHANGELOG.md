@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.19.0 (2021-01-06)
+
+* feat(frontend): add December lockdown markers ([189f01c](https://github.com/kkkrist/coronastats/commit/189f01c))
+
+
+
+
+
 ## <small>1.18.1 (2020-12-07)</small>
 
 * fix(crawler): fix area code list ([070c308](https://github.com/kkkrist/coronastats/commit/070c308))
