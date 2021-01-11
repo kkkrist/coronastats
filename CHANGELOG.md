@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.1 (2021-01-11)</small>
+
+* fix(crawler): fix "sl" area code crawler ([57ca88f](https://github.com/kkkrist/coronastats/commit/57ca88f))
+
+
+
+
+
 ## 1.19.0 (2021-01-06)
 
 * feat(frontend): add December lockdown markers ([189f01c](https://github.com/kkkrist/coronastats/commit/189f01c))
