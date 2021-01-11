@@ -61,7 +61,7 @@ module.exports = () =>
         )
 
         const infectedMatch = content.match(
-          /nachgewiesenen Infizierten .* auf ([0-9.]+)/
+          /nachgewiesenen Infizierten .*? auf ([0-9.]+)/
         )
 
         const recoveredMatch = content.match(
