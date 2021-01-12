@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.2 (2021-01-12)</small>
+
+* fix(crawler): use new source url in "od" area code crawler ([e2dc7cc](https://github.com/kkkrist/coronastats/commit/e2dc7cc))
+
+
+
+
+
 ## <small>1.19.1 (2021-01-11)</small>
 
 * fix(crawler): fix "sl" area code crawler ([57ca88f](https://github.com/kkkrist/coronastats/commit/57ca88f))
