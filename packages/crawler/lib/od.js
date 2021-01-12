@@ -7,7 +7,8 @@ module.exports = () =>
   new Promise((resolve, reject) => {
     jsdom
       .fromURL(
-        'https://www.kreis-stormarn.de/aktuelles/pressemeldungen/2020/zahl-der-bestaetigten-corona-faelle-in-stormarn.html',
+        // 'https://www.kreis-stormarn.de/aktuelles/pressemeldungen/2020/zahl-der-bestaetigten-corona-faelle-in-stormarn.html',
+        'https://www.kreis-stormarn.de/aktuelles/pressemeldungen/2021/zahl-der-bestaetigten-corona-faelle-in-stormarn.html',
         {
           userAgent: fetchOptions.headers['user-agent']
         }
