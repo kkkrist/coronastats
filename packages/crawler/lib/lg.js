@@ -54,10 +54,10 @@ module.exports = () =>
             const entry = {
               areacode: 'lg',
               date: `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}T00:00:00.000Z`,
-              deaths: Number(deathsMatch[1]),
-              infected: Number(infectedMatch[1]),
+              deaths: Number(deathsMatch[1].replace('.', '')),
+              infected: Number(infectedMatch[1].replace('.', '')),
               quarantined: null,
-              recovered: Number(recoveredMatch[1])
+              recovered: Number(recoveredMatch[1].replace('.', ''))
             }
 
             return [
