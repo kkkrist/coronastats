@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.4 (2021-01-14)</small>
+
+* fix(frontend): add lockdown markers to "he", "sn" ([e0e454c](https://github.com/kkkrist/coronastats/commit/e0e454c))
+
+
+
+
+
 ## <small>1.19.3 (2021-01-14)</small>
 
 * fix(frontend): fix "od" area code source link ([1ec2fc1](https://github.com/kkkrist/coronastats/commit/1ec2fc1))
