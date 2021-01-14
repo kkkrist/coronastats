@@ -1,6 +1,15 @@
 export default {
   he: [
     {
+      axis: 'x',
+      value: new Date('2020-12-16'),
+      lineStyle: { stroke: '#ddd', strokeWidth: 1 },
+      legend: 'Lockdown',
+      legendPosition: 'top-right',
+      legendOrientation: 'vertical',
+      textStyle: { fill: '#aaa' }
+    },
+    {
       axis: 'y',
       value: 50,
       legend: 'Grenzwert für 7-Tage-Inzidenz',
@@ -153,6 +162,15 @@ export default {
     }
   ],
   sn: [
+    {
+      axis: 'x',
+      value: new Date('2020-12-16'),
+      lineStyle: { stroke: '#ddd', strokeWidth: 1 },
+      legend: 'Lockdown',
+      legendPosition: 'top-right',
+      legendOrientation: 'vertical',
+      textStyle: { fill: '#aaa' }
+    },
     {
       axis: 'y',
       value: 50,
