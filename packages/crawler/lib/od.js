@@ -38,7 +38,8 @@ module.exports = () =>
               content.match(
                 /bestätigten.*Fälle ist auf ([0-9]+) (an|)gestiegen/
               ) ||
-              content.match(/([0-9]+) bestätigte.*Fälle/)
+              content.match(/([0-9]+) bestätigte.*Fälle/) ||
+              content.match(/Gesamtzahl der klinisch.*? ([0-9.]+)/)
 
             const recoveredMatch = content.match(
               /([0-9.]+)\*?\sPersonen.*genesen/
