@@ -5,7 +5,7 @@ const fetchOptions = require('./fetch-options.json')
 
 module.exports = () =>
   jsdom
-    .fromURL('https://spezial.lklg.net/?p=64', {
+    .fromURL('https://corona.landkreis-lueneburg.de/aktuelle-situation/', {
       userAgent: fetchOptions.headers['user-agent']
     })
     .then(
