@@ -38,11 +38,17 @@ const getRecord = el => {
   const quarantinedMatch = getMatch(el, rQuarantined)
   const recoveredMatch = getMatch(el, rRecovered)
 
+  let year = dateMatch[3].slice(-2)
+  const month = dateMatch[2]
+  const day = dateMatch[1]
+
+  if (year === '20' && Number(month) < 4) {
+    year = '21'
+  }
+
   const record = {
     areacode: 'fl',
-    date: new Date(
-      `20${dateMatch[3].slice(-2)}-${dateMatch[2]}-${dateMatch[1]}`
-    ).toISOString(),
+    date: new Date(`20${year}-${month}-${day}`).toISOString(),
     deaths: Number(deathsMatch[1]),
     infected: Number(infectedMatch[1]),
     quarantined: Number(quarantinedMatch[1]),
