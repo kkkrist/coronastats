@@ -61,20 +61,18 @@ module.exports = () =>
         )
 
         const infectedMatch = content.match(
-          /nachgewiesenen Infizierten .*? auf ([0-9.]+)/
+          /positiv getesteten Personen .*? bei ([0-9.]+)/
         )
 
         const recoveredMatch = content.match(
-          /Wieder genesen sind davon ([0-9.]+) Personen/
+          /, ([0-9.]+) Personen sind genesen/
         )
 
         const quarantinedMatch = content.match(
-          /In Quarantäne befinden sich derzeit ([0-9.]+) Personen/
+          /derzeit ([0-9.]+) Personen in Quarantäne/
         )
 
-        const deathsMatch = content.match(
-          /Die Gesamtzahl der Verstorbenen beträgt (.*?)\./
-        )
+        const deathsMatch = content.match(/und (.*?) verstorben\./)
 
         if (!dateMatch) {
           return reject(new Error("Couldn't parse date"))
