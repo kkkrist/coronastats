@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.7 (2021-01-29)</small>
+
+* fix(crawler/sl): adapt regexes ([9732737](https://github.com/kkkrist/coronastats/commit/9732737))
+
+
+
+
+
 ## <small>1.19.6 (2021-01-24)</small>
 
 * fix(crawler/fl): consider clerks being stuck in the past sometimes ([7799785](https://github.com/kkkrist/coronastats/commit/7799785))
