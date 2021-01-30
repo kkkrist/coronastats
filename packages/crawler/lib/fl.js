@@ -5,13 +5,13 @@ const JSDOM = require('jsdom').JSDOM
 const fetchOptions = require('./fetch-options.json')
 
 const rDate = /^([0-9]+)\.([0-9]+)\.([0-9]+)$/
-const rDeaths = [/verstorben: ([0-9]+)/i, /([0-9]+)[\D]+Verst(?:or|ro)?ben/i]
-const rInfected = [/Positive gesamt: ([0-9]+)/i, /([0-9]+)[\D]+Infizierte/]
+const rDeaths = [/verstorben:\s([0-9]+)/i, /([0-9]+)[\D]+Verst(?:or|ro)?ben/i]
+const rInfected = [/Positive gesamt:\s([0-9]+)/i, /([0-9]+)[\D]+Infizierte/]
 const rQuarantined = [
-  /Quarantänefälle: ([0-9]+)/i,
+  /Quarantänefälle:\s([0-9]+)/i,
   /([0-9]+)[\D]+ (?<!Lehrer )in Qua?rantäne/
 ]
-const rRecovered = [/genesen: ([0-9]+)/i, /([0-9]+)[\D]+gen?en?sen/]
+const rRecovered = [/genesen:\s([0-9]+)/i, /([0-9]+)[\D]+gen?en?sen/]
 
 const matcher = (str, r) => {
   if (Array.isArray(r)) {
