@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.9 (2021-01-30)</small>
+
+* fix(crawler/fl): just using regular white space characters would be too easy, right? ([e59e05f](https://github.com/kkkrist/coronastats/commit/e59e05f))
+
+
+
+
+
 ## <small>1.19.8 (2021-01-29)</small>
 
 * fix(crawler/fl): adapt list format introduced on 21/01/29 ([3286a2d](https://github.com/kkkrist/coronastats/commit/3286a2d))
