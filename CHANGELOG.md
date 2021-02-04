@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.11 (2021-02-04)</small>
+
+* fix(crawler/sl): tweak regexes ([ab8d338](https://github.com/kkkrist/coronastats/commit/ab8d338))
+
+
+
+
+
 ## <small>1.19.10 (2021-02-02)</small>
 
 * fix(crawler/sl): add new regexes ([07968a1](https://github.com/kkkrist/coronastats/commit/07968a1))
