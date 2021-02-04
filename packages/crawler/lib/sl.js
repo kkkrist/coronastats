@@ -72,7 +72,7 @@ module.exports = () =>
           /Quarantäne .*? ([0-9.]+)/
         )
 
-        const deathsMatch = content.match(/Zahl der Verstorbenen .*? ([0-9.]+)/)
+        const deathsMatch = content.match(/Zahl der Verstorbenen .*? ([0-9.]+)/i)
 
         if (!dateMatch) {
           return reject(new Error("Couldn't parse date"))
