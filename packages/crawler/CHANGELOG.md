@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.15 (2021-02-09)</small>
+
+* docs: add change to trigger webhook ([37f1070](https://github.com/kkkrist/coronastats/commit/37f1070))
+
+
+
+
+
 ## <small>1.19.14 (2021-02-09)</small>
 
 * docs: add change to trigger webhook ([b95ec4c](https://github.com/kkkrist/coronastats/commit/b95ec4c))
