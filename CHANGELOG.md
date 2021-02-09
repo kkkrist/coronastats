@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.14 (2021-02-09)</small>
+
+* docs: add change to trigger webhook ([b95ec4c](https://github.com/kkkrist/coronastats/commit/b95ec4c))
+
+
+
+
+
 ## <small>1.19.13 (2021-02-09)</small>
 
 * fix(crawler/fl): colons are hard (not) ([2ac1a74](https://github.com/kkkrist/coronastats/commit/2ac1a74))
