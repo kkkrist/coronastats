@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.12 (2021-02-09)</small>
+
+* fix(crawler/fl): escape from whitespace hell ([56449d1](https://github.com/kkkrist/coronastats/commit/56449d1))
+
+
+
+
+
 ## <small>1.19.11 (2021-02-04)</small>
 
 * fix(crawler/sl): tweak regexes ([ab8d338](https://github.com/kkkrist/coronastats/commit/ab8d338))
