@@ -5,13 +5,13 @@ const JSDOM = require('jsdom').JSDOM
 const fetchOptions = require('./fetch-options.json')
 
 const rDate = /^([0-9]+)\.([0-9]+)\.([0-9]+)$/
-const rDeaths = [/verstorben:?\s+([0-9]+)/i, /([0-9]+)[\D]+Verst(?:or|ro)?ben/i]
-const rInfected = [/Positive gesamt:?\s+([0-9]+)/i, /([0-9]+)[\D]+Infizierte/]
+const rDeaths = [/verstorben:?\s+([0-9.]+)/i, /([0-9.]+)[\D]+Verst(?:or|ro)?ben/i]
+const rInfected = [/Positive gesamt:?\s+([0-9.]+)/i, /([0-9.]+)[\D]+Infizierte/]
 const rQuarantined = [
-  /Quarantänefälle:?\s+([0-9]+)/i,
-  /([0-9]+)[\D]+ (?<!Lehrer )in Qua?rantäne/
+  /Quarantänefälle:?\s+([0-9.]+)/i,
+  /([0-9.]+)[\D]+ (?<!Lehrer )in Qua?rantäne/
 ]
-const rRecovered = [/genesen:?\s+([0-9]+)/i, /([0-9]+)[\D]+gen?en?sen/]
+const rRecovered = [/genesen:?\s+([0-9.]+)/i, /([0-9.]+)[\D]+gen?en?sen/]
 
 const matcher = (str, r) => {
   if (Array.isArray(r)) {
@@ -62,10 +62,10 @@ const getRecord = el => {
   const record = {
     areacode: 'fl',
     date: new Date(`20${year}-${month}-${day}`).toISOString(),
-    deaths: Number(deathsMatch[1]),
-    infected: Number(infectedMatch[1]),
-    quarantined: Number(quarantinedMatch[1]),
-    recovered: Number(recoveredMatch[1])
+    deaths: Number(deathsMatch[1].replace('.', '')),
+    infected: Number(infectedMatch[1].replace('.', '')),
+    quarantined: Number(quarantinedMatch[1].replace('.', '')),
+    recovered: Number(recoveredMatch[1].replace('.', ''))
   }
 
   return {
