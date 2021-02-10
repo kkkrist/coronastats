@@ -75,7 +75,11 @@ const getRecord = el => {
 }
 
 const reducer = (acc, el) => {
-  if (el.nodeName !== 'P' && el.childElementCount > 0) {
+  if (
+    el.nodeName !== 'P' &&
+    el.childElementCount > 0 &&
+    ![...el.children].every(({ tagName }) => tagName === 'BR')
+  ) {
     return [...el.childNodes].reduce(reducer, acc)
   }
 
