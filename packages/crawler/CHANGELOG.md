@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.17 (2021-02-10)</small>
+
+* fix(crawler/fl): different day, different layout :( ([9f9f8ec](https://github.com/kkkrist/coronastats/commit/9f9f8ec))
+
+
+
+
+
 ## <small>1.19.16 (2021-02-09)</small>
 
 * docs: add change to trigger webhook ([2f7cb51](https://github.com/kkkrist/coronastats/commit/2f7cb51))
