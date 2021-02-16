@@ -10,8 +10,11 @@ module.exports = () =>
         userAgent: fetchOptions.headers['user-agent']
       })
       .then(dom => {
-        const str = dom.window.document.querySelector('h1').nextElementSibling
-          .textContent
+        const str =
+          dom.window.document.querySelector('h1').nextElementSibling
+            .textContent ||
+          dom.window.document.querySelector('h1').nextElementSibling
+            .nextElementSibling.textContent
 
         const infectedMatch = str.match(/gesamt.*?([0-9]+)/i)
 
