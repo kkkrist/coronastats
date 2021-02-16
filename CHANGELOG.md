@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.19 (2021-02-16)</small>
+
+* fix(crawler): fix "rz" area code crawler ([004d6ff](https://github.com/kkkrist/coronastats/commit/004d6ff))
+* fix(frontend): update twitter card image ([d2f000c](https://github.com/kkkrist/coronastats/commit/d2f000c))
+
+
+
+
+
 ## <small>1.19.18 (2021-02-10)</small>
 
 * fix(crawler/fl): let's use thousands separators! why not… ([00b3761](https://github.com/kkkrist/coronastats/commit/00b3761))
