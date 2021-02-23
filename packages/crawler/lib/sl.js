@@ -57,7 +57,7 @@ module.exports = () =>
           .textContent.replace(/\u00A0/g, ' ')
 
         const dateMatch = content.match(
-          /Stand: ([0-9]+)\.([0-9]+)\.([0-9]+),\s(([0-9]+):([0-9]+))/
+          /([0-9]+)\.([0-9]+)\.([0-9]+),\s(([0-9]+):([0-9]+))/
         )
 
         const infectedMatch = content.match(
@@ -68,11 +68,11 @@ module.exports = () =>
           /genesen sind .*? ([0-9.]+) Personen/
         )
 
-        const quarantinedMatch = content.match(
-          /Quarantäne .*? ([0-9.]+)/
-        )
+        const quarantinedMatch = content.match(/Quarantäne .*? ([0-9.]+)/)
 
-        const deathsMatch = content.match(/Zahl der Verstorbenen .*? ([0-9.]+)/i)
+        const deathsMatch = content.match(
+          /Zahl der Verstorbenen .*? ([0-9.]+)/i
+        )
 
         if (!dateMatch) {
           return reject(new Error("Couldn't parse date"))
