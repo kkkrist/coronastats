@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.20 (2021-02-23)</small>
+
+* fix(crawler/sl): fix date regex ([13635c8](https://github.com/kkkrist/coronastats/commit/13635c8))
+
+
+
+
+
 ## <small>1.19.19 (2021-02-16)</small>
 
 * fix(crawler): fix "rz" area code crawler ([004d6ff](https://github.com/kkkrist/coronastats/commit/004d6ff))
