@@ -31,7 +31,7 @@ module.exports = () =>
       dom => {
         const dateMatch = [...dom.window.document.querySelectorAll('h3')]
           .find(el => /^Stand/.test(el.textContent))
-          .textContent.match(/Stand: \w+, ([0-9]+). (\w+) ([0-9]+)/)
+          .textContent.match(/Stand:\s\w+,\s(\d*)\.\s([\wä]+)\s(\d{4})/)
 
         if (!dateMatch) {
           throw new Error("Couldn't parse date")
