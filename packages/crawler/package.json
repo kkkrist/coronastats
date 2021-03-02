@@ -1,6 +1,6 @@
 {
   "name": "coronastats-crawler",
-  "version": "1.19.23",
+  "version": "1.19.24",
   "description": "Node.js-based crawler for coronastats",
   "keywords": [
     "crawler"

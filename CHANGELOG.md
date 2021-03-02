@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.24 (2021-03-02)</small>
+
+* fix(crawler/ks): Make some parts of date string optional ([c373072](https://github.com/kkkrist/coronastats/commit/c373072))
+
+
+
+
+
 ## <small>1.19.23 (2021-03-02)</small>
 
 * fix(crawler/fl): add fix for the latest markup shenanigans ([fc33afb](https://github.com/kkkrist/coronastats/commit/fc33afb))
