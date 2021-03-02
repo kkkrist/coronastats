@@ -35,11 +35,15 @@ const getDocs = (docs, areacode, forecast) => {
   return forecast ? addPredictions(docs) : docs
 }
 
-const getLastModified = data =>
-  data.reduce((timestamp, doc) => {
+const getLastModified = data => {
+  const now = new Date().getTime()
+  return data.reduce((timestamp, doc) => {
     const last_modified = Date.parse(doc.last_modified)
-    return last_modified > timestamp ? last_modified : timestamp
+    return last_modified < now - 3 && last_modified > timestamp
+      ? last_modified
+      : timestamp
   }, 0)
+}
 
 const reducer = (state, { type, ...values }) => {
   switch (type) {
