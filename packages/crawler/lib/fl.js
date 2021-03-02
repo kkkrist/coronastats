@@ -5,7 +5,10 @@ const JSDOM = require('jsdom').JSDOM
 const fetchOptions = require('./fetch-options.json')
 
 const rDate = /^([0-9]+)\.([0-9]+)\.([0-9]+)$/
-const rDeaths = [/verstorben:?\s+([0-9.]+)/i, /([0-9.]+)[\D]+Verst(?:or|ro)?ben/i]
+const rDeaths = [
+  /verstorben:?\s+([0-9.]+)/i,
+  /([0-9.]+)[\D]+Verst(?:or|ro)?ben/i
+]
 const rInfected = [/Positive gesamt:?\s+([0-9.]+)/i, /([0-9.]+)[\D]+Infizierte/]
 const rQuarantined = [
   /Quarantänefälle:?\s+([0-9.]+)/i,
@@ -76,7 +79,7 @@ const getRecord = el => {
 
 const reducer = (acc, el) => {
   if (
-    el.nodeName !== 'P' &&
+    !['P', 'UL'].includes(el.nodeName) &&
     el.childElementCount > 0 &&
     ![...el.children].every(({ tagName }) => tagName === 'BR')
   ) {
@@ -105,9 +108,10 @@ module.exports = () =>
     .then(res => res.text())
     .then(text => {
       const dom = new JSDOM(text.replace(/<\/?(span|strong).*?>/gi, ''))
+      const containerMarkup = dom.window.document
+        .querySelector('.einleitung + div > div > .toggler_container')
+        .innerHTML.replace(/<\/?(div).*?>/gi, '')
       return [
-        ...dom.window.document.querySelector(
-          '.einleitung + div > div > .toggler_container'
-        ).childNodes
+        ...new JSDOM(containerMarkup).window.document.body.childNodes
       ].reduce(reducer, [])
     })
