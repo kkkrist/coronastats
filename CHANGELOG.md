@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.23 (2021-03-02)</small>
+
+* fix(crawler/fl): add fix for the latest markup shenanigans ([fc33afb](https://github.com/kkkrist/coronastats/commit/fc33afb))
+* fix(frontend): fix `last_modified` ([ca5efb8](https://github.com/kkkrist/coronastats/commit/ca5efb8)), closes [#10](https://github.com/kkkrist/coronastats/issues/10)
+
+
+
+
+
 ## <small>1.19.22 (2021-03-01)</small>
 
 * fix(crawler/ks): adapt regex ([42385ff](https://github.com/kkkrist/coronastats/commit/42385ff))

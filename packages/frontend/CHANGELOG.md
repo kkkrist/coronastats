@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.23 (2021-03-02)</small>
+
+* fix(frontend): fix `last_modified` ([ca5efb8](https://github.com/kkkrist/coronastats/commit/ca5efb8)), closes [#10](https://github.com/kkkrist/coronastats/issues/10)
+
+
+
+
+
 ## <small>1.19.19 (2021-02-16)</small>
 
 * fix(frontend): update twitter card image ([d2f000c](https://github.com/kkkrist/coronastats/commit/d2f000c))
