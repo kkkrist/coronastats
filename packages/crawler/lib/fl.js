@@ -14,7 +14,7 @@ const rQuarantined = [
   /Quarantänefälle:?\s+([0-9.]+)/i,
   /([0-9.]+)[\D]+ (?<!Lehrer )in Qua?rantäne/
 ]
-const rRecovered = [/genesen:?\s+([0-9.]+)/i, /([0-9.]+)[\D]+gen?en?sen/]
+const rRecovered = [/genesen:?\s+([0-9.*]+)/i, /([0-9.]+)[\D]+gen?en?sen/]
 
 const matcher = (str, r) => {
   if (Array.isArray(r)) {
@@ -68,7 +68,9 @@ const getRecord = el => {
     deaths: Number(deathsMatch[1].replace('.', '')),
     infected: Number(infectedMatch[1].replace('.', '')),
     quarantined: Number(quarantinedMatch[1].replace('.', '')),
-    recovered: Number(recoveredMatch[1].replace('.', ''))
+    recovered: recoveredMatch[1].includes('*')
+      ? null
+      : Number(recoveredMatch[1].replace('.', ''))
   }
 
   return {
