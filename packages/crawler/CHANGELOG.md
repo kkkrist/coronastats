@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.25 (2021-03-03)</small>
+
+* fix(crawler/fl): Oh asterisk, I don't like you ([78f58ae](https://github.com/kkkrist/coronastats/commit/78f58ae))
+
+
+
+
+
 ## <small>1.19.24 (2021-03-02)</small>
 
 * fix(crawler/ks): Make some parts of date string optional ([c373072](https://github.com/kkkrist/coronastats/commit/c373072))
