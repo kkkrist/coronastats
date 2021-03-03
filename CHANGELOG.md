@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.19.26 (2021-03-03)</small>
+
+* fix(crawler/fl): Don't calculale `active` if `recovered` not present ([d83ca39](https://github.com/kkkrist/coronastats/commit/d83ca39))
+
+
+
+
+
 ## <small>1.19.25 (2021-03-03)</small>
 
 * fix(crawler/fl): Oh asterisk, I don't like you ([78f58ae](https://github.com/kkkrist/coronastats/commit/78f58ae))
