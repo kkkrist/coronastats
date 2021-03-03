@@ -73,6 +73,10 @@ const getRecord = el => {
       : Number(recoveredMatch[1].replace('.', ''))
   }
 
+  if (record.deaths === null || record.recovered === null) {
+    return record
+  }
+
   return {
     ...record,
     active: record.infected - record.recovered - record.deaths
