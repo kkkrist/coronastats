@@ -46,7 +46,7 @@ module.exports = () =>
   new Promise((resolve, reject) => {
     jsdom
       .fromURL(
-        'https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus',
+        'https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus/Aktuelle-Zahlen/',
         {
           userAgent: fetchOptions.headers['user-agent']
         }
@@ -56,23 +56,19 @@ module.exports = () =>
           .querySelector('div#read')
           .textContent.replace(/\u00A0/g, ' ')
 
-        const dateMatch = content.match(
-          /Stand.\s*(\d{2})\.(\d{2})\.(202[0-9])/
-        )
+        const dateMatch = content.match(/Stand\s(\d{2})\.(\d{2})\.(202[0-9])/)
 
         const infectedMatch = content.match(
-          /positiv getesteten Personen .*? ([0-9.]+)/
+          /Gesamtzahl\sgemeldete\sFälle:\s([0-9.]+)/
         )
 
-        const recoveredMatch = content.match(
-          /genesen sind .*? ([0-9.]+) Personen/
+        const recoveredMatch = content.match(/Genesen:\s([0-9.]+)/)
+
+        const quarantinedMatch = content.match(
+          /In\sQuarantäne:\s([0-9.]+)7-Tage-Inzidenz/
         )
 
-        const quarantinedMatch = content.match(/Quarantäne .*? ([0-9.]+)/)
-
-        const deathsMatch = content.match(
-          /Zahl der Verstorbenen .*? ([0-9.]+)/i
-        )
+        const deathsMatch = content.match(/Verstorben:\s([0-9.]+)/i)
 
         if (!dateMatch) {
           return reject(new Error("Couldn't parse date"))
