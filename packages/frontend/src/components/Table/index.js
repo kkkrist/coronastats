@@ -104,7 +104,10 @@ const Table = ({ docs }) => {
         const doc2 = sortBy.order === 'desc' ? a : b
 
         if (isNaN(doc1[sortBy.key]) || isNaN(doc2[sortBy.key])) {
-          return (doc1[sortBy.key] ?? '').localeCompare(doc2[sortBy.key] ?? '')
+          return (doc1[sortBy.key] ?? '')
+            .toString()
+            .localeCompare(doc2[sortBy.key] ?? '')
+            .toString()
         }
 
         return doc1[sortBy.key] - doc2[sortBy.key]
