@@ -76,6 +76,14 @@ export const addPredictions = docs => {
     const nextForcast = forecast([...nextPredictions, ...docs].reverse())
     const date = lastDate.set('date', lastDate.date() + i).toISOString()
 
+    if (nextForcast.deaths < docs[0].deaths) {
+      nextForcast.deaths = docs[0].deaths
+    }
+
+    if (nextForcast.infected < docs[0].infected) {
+      nextForcast.infected = docs[0].infected
+    }
+
     nextPredictions.unshift({
       areacode,
       date,
