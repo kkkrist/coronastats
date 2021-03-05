@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.20.0 (2021-03-05)
+
+* feat(frontend): Add app shortcuts ([e390dab](https://github.com/kkkrist/coronastats/commit/e390dab)), closes [#11](https://github.com/kkkrist/coronastats/issues/11)
+* fix(frontend): Always convert NaN types to string in sort fn ([4569d06](https://github.com/kkkrist/coronastats/commit/4569d06))
+* fix(frontend): tweak forecasting algo ([4c3e36c](https://github.com/kkkrist/coronastats/commit/4c3e36c))
+
+
+
+
+
 ## <small>1.19.27 (2021-03-05)</small>
 
 * fix(crawler/sl): adapt to new page ([fbefea8](https://github.com/kkkrist/coronastats/commit/fbefea8))

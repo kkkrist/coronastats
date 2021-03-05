@@ -1,6 +1,6 @@
 {
   "name": "coronastats-frontend",
-  "version": "1.19.23",
+  "version": "1.20.0",
   "description": "Corona Dashboard",
   "keywords": [
     "react"
