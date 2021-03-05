@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.1 (2021-03-05)</small>
+
+* fix(frontend): tweak forecasting algo ([532bf69](https://github.com/kkkrist/coronastats/commit/532bf69))
+
+
+
+
+
 ## 1.20.0 (2021-03-05)
 
 * feat(frontend): Add app shortcuts ([e390dab](https://github.com/kkkrist/coronastats/commit/e390dab)), closes [#11](https://github.com/kkkrist/coronastats/issues/11)
