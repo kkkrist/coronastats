@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.3 (2021-03-05)</small>
+
+* fix(crawler/lg): adapt to new api ([f56fe61](https://github.com/kkkrist/coronastats/commit/f56fe61))
+
+
+
+
+
 ## <small>1.19.27 (2021-03-05)</small>
 
 * fix(crawler/sl): adapt to new page ([fbefea8](https://github.com/kkkrist/coronastats/commit/fbefea8))
