@@ -24,7 +24,7 @@ const forecast = (data, sample = 5) =>
     const coeffs = t
       .ARMaxEntropy({
         data: t.data.slice(t.data.length - sample),
-        degree: 2
+        degree: sample - 1
       })
       .filter(n => !isNaN(n))
 
@@ -72,7 +72,7 @@ export const addPredictions = docs => {
   const lastDate = dayjs(docs[0].date)
   const nextPredictions = []
 
-  for (let i = 1; i < 4; i++) {
+  for (let i = 1; i < 8; i++) {
     const nextForcast = forecast([...nextPredictions, ...docs].reverse())
     const date = lastDate.set('date', lastDate.date() + i).toISOString()
 
