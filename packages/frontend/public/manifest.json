@@ -19,6 +19,116 @@
     }
   ],
   "start_url": ".",
+  "shortcuts": [
+    {
+      "name": "Flensburg",
+      "short_name": "Flensburg",
+      "description": "Zeitverlauf der Corona-Fälle in Flensburg",
+      "url": "/?areadcode=fl",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kassel",
+      "short_name": "Kassel",
+      "description": "Zeitverlauf der Corona-Fälle in Kassel",
+      "url": "/?areadcode=ks-s",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Landkreis Kassel",
+      "short_name": "LK Kassel",
+      "description": "Zeitverlauf der Corona-Fälle im Landkreis Kassel",
+      "url": "/?areadcode=ks-lk",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Landkreis Lünbeburg",
+      "short_name": "LK Lünbeburg",
+      "description": "Zeitverlauf der Corona-Fälle im Landkreis Lüneburg",
+      "url": "/?areadcode=lg",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Leipzig",
+      "short_name": "Leipzig",
+      "description": "Zeitverlauf der Corona-Fälle in Leipzig",
+      "url": "/?areadcode=l",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kreis Herzogtum Lauenburg",
+      "short_name": "Herzogtum Lauenburg",
+      "description": "Zeitverlauf der Corona-Fälle im Kreis Herzogtum Lauenburg",
+      "url": "/?areadcode=rz",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kreis Plön",
+      "short_name": "LK Plön",
+      "description": "Zeitverlauf der Corona-Fälle im Kreis Plön",
+      "url": "/?areadcode=plö",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kreis Schleswig-Flensburg",
+      "short_name": "LK Schleswig-Flensburg",
+      "description": "Zeitverlauf der Corona-Fälle im Kreis Schleswig-Flensburg",
+      "url": "/?areadcode=sl",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kreis Stormarn",
+      "short_name": "LK Stormarn",
+      "description": "Zeitverlauf der Corona-Fälle im Kreis Stormarn",
+      "url": "/?areadcode=od",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
   "display": "standalone",
   "theme_color": "#fafafa",
   "background_color": "#fafafa"
