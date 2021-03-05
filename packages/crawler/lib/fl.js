@@ -5,16 +5,30 @@ const JSDOM = require('jsdom').JSDOM
 const fetchOptions = require('./fetch-options.json')
 
 const rDate = /^([0-9]+)\.([0-9]+)\.([0-9]+)$/
+
 const rDeaths = [
+  /Verstorbene:?\s+([0-9.]+)/i,
   /verstorben:?\s+([0-9.]+)/i,
   /([0-9.]+)[\D]+Verst(?:or|ro)?ben/i
 ]
-const rInfected = [/Positive gesamt:?\s+([0-9.]+)/i, /([0-9.]+)[\D]+Infizierte/]
-const rQuarantined = [
-  /Quarantänefälle:?\s+([0-9.]+)/i,
-  /([0-9.]+)[\D]+ (?<!Lehrer )in Qua?rantäne/
+
+const rInfected = [
+  /Fallzahlen:?\s+([0-9.]+)/i,
+  /Positive gesamt:?\s+([0-9.]+)/i,
+  /([0-9.]+)[\D]+Infizierte/i
 ]
-const rRecovered = [/genesen:?\s+([0-9.*]+)/i, /([0-9.]+)[\D]+gen?en?sen/]
+
+const rQuarantined = [
+  /Quarantänen:?\s+([0-9]+)/i,
+  /Quarantänefälle:?\s+([0-9.]+)/i,
+  /([0-9.]+)[\D]+ (?<!Lehrer )in Qua?rantäne/i
+]
+
+const rRecovered = [
+  /Genesene:?\s+([0-9]+)/,
+  /genesen:?\s+([0-9.*]+)/i,
+  /([0-9.]+)[\D]+gen?en?sen/
+]
 
 const matcher = (str, r) => {
   if (Array.isArray(r)) {
