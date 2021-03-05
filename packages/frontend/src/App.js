@@ -385,7 +385,7 @@ const App = () => {
               }
               type='checkbox'
             />
-            Vorhersage (3 Tage)
+            Trend anzeigen
           </label>
         </p>
 
