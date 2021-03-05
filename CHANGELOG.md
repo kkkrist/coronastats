@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.2 (2021-03-05)</small>
+
+* fix(frontend): fix forecast checkbox label ([7d5b836](https://github.com/kkkrist/coronastats/commit/7d5b836))
+
+
+
+
+
 ## <small>1.20.1 (2021-03-05)</small>
 
 * fix(frontend): tweak forecasting algo ([532bf69](https://github.com/kkkrist/coronastats/commit/532bf69))
