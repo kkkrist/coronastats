@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.7 (2021-03-06)</small>
+
+* fix(frontend): fix holidays for "ni" state ([1665507](https://github.com/kkkrist/coronastats/commit/1665507))
+
+
+
+
+
 ## <small>1.20.2 (2021-03-05)</small>
 
 * fix(frontend): fix forecast checkbox label ([7d5b836](https://github.com/kkkrist/coronastats/commit/7d5b836))
