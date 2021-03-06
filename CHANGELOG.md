@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.6 (2021-03-06)</small>
+
+* fix(crawler/lg): always pull all the data ([6774ca4](https://github.com/kkkrist/coronastats/commit/6774ca4))
+
+
+
+
+
 ## <small>1.20.5 (2021-03-06)</small>
 
 * fix(crawler/lg): always fetch fresh nonce ([9f8b3e5](https://github.com/kkkrist/coronastats/commit/9f8b3e5))
