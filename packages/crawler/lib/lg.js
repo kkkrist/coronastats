@@ -18,7 +18,7 @@ module.exports = () =>
         {
           ...fetchOptions,
           body:
-            'draw=1&order%5B0%5D%5Bcolumn%5D=1&order%5B0%5D%5Bdir%5D=desc&start=0&length=10&wdtNonce=' +
+            'draw=1&order%5B0%5D%5Bcolumn%5D=1&order%5B0%5D%5Bdir%5D=desc&wdtNonce=' +
             nonce,
           headers: {
             ...fetchOptions.headers,
