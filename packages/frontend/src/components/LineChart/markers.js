@@ -29,7 +29,7 @@ export default {
     },
     {
       axis: 'x',
-      value: new Date('2020-07-16'),
+      value: new Date('2020-07-22'),
       lineStyle: { stroke: '#ddd', strokeWidth: 1 },
       legend: 'Ferienanfang',
       legendPosition: 'top-right',
@@ -38,7 +38,7 @@ export default {
     },
     {
       axis: 'x',
-      value: new Date('2020-08-31'),
+      value: new Date('2020-09-02'),
       lineStyle: { stroke: '#ddd', strokeWidth: 1 },
       legend: 'Schulanfang',
       legendPosition: 'top-right',
@@ -47,7 +47,7 @@ export default {
     },
     {
       axis: 'x',
-      value: new Date('2020-10-12'),
+      value: new Date('2020-10-18'),
       lineStyle: { stroke: '#ddd', strokeWidth: 1 },
       legend: 'Ferienanfang',
       legendPosition: 'top-right',
@@ -56,7 +56,7 @@ export default {
     },
     {
       axis: 'x',
-      value: new Date('2020-10-26'),
+      value: new Date('2020-11-01'),
       lineStyle: { stroke: '#ddd', strokeWidth: 1 },
       legend: 'Schulanfang',
       legendPosition: 'top-right',
