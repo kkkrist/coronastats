@@ -38,7 +38,7 @@ All data is being made publically available via common CouchDB APIs. Drop me a m
 
 The crawler is based on [Node.js](https://github.com/nodejs/node). It's expected to be perdiodically run by a systemd timer or cron job and consists of an individual module per region. The modules usually use [jsdom](https://github.com/jsdom/jsdom) to parse websites or just fetch data from APIs via the `http` module.
 
-Each crawler module is expected to return an array of objects which should contain data for a single day of a region. Here's an example for such an object:
+Each crawler module is expected to return a promise resolving with an array of objects. These objects should each contain data for a single day of a region. Here's an example for such an object:
 
 ```json
 [
