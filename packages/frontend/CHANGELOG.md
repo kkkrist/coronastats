@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.8 (2021-03-08)</small>
+
+* fix(frontend): show new source link for "fl" area code ([668f035](https://github.com/kkkrist/coronastats/commit/668f035))
+* docs: add README ([d628096](https://github.com/kkkrist/coronastats/commit/d628096))
+
+
+
+
+
 ## <small>1.20.7 (2021-03-06)</small>
 
 * fix(frontend): fix holidays for "ni" state ([1665507](https://github.com/kkkrist/coronastats/commit/1665507))

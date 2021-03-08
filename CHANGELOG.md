@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.8 (2021-03-08)</small>
+
+* fix(crawler/fl): re-write crawler from scratch for new status page ([029c3c6](https://github.com/kkkrist/coronastats/commit/029c3c6))
+* fix(frontend): show new source link for "fl" area code ([668f035](https://github.com/kkkrist/coronastats/commit/668f035))
+* docs: add license ([0779155](https://github.com/kkkrist/coronastats/commit/0779155))
+* docs: add README ([d628096](https://github.com/kkkrist/coronastats/commit/d628096))
+* docs: add screenshots ([146353d](https://github.com/kkkrist/coronastats/commit/146353d))
+* docs: improve README ([c5e58fd](https://github.com/kkkrist/coronastats/commit/c5e58fd))
+* docs: improve README ([0c54afe](https://github.com/kkkrist/coronastats/commit/0c54afe))
+* Update README.md ([65dda99](https://github.com/kkkrist/coronastats/commit/65dda99))
+
+
+
+
+
 ## <small>1.20.7 (2021-03-06)</small>
 
 * fix(frontend): fix holidays for "ni" state ([1665507](https://github.com/kkkrist/coronastats/commit/1665507))

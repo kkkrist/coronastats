@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.8 (2021-03-08)</small>
+
+* fix(crawler/fl): re-write crawler from scratch for new status page ([029c3c6](https://github.com/kkkrist/coronastats/commit/029c3c6))
+* docs: add README ([d628096](https://github.com/kkkrist/coronastats/commit/d628096))
+
+
+
+
+
 ## <small>1.20.6 (2021-03-06)</small>
 
 * fix(crawler/lg): always pull all the data ([6774ca4](https://github.com/kkkrist/coronastats/commit/6774ca4))
