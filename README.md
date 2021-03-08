@@ -1,6 +1,6 @@
 # Corona Dashboard
 
-This is an alternate dashboard for Corona Virus case numbers in some German regions. It does not rely solely on data provided by Robert Koch Institute like many others do. Instead most of the data comes from crawling websites and APIs  (sometimes hidden) of those regions which include much more detailed data like the number of recovered or actively affected patients. Additionally this data is made available over time which can lead to some interesting conclusions and allows for simple forecasting.
+This is an alternative dashboard for Corona Virus case numbers in some German regions. It does not rely solely on data provided by Robert Koch Institute like many others do. Instead most of the data comes from crawling websites and APIs  (sometimes hidden) of those regions which include much more detailed data like the number of recovered or actively affected patients. Additionally this data is made available over time which can lead to some interesting conclusions and allows for simple forecasting.
 
 ![Screenshot Chart](https://raw.githubusercontent.com/kkkrist/coronastats/master/screenshot_chart.webp)
 
