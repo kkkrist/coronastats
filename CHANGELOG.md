@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.10 (2021-03-09)</small>
+
+* fix(frontend): improve forecasting algorithm ([5158764](https://github.com/kkkrist/coronastats/commit/5158764))
+
+
+
+
+
 ## <small>1.20.9 (2021-03-09)</small>
 
 * fix(frontend): fix diff condition ([d6b4953](https://github.com/kkkrist/coronastats/commit/d6b4953))
