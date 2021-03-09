@@ -7,7 +7,7 @@ export const docs = PropTypes.arrayOf(
     deaths: PropTypes.number.isRequired,
     infected: PropTypes.number.isRequired,
     infected7p100k: PropTypes.number,
-    last_modified: PropTypes.string.isRequired,
+    last_modified: PropTypes.string,
     quarantined: PropTypes.number,
     recovered: PropTypes.number,
     _id: PropTypes.string.isRequired,

@@ -82,7 +82,6 @@ export const addPredictions = docs => {
     nextPredictions.unshift({
       areacode,
       date,
-      last_modified: new Date().toISOString(),
       forecast: true,
       _id: `${date}-${areacode}`,
       ...nextForcast
