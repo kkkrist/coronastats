@@ -68,8 +68,8 @@ const Table = ({ docs }) => {
     if (
       docIndex < docs.length - 1 &&
       !isNaN(docs[docIndex + 1][key]) &&
-      (docs[docIndex + 1][key] !== undefined ||
-        docs[docIndex + 1][key] !== null)
+      docs[docIndex + 1][key] !== undefined &&
+      docs[docIndex + 1][key] !== null
     ) {
       let diff = docs[docIndex][key] - docs[docIndex + 1][key]
 
