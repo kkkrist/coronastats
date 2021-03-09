@@ -2,9 +2,16 @@ import dayjs from 'dayjs'
 import TimeSeries from 'timeseries-analysis'
 import areacodes from '../data/areacodes'
 
-const forecast = (data, sample = 5) =>
+const forecast = data =>
   ['infected', 'quarantined', 'recovered', 'deaths'].reduce((acc, key, i) => {
-    sample = sample + i
+    for (let di = data.length - 1; di > 0; di--) {
+      if (
+        data[di].forecast !== true &&
+        (data[di][key] === null || data[di][key] === undefined)
+      ) {
+        return acc
+      }
+    }
 
     const t = new TimeSeries.main(
       TimeSeries.adapter.fromDB(data, {
@@ -13,34 +20,22 @@ const forecast = (data, sample = 5) =>
       })
     )
 
-    if (
-      t.data
-        .slice(t.data.length - sample)
-        .some(d => isNaN(d[1]) || d[1] === null)
-    ) {
-      return acc
-    }
+    const coeffs = t.ARMaxEntropy({
+      degree: t.data.length - 1
+    })
 
-    const coeffs = t
-      .ARMaxEntropy({
-        data: t.data.slice(t.data.length - sample),
-        degree: sample - 1
-      })
-      .filter(n => !isNaN(n))
-
-    const forecast = coeffs.reduce(
+    let forecast = coeffs.reduce(
       (nextVal, coeff, i) => nextVal - t.data[t.data.length - 1 - i][1] * coeff,
       0
     )
 
+    if (key === 'recovered' && forecast - t.data[t.data.length - 1][1] < 0) {
+      forecast = t.data[t.data.length - 1][1]
+    }
+
     return {
       ...acc,
-      [key]: Math.round(
-        forecast ||
-          t.data
-            .slice(t.data.length - sample)
-            .reduce((acc, data) => acc + data[1], 0) / sample
-      )
+      [key]: Math.round(forecast > 0 ? forecast : 0)
     }
   }, {})
 
@@ -72,7 +67,7 @@ export const addPredictions = docs => {
   const lastDate = dayjs(docs[0].date)
   const nextPredictions = []
 
-  for (let i = 1; i < 8; i++) {
+  for (let i = 1; i < 4; i++) {
     const nextForcast = forecast([...nextPredictions, ...docs].reverse())
     const date = lastDate.set('date', lastDate.date() + i).toISOString()
 
