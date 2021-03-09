@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.9 (2021-03-09)</small>
+
+* fix(frontend): fix diff condition ([d6b4953](https://github.com/kkkrist/coronastats/commit/d6b4953))
+
+
+
+
+
 ## <small>1.20.8 (2021-03-08)</small>
 
 * fix(crawler/fl): re-write crawler from scratch for new status page ([029c3c6](https://github.com/kkkrist/coronastats/commit/029c3c6))
