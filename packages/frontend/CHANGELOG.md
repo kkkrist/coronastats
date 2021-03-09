@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.11 (2021-03-09)</small>
+
+* fix(frontend): don't add `last_modified` to forecast records ([ed04090](https://github.com/kkkrist/coronastats/commit/ed04090))
+
+
+
+
+
 ## <small>1.20.10 (2021-03-09)</small>
 
 * fix(frontend): improve forecasting algorithm ([5158764](https://github.com/kkkrist/coronastats/commit/5158764))
