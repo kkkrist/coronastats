@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.12 (2021-03-12)</small>
+
+* fix(crawler/sl): extract date from img.alt ([b4b7e5b](https://github.com/kkkrist/coronastats/commit/b4b7e5b))
+
+
+
+
+
 ## <small>1.20.8 (2021-03-08)</small>
 
 * fix(crawler/fl): re-write crawler from scratch for new status page ([029c3c6](https://github.com/kkkrist/coronastats/commit/029c3c6))

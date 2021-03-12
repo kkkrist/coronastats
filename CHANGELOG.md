@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.12 (2021-03-12)</small>
+
+* fix(crawler/sl): extract date from img.alt ([b4b7e5b](https://github.com/kkkrist/coronastats/commit/b4b7e5b))
+
+
+
+
+
 ## <small>1.20.11 (2021-03-09)</small>
 
 * fix(frontend): don't add `last_modified` to forecast records ([ed04090](https://github.com/kkkrist/coronastats/commit/ed04090))
