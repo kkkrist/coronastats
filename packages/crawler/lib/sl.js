@@ -56,7 +56,9 @@ module.exports = () =>
           .querySelector('div#read')
           .textContent.replace(/\u00A0/g, ' ')
 
-        const dateMatch = content.match(/Stand\s(\d{2})\.(\d{2})\.(202[0-9])/)
+        const dateMatch = dom.window.document
+          .querySelector('div#read img')
+          .alt.match(/^([0-9]+)\.([0-9]+)/)
 
         const infectedMatch = content.match(
           /Gesamtzahl\sgemeldete\sFälle:\s([0-9.]+)/
@@ -93,7 +95,7 @@ module.exports = () =>
         const entry = {
           areacode: 'sl',
           date: new Date(
-            `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`
+            `${new Date().getFullYear()}-${dateMatch[2]}-${dateMatch[1]}`
           ).toISOString(),
           deaths: getInt(deathsMatch[1]),
           infected: Number(infectedMatch[1].replace('.', '')),
