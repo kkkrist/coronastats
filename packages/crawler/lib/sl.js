@@ -2,6 +2,7 @@
 
 const jsdom = require('jsdom').JSDOM
 const fetchOptions = require('./fetch-options.json')
+const tesseract = require('tesseract.js')
 
 const numberStrings = {
   ein: 1,
@@ -51,14 +52,22 @@ module.exports = () =>
           userAgent: fetchOptions.headers['user-agent']
         }
       )
-      .then(dom => {
-        const content = dom.window.document
-          .querySelector('div#read')
-          .textContent.replace(/\u00A0/g, ' ')
-
-        const dateMatch = dom.window.document
-          .querySelector('div#read img')
-          .alt.match(/^([0-9]+)\.([0-9]+)/)
+      .then(dom =>
+        Promise.all([
+          Promise.resolve(
+            dom.window.document
+              .querySelector('div#read')
+              .textContent.replace(/\u00A0/g, ' ')
+          ),
+          tesseract.recognize(
+            dom.window.document.querySelector('div#read img').src
+          )
+        ])
+      )
+      .then(([content, ocr]) => {
+        const dateMatch = ocr.data.text.match(
+          /Stand.*?([0-9]{2})\.([0-9]{2})\.([0-9]{4})/
+        )
 
         const infectedMatch = content.match(
           /Gesamtzahl\sgemeldete\sFälle:\s([0-9.]+)/
@@ -95,7 +104,7 @@ module.exports = () =>
         const entry = {
           areacode: 'sl',
           date: new Date(
-            `${new Date().getFullYear()}-${dateMatch[2]}-${dateMatch[1]}`
+            `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`
           ).toISOString(),
           deaths: getInt(deathsMatch[1]),
           infected: Number(infectedMatch[1].replace('.', '')),
