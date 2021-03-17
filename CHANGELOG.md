@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.13 (2021-03-17)</small>
+
+* fix(crawler/sl): Use OCR to retrieve timestamp (I wish I was joking) ([4a87fce](https://github.com/kkkrist/coronastats/commit/4a87fce))
+
+
+
+
+
 ## <small>1.20.12 (2021-03-12)</small>
 
 * fix(crawler/sl): extract date from img.alt ([b4b7e5b](https://github.com/kkkrist/coronastats/commit/b4b7e5b))
