@@ -66,7 +66,7 @@ module.exports = () =>
       )
       .then(([content, ocr]) => {
         const dateMatch = ocr.data.text.match(
-          /Stand.*?([0-9]{2})\.([0-9]{2})\.([0-9]{4})/
+          /Stand.*?([0-9]{2})[.:]([0-9]{2})[.:]([0-9]{4})/i
         )
 
         const infectedMatch = content.match(
