@@ -60,7 +60,8 @@ module.exports = () =>
               .textContent.replace(/\u00A0/g, ' ')
           ),
           tesseract.recognize(
-            dom.window.document.querySelector('div#read img').src
+            dom.window.document.querySelector('div#read img').src,
+            'deu'
           )
         ])
       )
