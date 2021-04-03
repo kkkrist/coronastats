@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.15 (2021-04-03)</small>
+
+* fix(crawler/sl): fix ocr ([2058775](https://github.com/kkkrist/coronastats/commit/2058775))
+
+
+
+
+
 ## <small>1.20.14 (2021-03-26)</small>
 
 * fix(crawler/sl): extend date regex ([a12f190](https://github.com/kkkrist/coronastats/commit/a12f190))
