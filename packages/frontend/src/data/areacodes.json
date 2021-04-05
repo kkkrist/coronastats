@@ -63,6 +63,14 @@
     "sourceUri": "https://corona.rki.de/",
     "state": "sh"
   },
+  "row": {
+    "population": 163782,
+    "populationSourceLabel": "Landesamt für Statistik Niedersachsen",
+    "populationSourceUri": "https://www.statistik.sachsen.de/",
+    "sourceLabel": "lk-row.de",
+    "sourceUri": "https://www.lk-row.de/portal/seiten/aktuelle-zahlen-corona--900000752-23700.html",
+    "state": "ni"
+  },
   "sl": {
     "population": 201156,
     "populationSourceLabel": "Statistikamt Nord",

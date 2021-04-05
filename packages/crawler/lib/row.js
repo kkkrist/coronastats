@@ -1,0 +1,72 @@
+'use strict'
+
+const jsdom = require('jsdom').JSDOM
+const fetchOptions = require('./fetch-options.json')
+
+module.exports = () =>
+  new Promise((resolve, reject) => {
+    jsdom
+      .fromURL(
+        'https://www.lk-row.de/portal/seiten/aktuelle-zahlen-corona--900000752-23700.html',
+        {
+          userAgent: fetchOptions.headers['user-agent']
+        }
+      )
+      .then(dom => {
+        const content = dom.window.document
+          .querySelector('div#nolis_content')
+          .textContent.replace(/\u00A0/g, ' ')
+
+        const dateMatch = content.match(
+          /Stand\s?([0-9]{2})[.:]([0-9]{2})[.:]([0-9]{4})/i
+        )
+
+        const infectedMatch = content.match(/Insgesamt.*?([0-9.]+).*?gezählt/i)
+
+        const recoveredMatch = content.match(/([0-9.]+)\sdavon.*?genesen/)
+
+        const quarantinedMatch = content.match(
+          /([0-9.]+)\sKontaktpersonen.*?Quarantäne/
+        )
+
+        const deathsMatch = content.match(/Verstorben.*?([0-9.]+)\sPersonen/i)
+
+        if (!dateMatch) {
+          return reject(new Error("Couldn't parse date"))
+        }
+
+        if (!infectedMatch) {
+          return reject(new Error("Couldn't parse infected"))
+        }
+
+        if (!recoveredMatch) {
+          return reject(new Error("Couldn't parse recovered"))
+        }
+
+        if (!deathsMatch) {
+          return reject(new Error("Couldn't parse deaths"))
+        }
+
+        if (!quarantinedMatch) {
+          return reject(new Error("Couldn't parse quarantined"))
+        }
+
+        const entry = {
+          areacode: 'row',
+          date: new Date(
+            `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`
+          ).toISOString(),
+          deaths: Number(deathsMatch[1]),
+          infected: Number(infectedMatch[1].replace('.', '')),
+          quarantined: Number(quarantinedMatch[1].replace('.', '')),
+          recovered: Number(recoveredMatch[1].replace('.', ''))
+        }
+
+        resolve([
+          {
+            ...entry,
+            active: entry.infected - entry.recovered - entry.deaths
+          }
+        ])
+      }, reject)
+  })

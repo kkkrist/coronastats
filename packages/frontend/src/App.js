@@ -17,6 +17,7 @@ const locations = {
   'ks-s': 'Kassel',
   'ks-lk': 'Landkreis Kassel',
   lg: 'Landkreis Lüneburg',
+  row: 'Landkreis Rotenburg',
   l: 'Leipzig',
   rz: 'Kreis Herzogtum Lauenburg',
   plö: 'Kreis Plön',
