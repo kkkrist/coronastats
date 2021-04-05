@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.20.16 (2021-04-05)</small>
+
+* fix(crawler/sl): adapt to new format ([ba14c87](https://github.com/kkkrist/coronastats/commit/ba14c87))
+
+
+
+
+
 ## <small>1.20.15 (2021-04-03)</small>
 
 * fix(crawler/sl): fix ocr ([2058775](https://github.com/kkkrist/coronastats/commit/2058775))
