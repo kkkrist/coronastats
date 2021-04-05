@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.21.0 (2021-04-05)
+
+* feat: add "row" area code ([d187b34](https://github.com/kkkrist/coronastats/commit/d187b34))
+
+
+
+
+
 ## <small>1.20.16 (2021-04-05)</small>
 
 * fix(crawler/sl): adapt to new format ([ba14c87](https://github.com/kkkrist/coronastats/commit/ba14c87))
