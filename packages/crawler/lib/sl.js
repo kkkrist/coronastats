@@ -2,7 +2,6 @@
 
 const jsdom = require('jsdom').JSDOM
 const fetchOptions = require('./fetch-options.json')
-const tesseract = require('tesseract.js')
 
 const numberStrings = {
   ein: 1,
@@ -52,22 +51,13 @@ module.exports = () =>
           userAgent: fetchOptions.headers['user-agent']
         }
       )
-      .then(dom =>
-        Promise.all([
-          Promise.resolve(
-            dom.window.document
-              .querySelector('div#read')
-              .textContent.replace(/\u00A0/g, ' ')
-          ),
-          tesseract.recognize(
-            dom.window.document.querySelector('div#read img').src,
-            'deu'
-          )
-        ])
-      )
-      .then(([content, ocr]) => {
-        const dateMatch = ocr.data.text.match(
-          /Stand.*?([0-9]{2})[.:]([0-9]{2})[.:]([0-9]{4})/i
+      .then(dom => {
+        const content = dom.window.document
+          .querySelector('div#read')
+          .textContent.replace(/\u00A0/g, ' ')
+
+        const dateMatch = content.match(
+          /Aktuelle\sLage.*?([0-9]{2})[.:]([0-9]{2})[.:]([0-9]{4})/i
         )
 
         const infectedMatch = content.match(
@@ -76,9 +66,7 @@ module.exports = () =>
 
         const recoveredMatch = content.match(/Genesen:\s([0-9.]+)/)
 
-        const quarantinedMatch = content.match(
-          /In\sQuarantäne:\s([0-9.]+)7-Tage-Inzidenz/
-        )
+        const quarantinedMatch = content.match(/In\sQuarantäne:\s([0-9.]+)/)
 
         const deathsMatch = content.match(/Verstorben:\s([0-9.]+)/i)
 
