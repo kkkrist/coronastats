@@ -12,6 +12,7 @@ Currently the following regions are supported:
 - Kassel
 - Landkreis Kassel
 - Landkreis Lüneburg
+- Landkreis Rotenburg
 - Leipzig
 - Kreis Herzogtum Lauenburg
 - Kreis Plön
