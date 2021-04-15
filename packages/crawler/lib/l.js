@@ -24,9 +24,7 @@ module.exports = () =>
       }
     ]) => {
       const content =
-        [...dom.window.document.querySelectorAll('h2')].find(el =>
-          el.textContent.includes('Fallzahlen')
-        ).nextElementSibling.textContent +
+        dom.window.document.querySelector('div.rte_text').textContent +
         '\n' +
         dom.window.document.querySelector('div.schlaglichter-container')
           .textContent
@@ -42,7 +40,7 @@ module.exports = () =>
       )
 
       const quarantinedMatch = content.match(
-        /in häuslicher Quarantäne. ([0-9.]+)/
+        /in häuslicher Quarantäne.*: ([0-9.]+)/
       )
 
       ;[dateMatch, deathsMatch, infectedMatch].forEach(match => {
