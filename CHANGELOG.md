@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.21.1 (2021-04-15)</small>
+
+* fix(crawler/l): fix selectors, `quarantined` regex ([54cd26a](https://github.com/kkkrist/coronastats/commit/54cd26a))
+* fix(README): add "Landkreis Rotenburg" to area list ([04b025f](https://github.com/kkkrist/coronastats/commit/04b025f))
+
+
+
+
+
 ## 1.21.0 (2021-04-05)
 
 * feat: add "row" area code ([d187b34](https://github.com/kkkrist/coronastats/commit/d187b34))
