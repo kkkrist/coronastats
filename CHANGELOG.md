@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.21.2 (2021-04-17)</small>
+
+* fix(crawler/lg): omit incomplete rows ([6a37d65](https://github.com/kkkrist/coronastats/commit/6a37d65))
+
+
+
+
+
 ## <small>1.21.1 (2021-04-15)</small>
 
 * fix(crawler/l): fix selectors, `quarantined` regex ([54cd26a](https://github.com/kkkrist/coronastats/commit/54cd26a))
