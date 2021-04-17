@@ -32,11 +32,15 @@ module.exports = () =>
     .then(res => res.json())
     .then(({ data }) =>
       data.reduce((acc, row) => {
+        if (!row[1] || !row[5] || !row[7]) {
+          return acc
+        }
+
         const dateMatch = row[1].match(/([0-9]+)\.([0-9]+)\.([0-9]+)/)
 
         if (!dateMatch) {
           throw new Error(
-            `Couldn't parse date string "${row.children[0].textContent}"`
+            `Couldn't parse date string "${row[1]}"`
           )
         }
 
