@@ -31,7 +31,7 @@ module.exports = () =>
       dom => {
         const dateMatch = [...dom.window.document.querySelectorAll('h3')]
           .find(el => /^Stand/.test(el.textContent))
-          .textContent.match(/Stand:?\s\w+,?\s(\d*)\.\s([\w]+),\s.*?Uhr/)
+          .textContent.match(/Stand:?\s\w+,?\s(\d*)\.\s([\wä]+)\s(\d{4})/)
 
         if (!dateMatch) {
           throw new Error("Couldn't parse date")
@@ -51,10 +51,6 @@ module.exports = () =>
           /[0-9.]+/
         )
 
-        const date = `${new Date().getFullYear()}-${getMonthNumber(
-          dateMatch[2]
-        )}-${dateMatch[1]}T00:00:00.000Z`
-
         const deathsMatchS = rows[1].children[4].textContent.match(/[0-9.]+/)
         const deathsMatchLk = rows[2].children[4].textContent.match(/[0-9.]+/)
 
@@ -64,7 +60,9 @@ module.exports = () =>
         const entryS = {
           areacode: 'ks-s',
           active: Number(activeMatchS[0].replace('.', '')),
-          date,
+          date: `${dateMatch[3]}-${getMonthNumber(
+            dateMatch[2]
+          )}-${dateMatch[1].padStart(2, '0')}T00:00:00.000Z`,
           deaths: Number(deathsMatchS[0]),
           infected: Number(infectedMatchS[0].replace('.', '')),
           quarantined: null,
@@ -74,7 +72,9 @@ module.exports = () =>
         const entryLk = {
           areacode: 'ks-lk',
           active: Number(activeMatchLk[0].replace('.', '')),
-          date,
+          date: `${dateMatch[3]}-${getMonthNumber(
+            dateMatch[2]
+          )}-${dateMatch[1].padStart(2, '0')}T00:00:00.000Z`,
           deaths: Number(deathsMatchLk[0]),
           infected: Number(infectedMatchLk[0].replace('.', '')),
           quarantined: null,
