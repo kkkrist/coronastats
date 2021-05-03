@@ -18,7 +18,7 @@ module.exports = () =>
           .textContent.replace(/\u00A0/g, ' ')
 
         const dateMatch = content.match(
-          /Stand\s?([0-9]{2})[.:]([0-9]{2})[.:]([0-9]{4})/i
+          /Stand\s?([0-9]+)[.:]([0-9]+)[.:]([0-9]{4})/i
         )
 
         const infectedMatch = content.match(/Insgesamt.*?([0-9.]+).*?gezählt/i)
