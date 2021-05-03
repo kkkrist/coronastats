@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.21.5 (2021-05-03)</small>
+
+* fix(crawler/row): update date regex ([4c085b2](https://github.com/kkkrist/coronastats/commit/4c085b2))
+
+
+
+
+
 ## <small>1.21.4 (2021-05-01)</small>
 
 * fix(crawler/ks): Revert "update date regex to new format" ([653d3bc](https://github.com/kkkrist/coronastats/commit/653d3bc))
