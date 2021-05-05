@@ -24,7 +24,9 @@ module.exports = () =>
       }
     ]) => {
       const content =
-        dom.window.document.querySelector('div.rte_text').textContent +
+        [...dom.window.document.querySelectorAll('div.rte_text')].find(el =>
+          el.textContent.includes('Fallzahlen')
+        ).textContent +
         '\n' +
         dom.window.document.querySelector('div.schlaglichter-container')
           .textContent
