@@ -18,7 +18,7 @@ module.exports = () =>
           .textContent.replace(/\u00A0/g, ' ')
 
         const dateMatch = content.match(
-          /Stand\s?([0-9]+)[.:]([0-9]+)[.:]([0-9]{4})/i
+          /stand.*?(\d{1,2})\.(\d{1,2})\.(\d{4})/i
         )
 
         const infectedMatch = content.match(/Insgesamt.*?([0-9.]+).*?gezählt/i)
@@ -54,7 +54,10 @@ module.exports = () =>
         const entry = {
           areacode: 'row',
           date: new Date(
-            `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`
+            `${dateMatch[3]}-${dateMatch[2].padStart(
+              2,
+              '0'
+            )}-${dateMatch[1].padStart(2, '0')}`
           ).toISOString(),
           deaths: Number(deathsMatch[1]),
           infected: Number(infectedMatch[1].replace('.', '')),
