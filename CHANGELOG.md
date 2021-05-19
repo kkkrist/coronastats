@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.21.8 (2021-05-19)</small>
+
+* fix(crawler/fl): use regex to extract numbers from table ([87a7429](https://github.com/kkkrist/coronastats/commit/87a7429))
+
+
+
+
+
 ## <small>1.21.7 (2021-05-10)</small>
 
 * fix(crawler/row): update date regex ([e56ff24](https://github.com/kkkrist/coronastats/commit/e56ff24))
