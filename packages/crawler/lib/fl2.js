@@ -3,6 +3,8 @@
 const jsdom = require('jsdom').JSDOM
 const fetchOptions = require('./fetch-options.json')
 
+const r = /\.|\*/g
+
 module.exports = () =>
   jsdom
     .fromURL(
@@ -31,10 +33,10 @@ module.exports = () =>
           date: new Date(
             `20${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`
           ).toISOString(),
-          deaths: Number(rows[3].children[1].textContent.replace('.', '')),
-          infected: Number(rows[1].children[1].textContent.replace('.', '')),
-          quarantined: Number(rows[5].children[1].textContent.replace('.', '')),
-          recovered: Number(rows[4].children[1].textContent.replace('.', ''))
+          deaths: Number(rows[3].children[1].textContent.replace(r, '')),
+          infected: Number(rows[1].children[1].textContent.replace(r, '')),
+          quarantined: Number(rows[5].children[1].textContent.replace(r, '')),
+          recovered: Number(rows[4].children[1].textContent.replace(r, ''))
         }
 
         if (record.deaths === undefined || record.recovered === undefined) {
