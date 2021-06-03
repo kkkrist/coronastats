@@ -61,7 +61,7 @@ module.exports = () =>
         )
 
         const infectedMatch = content.match(
-          /Gesamtzahl\sgemeldete\sFälle:\s([0-9.]+)/
+          /Gesamtzahl\sgemeldete?\sFälle:\s([0-9.]+)/
         )
 
         const recoveredMatch = content.match(/Genesen:\s([0-9.]+)/)
