@@ -17,9 +17,11 @@ module.exports = () =>
           .querySelector('div#nolis_content')
           .textContent.replace(/\u00A0/g, ' ')
 
-        const dateMatch = content.match(
-          /stand.*?(\d{1,2})\.(\d{1,2})\.(\d{4})/i
-        )
+        const dateMatch = [...dom.window.document.querySelectorAll('strong')]
+          .map(el =>
+            el.textContent.match(/stand.*?(\d{1,2})\.(\d{1,2})\.(\d{4})/i)
+          )
+          .find(m => m)
 
         const infectedMatch = content.match(/Insgesamt.*?([0-9.]+).*?gezählt/i)
 
