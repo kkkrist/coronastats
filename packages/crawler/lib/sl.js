@@ -42,22 +42,31 @@ const getInt = val => {
   throw new Error(`Couldn't convert string to number: ${val}`)
 }
 
+const reducer = (acc, node) => {
+  if (node.localName === 'br') {
+    return acc
+  }
+
+  if (node.childNodes.length > 0) {
+    return [...acc, ...[...node.childNodes].reduce(reducer, [])]
+  }
+
+  return [...acc, node.textContent]
+}
+
 module.exports = () =>
   new Promise((resolve, reject) => {
     jsdom
-      .fromURL(
-        'https://www.schleswig-flensburg.de/Leben-Soziales/Gesundheit/Coronavirus/Aktuelle-Zahlen/',
-        {
-          userAgent: fetchOptions.headers['user-agent']
-        }
-      )
+      .fromURL('https://www.schleswig-flensburg.de/Aktuelle-Zahlen/', {
+        userAgent: fetchOptions.headers['user-agent']
+      })
       .then(dom => {
-        const content = dom.window.document
-          .querySelector('div#read')
-          .textContent.replace(/\u00A0/g, ' ')
+        const div = dom.window.document.querySelector('div#readthis')
+
+        const content = [...div.childNodes].reduce(reducer, []).join('\n')
 
         const dateMatch = content.match(
-          /Aktuelle\sLage.*?([0-9]{2})[.:]([0-9]{2})[.:]([0-9]{4})/i
+          /Stand\s?([0-9]{2})\.([0-9]{2})\.([0-9]{4})/i
         )
 
         const infectedMatch = content.match(
