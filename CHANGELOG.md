@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.21.10 (2021-06-09)</small>
+
+* fix(crawler/ks): consider date headers w/ omitted year ([b9a9f11](https://github.com/kkkrist/coronastats/commit/b9a9f11))
+* fix(crawler/row): fix date parsing ([080d2d4](https://github.com/kkkrist/coronastats/commit/080d2d4))
+* fix(crawler/sl): adapt to new source page ([89b22cc](https://github.com/kkkrist/coronastats/commit/89b22cc))
+
+
+
+
+
 ## <small>1.21.9 (2021-06-03)</small>
 
 * fix(crawler/sl): account for typo ([8705789](https://github.com/kkkrist/coronastats/commit/8705789))
