@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.21.11 (2021-06-11)</small>
+
+* fix(crawler/ks): tweak date regex ([3a49a41](https://github.com/kkkrist/coronastats/commit/3a49a41))
+
+
+
+
+
 ## <small>1.21.10 (2021-06-09)</small>
 
 * fix(crawler/ks): consider date headers w/ omitted year ([b9a9f11](https://github.com/kkkrist/coronastats/commit/b9a9f11))
