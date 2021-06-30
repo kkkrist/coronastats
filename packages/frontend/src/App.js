@@ -14,16 +14,16 @@ import './styles.css'
 
 const locations = {
   fl: 'Flensburg',
-  'ks-lk': 'Landkreis Kassel',
   'ks-s': 'Kassel',
-  l: 'Leipzig',
-  lg: 'Landkreis Lüneburg',
-  od: 'Kreis Stormarn',
+  rz: 'Kreis Herzogtum Lauenburg',
   plö: 'Kreis Plön',
   rd: 'Kreis Rendsburg-Eckernförde',
-  row: 'Landkreis Rotenburg',
-  rz: 'Kreis Herzogtum Lauenburg',
   sl: 'Kreis Schleswig-Flensburg',
+  od: 'Kreis Stormarn',
+  'ks-lk': 'Landkreis Kassel',
+  lg: 'Landkreis Lüneburg',
+  row: 'Landkreis Rotenburg',
+  l: 'Leipzig'
 }
 
 const db = new PouchDB('coronastats')
