@@ -16,6 +16,7 @@ Currently the following regions are supported:
 - Leipzig
 - Kreis Herzogtum Lauenburg
 - Kreis Plön
+- Kreis Rendsburg-Eckernförde
 - Kreis Schleswig-Flensburg
 - Kreis Stormarn
 

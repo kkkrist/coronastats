@@ -7,13 +7,21 @@
     "sourceUri": "https://www.flensburg.de/Aktuelles/Corona-Portal/Aktuelle-Lagemeldungen/Aktuelles-Infektionsgeschehen/",
     "state": "sh"
   },
-  "rz": {
-    "population": 198019,
-    "populationSourceLabel": "Statistikamt Nord",
-    "populationSourceUri": "https://www.statistik-nord.de/",
-    "sourceLabel": "kreis-rz.de",
-    "sourceUri": "https://www.kreis-rz.de/Corona",
-    "state": "sh"
+  "ks-lk": {
+    "population": 236764,
+    "populationSourceLabel": "Hessisches Statistisches Landesamt",
+    "populationSourceUri": "https://statistik.hessen.de/zahlen-fakten/bevoelkerung-gebiet-haushalte-familien/bevoelkerung/tabellen/#Bevoelkerungsveraenderung",
+    "sourceLabel": "kassel.de",
+    "sourceUri": "https://www.kassel.de/aktuelles/aktuelle-meldungen/coronavirus.php",
+    "state": "he"
+  },
+  "ks-s": {
+    "population": 202137,
+    "populationSourceLabel": "Hessisches Statistisches Landesamt",
+    "populationSourceUri": "https://statistik.hessen.de/zahlen-fakten/bevoelkerung-gebiet-haushalte-familien/bevoelkerung/tabellen/#Bevoelkerungsveraenderung",
+    "sourceLabel": "kassel.de",
+    "sourceUri": "https://www.kassel.de/aktuelles/aktuelle-meldungen/coronavirus.php",
+    "state": "he"
   },
   "l": {
     "population": 593145,
@@ -30,22 +38,6 @@
     "sourceLabel": "corona.landkreis-lueneburg.de",
     "sourceUri": "https://corona.landkreis-lueneburg.de/aktuelle-situation/",
     "state": "ni"
-  },
-  "ks-lk": {
-    "population": 236764,
-    "populationSourceLabel": "Hessisches Statistisches Landesamt",
-    "populationSourceUri": "https://statistik.hessen.de/zahlen-fakten/bevoelkerung-gebiet-haushalte-familien/bevoelkerung/tabellen/#Bevoelkerungsveraenderung",
-    "sourceLabel": "kassel.de",
-    "sourceUri": "https://www.kassel.de/aktuelles/aktuelle-meldungen/coronavirus.php",
-    "state": "he"
-  },
-  "ks-s": {
-    "population": 202137,
-    "populationSourceLabel": "Hessisches Statistisches Landesamt",
-    "populationSourceUri": "https://statistik.hessen.de/zahlen-fakten/bevoelkerung-gebiet-haushalte-familien/bevoelkerung/tabellen/#Bevoelkerungsveraenderung",
-    "sourceLabel": "kassel.de",
-    "sourceUri": "https://www.kassel.de/aktuelles/aktuelle-meldungen/coronavirus.php",
-    "state": "he"
   },
   "od": {
     "population": 244156,
@@ -70,6 +62,22 @@
     "sourceLabel": "lk-row.de",
     "sourceUri": "https://www.lk-row.de/portal/seiten/aktuelle-zahlen-corona--900000752-23700.html",
     "state": "ni"
+  },
+  "rd": {
+    "population": 274765,
+    "populationSourceLabel": "Statistikamt Nord",
+    "populationSourceUri": "https://www.statistik-nord.de/",
+    "sourceLabel": "covid19dashboardrdeck.aco",
+    "sourceUri": "https://covid19dashboardrdeck.aco",
+    "state": "sh"
+  },
+  "rz": {
+    "population": 198019,
+    "populationSourceLabel": "Statistikamt Nord",
+    "populationSourceUri": "https://www.statistik-nord.de/",
+    "sourceLabel": "kreis-rz.de",
+    "sourceUri": "https://www.kreis-rz.de/Corona",
+    "state": "sh"
   },
   "sl": {
     "population": 201156,

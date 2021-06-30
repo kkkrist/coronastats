@@ -88,11 +88,12 @@ const upsert = stats =>
 
 Promise.allSettled([
   require('./fl2')(),
+  require('./ks')(),
   require('./l')(),
   require('./lg')(),
-  require('./ks')(),
   require('./od')(),
   require('./plö')(),
+  require('./rd')(),
   require('./row')(),
   require('./rz')(),
   require('./sl')()
