@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.22.0 (2021-06-30)
+
+* feat: add "rd" area code ([0bba3a5](https://github.com/kkkrist/coronastats/commit/0bba3a5))
+
+
+
+
+
 ## 1.21.0 (2021-04-05)
 
 * feat: add "row" area code ([d187b34](https://github.com/kkkrist/coronastats/commit/d187b34))
