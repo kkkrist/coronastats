@@ -9,7 +9,12 @@ module.exports = () =>
     fetch('https://covid19dashboardrdeck.aco/daten/dash.js', fetchOptions)
   ])
     .then(responses => Promise.all(responses.map(res => res.text())))
-    .then(texts => {
+    .then(async texts => {
+      const lastEntry = await fetch(
+        'https://api.mundpropaganda.net/coronastats/_design/areacode/_view/rd?descending=true&limit=1',
+        fetchOptions
+      ).then(res => res.json())
+
       const text = texts.join('')
 
       const matches = {
@@ -38,17 +43,26 @@ module.exports = () =>
         recoveredMatch
       } = matches
 
-      return [
-        {
-          areacode: 'rd',
-          active: Number(activeMatch[1]),
-          date: new Date(
-            `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}T${dateMatch[4]}:${dateMatch[5]}:${dateMatch[6]}.000`
-          ).toISOString(),
-          deaths: Number(deathsMatch[1]),
-          infected: Number(infectedMatch[1]),
-          quarantined: null,
-          recovered: Number(recoveredMatch[1])
-        }
-      ]
+      const entry = {
+        areacode: 'rd',
+        active: Number(activeMatch[1]),
+        date: new Date(
+          `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}T${dateMatch[4]}:${dateMatch[5]}:${dateMatch[6]}.000`
+        ).toISOString(),
+        deaths: Number(deathsMatch[1]),
+        infected: Number(infectedMatch[1]),
+        quarantined: null,
+        recovered: Number(recoveredMatch[1])
+      }
+
+      if (
+        entry.active === lastEntry.active &&
+        entry.deaths === lastEntry.deaths &&
+        entry.infected === lastEntry.infected &&
+        entry.recovered === lastEntry.recovered
+      ) {
+        return []
+      }
+
+      return [entry]
     })
