@@ -10,7 +10,9 @@ module.exports = () =>
   ])
     .then(responses => Promise.all(responses.map(res => res.text())))
     .then(async texts => {
-      const lastEntry = await fetch(
+      const {
+        rows: [lastEntry]
+      } = await fetch(
         'https://api.mundpropaganda.net/coronastats/_design/areacode/_view/rd?descending=true&limit=1',
         fetchOptions
       ).then(res => res.json())
@@ -56,10 +58,10 @@ module.exports = () =>
       }
 
       if (
-        entry.active === lastEntry.active &&
-        entry.deaths === lastEntry.deaths &&
-        entry.infected === lastEntry.infected &&
-        entry.recovered === lastEntry.recovered
+        entry.active === lastEntry.value.active &&
+        entry.deaths === lastEntry.value.deaths &&
+        entry.infected === lastEntry.value.infected &&
+        entry.recovered === lastEntry.value.recovered
       ) {
         return []
       }
