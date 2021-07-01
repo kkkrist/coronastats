@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.2 (2021-07-01)</small>
+
+* fix(crawler/rd): only submit entries with actually updated stats ([eef5c74](https://github.com/kkkrist/coronastats/commit/eef5c74))
+
+
+
+
+
 ## 1.22.0 (2021-06-30)
 
 * feat: add "rd" area code ([0bba3a5](https://github.com/kkkrist/coronastats/commit/0bba3a5))
