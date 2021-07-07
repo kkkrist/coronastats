@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.4 (2021-07-07)</small>
+
+* fix(crawler/rd): only store one dataset per day ([7666a9e](https://github.com/kkkrist/coronastats/commit/7666a9e))
+
+
+
+
+
 ## <small>1.22.3 (2021-07-01)</small>
 
 * fix(crawler/rd): only submit entries with actually updated stats #fixup ([6cf3b7d](https://github.com/kkkrist/coronastats/commit/6cf3b7d))
