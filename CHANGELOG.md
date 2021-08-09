@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.5 (2021-08-09)</small>
+
+* fix(utils/math): perf-tweak `addIncidence()` ([cd4de9c](https://github.com/kkkrist/coronastats/commit/cd4de9c))
+
+
+
+
+
 ## <small>1.22.4 (2021-07-07)</small>
 
 * fix(crawler/rd): only store one dataset per day ([7666a9e](https://github.com/kkkrist/coronastats/commit/7666a9e))

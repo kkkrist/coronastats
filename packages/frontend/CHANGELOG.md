@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.5 (2021-08-09)</small>
+
+* fix(utils/math): perf-tweak `addIncidence()` ([cd4de9c](https://github.com/kkkrist/coronastats/commit/cd4de9c))
+
+
+
+
+
 ## <small>1.22.1 (2021-06-30)</small>
 
 * fix(frontend): fix `locations` sorting ([58823e8](https://github.com/kkkrist/coronastats/commit/58823e8))
