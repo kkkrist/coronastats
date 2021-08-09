@@ -2,6 +2,8 @@ import dayjs from 'dayjs'
 import TimeSeries from 'timeseries-analysis'
 import areacodes from '../data/areacodes'
 
+const oneDay = 1000 * 60 * 60 * 24
+
 const forecast = data =>
   ['infected', 'quarantined', 'recovered', 'deaths'].reduce((acc, key, i) => {
     for (let di = data.length - 1; di > 0; di--) {
@@ -40,13 +42,14 @@ const forecast = data =>
   }, {})
 
 export const addIncidence = (doc, docs, population) => {
-  const d = dayjs(doc.date)
+  const d = new Date(
+    (Math.floor(Date.parse(doc.date) / oneDay) - 7) * oneDay
+  ).getTime()
 
-  const rangeStart = docs.find(
-    doc =>
-      dayjs(doc.date).format('YYYY-MM-DD') ===
-      d.set('date', d.date() - 7).format('YYYY-MM-DD')
-  )
+  const findFn = doc =>
+    new Date(Math.floor(Date.parse(doc.date) / oneDay) * oneDay).getTime() === d
+
+  const rangeStart = docs.find(findFn)
 
   if (rangeStart) {
     doc.incidence = (
