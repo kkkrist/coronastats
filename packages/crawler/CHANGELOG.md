@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.6 (2021-09-12)</small>
+
+* fix(crawlers/row): set cookie to skip election interstitial ([e9ec86a](https://github.com/kkkrist/coronastats/commit/e9ec86a))
+
+
+
+
+
 ## <small>1.22.4 (2021-07-07)</small>
 
 * fix(crawler/rd): only store one dataset per day ([7666a9e](https://github.com/kkkrist/coronastats/commit/7666a9e))
