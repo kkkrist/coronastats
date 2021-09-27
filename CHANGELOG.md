@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.9 (2021-09-27)</small>
+
+* fix(crawler/ks): fix date matcher ([0698141](https://github.com/kkkrist/coronastats/commit/0698141))
+
+
+
+
+
 ## <small>1.22.8 (2021-09-27)</small>
 
 * fix(crawler/od): zero-pad date components ([7336315](https://github.com/kkkrist/coronastats/commit/7336315))
