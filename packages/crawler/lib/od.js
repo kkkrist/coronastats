@@ -70,7 +70,10 @@ module.exports = () =>
             const entry = {
               areacode: 'od',
               date: new Date(
-                `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`
+                `${dateMatch[3].padStart(4, '20')}-${dateMatch[2].padStart(
+                  2,
+                  '0'
+                )}-${dateMatch[1].padStart(2, '0')}`
               ).toISOString(),
               deaths: Number(deathsMatch[1]),
               infected: Number(infectedMatch[1].replace('.', '')),
