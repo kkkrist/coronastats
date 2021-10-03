@@ -29,10 +29,13 @@ module.exports = () =>
     )
     .then(
       dom => {
-        const dateMatch = [...dom.window.document.querySelectorAll('h3')]
+        const dateMatches = [...dom.window.document.querySelectorAll('h3')]
           .map(el => el.nextElementSibling)
-          .find(el => /^Stand/.test(el.textContent))
-          .textContent.match(/Stand:?\s\w+,?\s(\d*)\.\s([\wä]+)\s(\d{4})?/)
+          .filter(el => /^Stand/.test(el.textContent))
+
+        const dateMatch = dateMatches[dateMatches.length - 1].textContent.match(
+          /Stand:?\s\w+,?\s(\d*)\.\s([\wä]+)\s(\d{4})?/
+        )
 
         if (!dateMatch) {
           throw new Error("Couldn't parse date")
@@ -44,19 +47,19 @@ module.exports = () =>
           throw new Error("Couldn't find table rows")
         }
 
-        const activeMatchS = rows[1].children[2].textContent.match(/[0-9.]+/)
-        const activeMatchLk = rows[2].children[2].textContent.match(/[0-9.]+/)
+        const activeMatchS = rows[3].children[2].textContent.match(/[0-9.]+/)
+        const activeMatchLk = rows[4].children[2].textContent.match(/[0-9.]+/)
 
-        const recoveredMatchS = rows[1].children[3].textContent.match(/[0-9.]+/)
-        const recoveredMatchLk = rows[2].children[3].textContent.match(
+        const recoveredMatchS = rows[3].children[3].textContent.match(/[0-9.]+/)
+        const recoveredMatchLk = rows[4].children[3].textContent.match(
           /[0-9.]+/
         )
 
-        const deathsMatchS = rows[1].children[4].textContent.match(/[0-9.]+/)
-        const deathsMatchLk = rows[2].children[4].textContent.match(/[0-9.]+/)
+        const deathsMatchS = rows[3].children[4].textContent.match(/[0-9.]+/)
+        const deathsMatchLk = rows[4].children[4].textContent.match(/[0-9.]+/)
 
-        const infectedMatchS = rows[1].children[5].textContent.match(/[0-9.]+/)
-        const infectedMatchLk = rows[2].children[5].textContent.match(/[0-9.]+/)
+        const infectedMatchS = rows[3].children[5].textContent.match(/[0-9.]+/)
+        const infectedMatchLk = rows[4].children[5].textContent.match(/[0-9.]+/)
 
         const entryS = {
           areacode: 'ks-s',
