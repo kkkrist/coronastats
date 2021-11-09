@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.11 (2021-11-09)</small>
+
+* fix(crawler/l): adapt deaths regex ([db961a6](https://github.com/kkkrist/coronastats/commit/db961a6))
+
+
+
+
+
 ## <small>1.22.10 (2021-10-03)</small>
 
 * fix(crawler/ks): adapt selectors ([8ef39e3](https://github.com/kkkrist/coronastats/commit/8ef39e3))
