@@ -31,7 +31,7 @@ module.exports = () =>
       dom => {
         const dateMatches = [...dom.window.document.querySelectorAll('h3')]
           .map(el => el.nextElementSibling)
-          .filter(el => /^Stand/.test(el.textContent))
+          .filter(el => /^Stand/.test(el?.textContent))
 
         const dateMatch = dateMatches[dateMatches.length - 1].textContent.match(
           /Stand:?\s\w+,?\s(\d*)\.\s([\wä]+)\s(\d{4})?/
