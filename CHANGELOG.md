@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.13 (2021-11-11)</small>
+
+* fix(crawler/ks): fix  filter ([7bdf487](https://github.com/kkkrist/coronastats/commit/7bdf487))
+
+
+
+
+
 ## <small>1.22.12 (2021-11-09)</small>
 
 * fix(crawler/l): adapt active regex ([a9b53af](https://github.com/kkkrist/coronastats/commit/a9b53af))

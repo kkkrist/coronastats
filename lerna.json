@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "1.22.12",
+  "version": "1.22.13",
   "changelogPreset": {
     "name": "core",
     "types": [
