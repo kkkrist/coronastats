@@ -25,7 +25,7 @@ module.exports = () =>
     ]) => {
       const content =
         [...dom.window.document.querySelectorAll('div.rte_text')].find(el =>
-          el.textContent.includes('Fallzahlen')
+          el.textContent.includes('Stand')
         ).textContent +
         '\n' +
         dom.window.document.querySelector('div.schlaglichter-container')
