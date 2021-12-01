@@ -35,7 +35,9 @@ module.exports = () =>
 
       const dateMatch = content.match(/Stand ([0-9]+)\.([0-9]+)\.([0-9]+)/)
 
-      const deathsMatch = content.match(/Todesfälle:(?:\s?)bisher(?:\s?)([0-9]+)/)
+      const deathsMatch = content.match(
+        /Todesfälle:(?:\s?)bisher(?:\s?)([0-9]+)/
+      )
 
       const infectedMatch = content.match(
         /positiv Getestete. bisher insgesamt ([0-9.]+)/
