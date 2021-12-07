@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.16 (2021-12-07)</small>
+
+* fix(crawler/l): adapt infected regex ([3db6b00](https://github.com/kkkrist/coronastats/commit/3db6b00))
+* chore: lint ([4c8163c](https://github.com/kkkrist/coronastats/commit/4c8163c))
+
+
+
+
+
 ## <small>1.22.15 (2021-12-01)</small>
 
 * fix(crawler/l): adapt deaths regex ([03e7500](https://github.com/kkkrist/coronastats/commit/03e7500))
