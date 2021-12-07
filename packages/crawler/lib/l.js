@@ -40,7 +40,7 @@ module.exports = () =>
       )
 
       const infectedMatch = content.match(
-        /positiv Getestete. bisher insgesamt ([0-9.]+)/
+        /positiv\sGetestete.\sbisher\sinsgesamt\s([0-9.]+)/
       )
 
       const quarantinedMatch = content.match(
