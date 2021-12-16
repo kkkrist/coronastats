@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.17 (2021-12-16)</small>
+
+* fix(crawler/sl): adapt date regex ([a725432](https://github.com/kkkrist/coronastats/commit/a725432))
+
+
+
+
+
 ## <small>1.22.16 (2021-12-07)</small>
 
 * fix(crawler/l): adapt infected regex ([3db6b00](https://github.com/kkkrist/coronastats/commit/3db6b00))
