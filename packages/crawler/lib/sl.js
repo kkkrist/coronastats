@@ -66,7 +66,7 @@ module.exports = () =>
         const content = [...div.childNodes].reduce(reducer, []).join('\n')
 
         const dateMatch = content.match(
-          /Stand\s?([0-9]{2})\.([0-9]{2})\.([0-9]{4})/i
+          /(?!Stand)?\s?([0-9]{2})\.([0-9]{2})\.([0-9]{4})/i
         )
 
         const infectedMatch = content.match(
