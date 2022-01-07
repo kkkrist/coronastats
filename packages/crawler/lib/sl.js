@@ -75,7 +75,7 @@ module.exports = () =>
 
         const recoveredMatch = content.match(/Genesen:\s([0-9.]+)/)
 
-        const quarantinedMatch = content.match(/In\sQuarantäne:\s([0-9.]+)/)
+        // const quarantinedMatch = content.match(/In\sQuarantäne:\s([0-9.]+)/)
 
         const deathsMatch = content.match(/Verstorben:\s([0-9.]+)/i)
 
@@ -95,9 +95,9 @@ module.exports = () =>
           return reject(new Error("Couldn't parse deaths"))
         }
 
-        if (!quarantinedMatch) {
-          return reject(new Error("Couldn't parse quarantined"))
-        }
+        // if (!quarantinedMatch) {
+        //   return reject(new Error("Couldn't parse quarantined"))
+        // }
 
         const entry = {
           areacode: 'sl',
@@ -106,7 +106,7 @@ module.exports = () =>
           ).toISOString(),
           deaths: getInt(deathsMatch[1]),
           infected: Number(infectedMatch[1].replace('.', '')),
-          quarantined: Number(quarantinedMatch[1].replace('.', '')),
+          // quarantined: Number(quarantinedMatch[1].replace('.', '')),
           recovered: Number(recoveredMatch[1].replace('.', ''))
         }
 
