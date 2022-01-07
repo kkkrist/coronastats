@@ -18,7 +18,7 @@ module.exports = () =>
         {
           ...fetchOptions,
           body:
-            'draw=1&order%5B0%5D%5Bcolumn%5D=1&order%5B0%5D%5Bdir%5D=desc&wdtNonce=' +
+            'draw=1&order%5B0%5D%5Bcolumn%5D=1&order%5B0%5D%5Bdir%5D=desc&start=0&length=10&wdtNonce=' +
             nonce,
           headers: {
             ...fetchOptions.headers,
@@ -39,9 +39,7 @@ module.exports = () =>
         const dateMatch = row[1].match(/([0-9]+)\.([0-9]+)\.([0-9]+)/)
 
         if (!dateMatch) {
-          throw new Error(
-            `Couldn't parse date string "${row[1]}"`
-          )
+          throw new Error(`Couldn't parse date string "${row[1]}"`)
         }
 
         const entry = {
