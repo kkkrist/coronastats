@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.18 (2022-01-07)</small>
+
+* fix(crawler/lg): adapt params of api request ([1c9f1ed](https://github.com/kkkrist/coronastats/commit/1c9f1ed))
+* fix(crawler/od): use new url ([fdcd8ca](https://github.com/kkkrist/coronastats/commit/fdcd8ca))
+* fix(crawler/sl): comment out `quarantined` (not reported anymore) ([394a859](https://github.com/kkkrist/coronastats/commit/394a859))
+
+
+
+
+
 ## <small>1.22.17 (2021-12-16)</small>
 
 * fix(crawler/sl): adapt date regex ([a725432](https://github.com/kkkrist/coronastats/commit/a725432))
