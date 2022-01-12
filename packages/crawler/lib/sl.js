@@ -73,7 +73,7 @@ module.exports = () =>
           /Gesamtzahl\sgemeldete?\sFälle:\s([0-9.]+)/
         )
 
-        const recoveredMatch = content.match(/Genesen:\s([0-9.]+)/)
+        // const recoveredMatch = content.match(/Genesen:\s([0-9.]+)/)
 
         // const quarantinedMatch = content.match(/In\sQuarantäne:\s([0-9.]+)/)
 
@@ -87,9 +87,9 @@ module.exports = () =>
           return reject(new Error("Couldn't parse infected"))
         }
 
-        if (!recoveredMatch) {
-          return reject(new Error("Couldn't parse recovered"))
-        }
+        // if (!recoveredMatch) {
+        //   return reject(new Error("Couldn't parse recovered"))
+        // }
 
         if (!deathsMatch) {
           return reject(new Error("Couldn't parse deaths"))
@@ -107,13 +107,13 @@ module.exports = () =>
           deaths: getInt(deathsMatch[1]),
           infected: Number(infectedMatch[1].replace('.', '')),
           // quarantined: Number(quarantinedMatch[1].replace('.', '')),
-          recovered: Number(recoveredMatch[1].replace('.', ''))
+          // recovered: Number(recoveredMatch[1].replace('.', ''))
         }
 
         resolve([
           {
             ...entry,
-            active: entry.infected - entry.recovered - entry.deaths
+            // active: entry.infected - entry.recovered - entry.deaths
           }
         ])
       }, reject)
