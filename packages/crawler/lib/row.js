@@ -32,7 +32,7 @@ module.exports = () =>
 
       const infectedMatch = content.match(/Insgesamt.*?([0-9.]+).*?gezählt/i)
 
-      const recoveredMatch = content.match(/([0-9.]+)\sdavon.*?genesen/)
+      // const recoveredMatch = content.match(/([0-9.]+)\sdavon.*?genesen/)
 
       const quarantinedMatch = content.match(
         /([0-9.]+)\sKontaktpersonen.*?Quarantäne/
@@ -48,9 +48,9 @@ module.exports = () =>
         return reject(new Error("Couldn't parse infected"))
       }
 
-      if (!recoveredMatch) {
-        return reject(new Error("Couldn't parse recovered"))
-      }
+      // if (!recoveredMatch) {
+      //   return reject(new Error("Couldn't parse recovered"))
+      // }
 
       if (!deathsMatch) {
         return reject(new Error("Couldn't parse deaths"))
@@ -70,14 +70,14 @@ module.exports = () =>
         ).toISOString(),
         deaths: Number(deathsMatch[1]),
         infected: Number(infectedMatch[1].replace('.', '')),
-        quarantined: Number(quarantinedMatch[1].replace('.', '')),
-        recovered: Number(recoveredMatch[1].replace('.', ''))
+        quarantined: Number(quarantinedMatch[1].replace('.', ''))
+        // recovered: Number(recoveredMatch[1].replace('.', ''))
       }
 
       resolve([
         {
-          ...entry,
-          active: entry.infected - entry.recovered - entry.deaths
+          ...entry
+          // active: entry.infected - entry.recovered - entry.deaths
         }
       ])
     }, reject)
