@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.20 (2022-01-18)</small>
+
+* fix(frontend): update `sourceUri` for "od" area code ([83f9b32](https://github.com/kkkrist/coronastats/commit/83f9b32))
+* fix(frontend): update `sourceUri` for "sl" area code ([db9d44d](https://github.com/kkkrist/coronastats/commit/db9d44d))
+
+
+
+
+
 ## <small>1.22.5 (2021-08-09)</small>
 
 * fix(utils/math): perf-tweak `addIncidence()` ([cd4de9c](https://github.com/kkkrist/coronastats/commit/cd4de9c))
