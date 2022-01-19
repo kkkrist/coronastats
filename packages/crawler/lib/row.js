@@ -30,7 +30,9 @@ module.exports = () =>
         )
         .find(m => m)
 
-      const infectedMatch = content.match(/Insgesamt.*?([0-9.]+).*?gezählt/i)
+      const infected = [
+        ...content.matchAll(/([\d.]+)\s?(?:Männer|Frauen)/g)
+      ].reduce((sum, [, value]) => (sum += Number(value.replace(/\./g, ''))), 0)
 
       // const recoveredMatch = content.match(/([0-9.]+)\sdavon.*?genesen/)
 
@@ -44,7 +46,7 @@ module.exports = () =>
         return reject(new Error("Couldn't parse date"))
       }
 
-      if (!infectedMatch) {
+      if (!infected) {
         return reject(new Error("Couldn't parse infected"))
       }
 
@@ -69,7 +71,7 @@ module.exports = () =>
           )}-${dateMatch[1].padStart(2, '0')}`
         ).toISOString(),
         deaths: Number(deathsMatch[1]),
-        infected: Number(infectedMatch[1].replace('.', '')),
+        infected,
         quarantined: Number(quarantinedMatch[1].replace('.', ''))
         // recovered: Number(recoveredMatch[1].replace('.', ''))
       }
