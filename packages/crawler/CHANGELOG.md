@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.21 (2022-01-19)</small>
+
+* fix(crawler/row): adapt retrieval of `infected` ([2ddd45f](https://github.com/kkkrist/coronastats/commit/2ddd45f))
+
+
+
+
+
 ## <small>1.22.20 (2022-01-18)</small>
 
 * fix(crawler/row): comment out `recovered` (not reported anymore) ([ed5df3b](https://github.com/kkkrist/coronastats/commit/ed5df3b))
