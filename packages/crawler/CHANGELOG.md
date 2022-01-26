@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.22 (2022-01-26)</small>
+
+* fix(crawler/row): comment out (row has stopped publishing relevant data) ([93cfeab](https://github.com/kkkrist/coronastats/commit/93cfeab))
+* fix(crawler/rz): adapt to changed number notation ([4fd1a79](https://github.com/kkkrist/coronastats/commit/4fd1a79))
+* chore: clean up ([f929e90](https://github.com/kkkrist/coronastats/commit/f929e90))
+
+
+
+
+
 ## <small>1.22.21 (2022-01-19)</small>
 
 * fix(crawler/row): adapt retrieval of `infected` ([2ddd45f](https://github.com/kkkrist/coronastats/commit/2ddd45f))
