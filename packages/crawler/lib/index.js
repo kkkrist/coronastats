@@ -94,7 +94,7 @@ Promise.allSettled([
   require('./od')(),
   require('./plö')(),
   require('./rd')(),
-  require('./row')(),
+  // require('./row')(),
   require('./rz')(),
   require('./sl')()
 ])
