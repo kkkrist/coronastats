@@ -16,9 +16,9 @@ module.exports = () =>
           dom.window.document.querySelector('h1').nextElementSibling
             .nextElementSibling.textContent
 
-        const infectedMatch = str.match(/gesamt.*?([0-9]+)/i)
+        const infectedMatch = str.match(/gesamt.*?([0-9.]+)/i)
 
-        const recoveredMatch = str.match(/genesen.*?([0-9]+)/)
+        const recoveredMatch = str.match(/genesen.*?([0-9.]+)/)
 
         const deathsMatch = str.match(/verstorben.*?([0-9]+)/)
 
@@ -34,8 +34,8 @@ module.exports = () =>
             `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`
           ).toISOString(),
           deaths: Number(deathsMatch[1]),
-          infected: Number(infectedMatch[1]),
-          recovered: Number(recoveredMatch[1])
+          infected: Number(infectedMatch[1].replaceAll(/\./g, '')),
+          recovered: Number(recoveredMatch[1].replaceAll(/\./g, ''))
         }
 
         resolve([
