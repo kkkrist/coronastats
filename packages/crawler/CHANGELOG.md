@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.23 (2022-02-23)</small>
+
+* fix(crawler/rd): don't push entry if numbers don't differ from last ([73f1223](https://github.com/kkkrist/coronastats/commit/73f1223))
+
+
+
+
+
 ## <small>1.22.22 (2022-01-26)</small>
 
 * fix(crawler/row): comment out (row has stopped publishing relevant data) ([93cfeab](https://github.com/kkkrist/coronastats/commit/93cfeab))
