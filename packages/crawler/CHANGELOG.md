@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.22.24 (2022-02-24)</small>
+
+* fix(crawler/ks): comment out `active`, `recovered` ([f2fcb8e](https://github.com/kkkrist/coronastats/commit/f2fcb8e))
+* chore(crawler): adapt eslint config ([0d189ea](https://github.com/kkkrist/coronastats/commit/0d189ea))
+
+
+
+
+
 ## <small>1.22.23 (2022-02-23)</small>
 
 * fix(crawler/rd): don't push entry if numbers don't differ from last ([73f1223](https://github.com/kkkrist/coronastats/commit/73f1223))
