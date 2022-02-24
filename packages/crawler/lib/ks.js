@@ -47,42 +47,42 @@ module.exports = () =>
           throw new Error("Couldn't find table rows")
         }
 
-        const activeMatchS = rows[3].children[2].textContent.match(/[0-9.]+/)
-        const activeMatchLk = rows[4].children[2].textContent.match(/[0-9.]+/)
+        // const activeMatchS = rows[3].children[2].textContent.match(/[0-9.]+/)
+        // const activeMatchLk = rows[4].children[2].textContent.match(/[0-9.]+/)
 
-        const recoveredMatchS = rows[3].children[3].textContent.match(/[0-9.]+/)
-        const recoveredMatchLk = rows[4].children[3].textContent.match(
-          /[0-9.]+/
-        )
+        // const recoveredMatchS = rows[3].children[3].textContent.match(/[0-9.]+/)
+        // const recoveredMatchLk = rows[4].children[3].textContent.match(
+        //   /[0-9.]+/
+        // )
 
-        const deathsMatchS = rows[3].children[4].textContent.match(/[0-9.]+/)
-        const deathsMatchLk = rows[4].children[4].textContent.match(/[0-9.]+/)
+        const deathsMatchS = rows[3].children[2].textContent.match(/[0-9.]+/)
+        const deathsMatchLk = rows[4].children[2].textContent.match(/[0-9.]+/)
 
-        const infectedMatchS = rows[3].children[5].textContent.match(/[0-9.]+/)
-        const infectedMatchLk = rows[4].children[5].textContent.match(/[0-9.]+/)
+        const infectedMatchS = rows[3].children[3].textContent.match(/[0-9.]+/)
+        const infectedMatchLk = rows[4].children[3].textContent.match(/[0-9.]+/)
 
         const entryS = {
           areacode: 'ks-s',
-          active: Number(activeMatchS[0].replace('.', '')),
+          active: null, // Number(activeMatchS[0].replace('.', '')),
           date: `${dateMatch[3] || '2021'}-${getMonthNumber(
             dateMatch[2]
           )}-${dateMatch[1].padStart(2, '0')}T00:00:00.000Z`,
           deaths: Number(deathsMatchS[0]),
           infected: Number(infectedMatchS[0].replace('.', '')),
           quarantined: null,
-          recovered: Number(recoveredMatchS[0].replace('.', ''))
+          recovered: null // Number(recoveredMatchS[0].replace('.', ''))
         }
 
         const entryLk = {
           areacode: 'ks-lk',
-          active: Number(activeMatchLk[0].replace('.', '')),
+          active: null, // Number(activeMatchLk[0].replace('.', '')),
           date: `${dateMatch[3] || '2021'}-${getMonthNumber(
             dateMatch[2]
           )}-${dateMatch[1].padStart(2, '0')}T00:00:00.000Z`,
           deaths: Number(deathsMatchLk[0]),
           infected: Number(infectedMatchLk[0].replace('.', '')),
           quarantined: null,
-          recovered: Number(recoveredMatchLk[0].replace('.', ''))
+          recovered: null // Number(recoveredMatchLk[0].replace('.', ''))
         }
 
         return [entryS, entryLk]
