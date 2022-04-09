@@ -87,16 +87,17 @@ const upsert = stats =>
   })
 
 Promise.allSettled([
-  require('./fl2')(),
-  require('./ks')(),
-  require('./l')(),
-  require('./lg')(),
-  require('./od')(),
-  require('./plö')(),
-  require('./rd')(),
-  // require('./row')(),
-  require('./rz')(),
-  require('./sl')()
+  require('./arcgis')('1001', 'fl'),
+  require('./arcgis')('1053', 'rz'),
+  require('./arcgis')('1057', 'plö'),
+  require('./arcgis')('1058', 'rd'),
+  require('./arcgis')('1059', 'sl'),
+  require('./arcgis')('1062', 'od'),
+  require('./arcgis')('14713', 'l'),
+  require('./arcgis')('3355', 'lg'),
+  require('./arcgis')('3357', 'row'),
+  require('./arcgis')('6611', 'ks-s'),
+  require('./arcgis')('6633', 'ks-lk')
 ])
   .then(promises => {
     const data = promises
