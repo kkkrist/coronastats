@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.23.0 (2022-04-09)
+
+* feat(frontend): add arcgis.com to source info in footer ([c6851da](https://github.com/kkkrist/coronastats/commit/c6851da))
+
+
+
+
+
 ## <small>1.22.20 (2022-01-18)</small>
 
 * fix(frontend): update `sourceUri` for "od" area code ([83f9b32](https://github.com/kkkrist/coronastats/commit/83f9b32))

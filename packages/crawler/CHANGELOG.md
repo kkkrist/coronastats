@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.23.0 (2022-04-09)
+
+* feat(crawler): pull all data from newly discovered arcgis.com api ([b7df3a3](https://github.com/kkkrist/coronastats/commit/b7df3a3))
+
+
+
+
+
 ## <small>1.22.24 (2022-02-24)</small>
 
 * fix(crawler/ks): comment out `active`, `recovered` ([f2fcb8e](https://github.com/kkkrist/coronastats/commit/f2fcb8e))
