@@ -395,7 +395,7 @@ const App = () => {
           Datenquelle:{' '}
           <a href={areacodes[areacode].sourceUri}>
             {areacodes[areacode].sourceLabel}
-          </a>
+          </a> / arcgis.com{' '}
           {lastModified
             ? ` (Letztes Update: ${new Date(lastModified).toLocaleString()})`
             : ''}
