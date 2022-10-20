@@ -34,30 +34,16 @@ const getNewRecord = (newData, oldRecord) => {
 const upsert = stats =>
   db.get('_all_docs', { include_docs: true }).then(({ rows }) => {
     const docs = stats
-      .reduce(
-        (acc, stat) =>
-          acc.findIndex(
+      .reduce((acc, stat) =>
+        // Deduplicate crawler results
+        acc.findIndex(
             ({ areacode, date }) =>
               areacode === stat.areacode && date === stat.date
           ) > -1
-            ? acc
-            : [...acc, stat],
-        []
-      )
-      .reduce((acc, stat) => {
-        const i = acc.findIndex(
-          ({ areacode, date }) =>
-            areacode === stat.areacode && date === stat.date
-        )
-
-        if (i > -1) {
-          const newRecord = getNewRecord(stat, acc[i])
-          if (newRecord !== acc[i]) {
-            acc[i] = newRecord
-          }
-          return acc
-        }
-
+          ? acc
+          : [...acc, stat], [])
+      .reduce((acc, stat, index) => {
+        // Update existing record if possible
         const row = rows.find(
           ({ doc }) => doc.areacode === stat.areacode && doc.date === stat.date
         )
@@ -70,6 +56,16 @@ const upsert = stats =>
           return acc
         }
 
+        // Skip bogus upates
+        const lastEntry = rows.findLast(({ doc }) =>
+          doc.areacode === stat.areacode
+        )
+
+        if (lastEntry.infected === stat.infected) {
+          return acc
+        }
+
+        // Insert new record
         return [
           ...acc,
           {
