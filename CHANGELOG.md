@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.25.0 (2022-10-20)
+
+* feat(crawler): don't filter out bogus updates ([d14b7bd](https://github.com/kkkrist/coronastats/commit/d14b7bd))
+* feat(frontend): filter out bogus data ([3c9c855](https://github.com/kkkrist/coronastats/commit/3c9c855))
+
+
+
+
+
 ## <small>1.24.1 (2022-10-20)</small>
 
 * fix(crawler): use native crawler for areacode "lg" ([c930be0](https://github.com/kkkrist/coronastats/commit/c930be0))
