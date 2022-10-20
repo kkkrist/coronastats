@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.24.0 (2022-10-20)
+
+* feat(frontend): add date range filter ([8bf60df](https://github.com/kkkrist/coronastats/commit/8bf60df))
+* chore: add dprint config ([f1f158a](https://github.com/kkkrist/coronastats/commit/f1f158a))
+
+
+
+
+
 ## 1.23.0 (2022-04-09)
 
 * feat(frontend): add arcgis.com to source info in footer ([c6851da](https://github.com/kkkrist/coronastats/commit/c6851da))

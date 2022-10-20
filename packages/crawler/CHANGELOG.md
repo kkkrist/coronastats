@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.24.0 (2022-10-20)
+
+* feat(crawler): skip bogus updates, clean up ([d5b7270](https://github.com/kkkrist/coronastats/commit/d5b7270))
+* chore: add dprint config ([f1f158a](https://github.com/kkkrist/coronastats/commit/f1f158a))
+
+
+
+
+
 ## 1.23.0 (2022-04-09)
 
 * feat(crawler): pull all data from newly discovered arcgis.com api ([b7df3a3](https://github.com/kkkrist/coronastats/commit/b7df3a3))
