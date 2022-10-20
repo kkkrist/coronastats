@@ -33,7 +33,10 @@ const replication = db.replicate.from(
 )
 
 const getDocs = (docs, { areacode, dateFrom, dateTo, forecast }) => {
-  docs = docs.filter(d => !d.forecast && d.areacode === areacode)
+  docs = docs.filter(d => !d.forecast && d.areacode === areacode).reduce(
+    (acc, d, i, arr) => d.infected === arr[i + 1]?.infected ? acc : [...acc, d],
+    []
+  )
 
   if (dateFrom) {
     const date = new Date(dateFrom)
