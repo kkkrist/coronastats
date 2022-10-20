@@ -1,16 +1,16 @@
 import PouchDB from 'pouchdb'
 import React, { useCallback, useEffect, useReducer } from 'react'
+import { version } from '../package.json'
 import IconChart from './components/IconChart'
 import IconTable from './components/IconTable'
 import LineChart from './components/LineChart'
 import Loading from './components/Loading'
 import Table from './components/Table'
 import areacodes from './data/areacodes.json'
-import { formatNum } from './utils/display'
-import { addIncidence, addPredictions } from './utils/math'
-import { version } from '../package.json'
 import { register as registerServiceWorker } from './service-worker'
 import './styles.css'
+import { formatNum } from './utils/display'
+import { addIncidence, addPredictions } from './utils/math'
 
 const locations = {
   fl: 'Flensburg',
@@ -32,8 +32,19 @@ const replication = db.replicate.from(
   { live: true, retry: true }
 )
 
-const getDocs = (docs, areacode, forecast) => {
+const getDocs = (docs, { areacode, dateFrom, dateTo, forecast }) => {
   docs = docs.filter(d => !d.forecast && d.areacode === areacode)
+
+  if (dateFrom) {
+    const date = new Date(dateFrom)
+    docs = docs.filter(d => new Date(d.date) > date)
+  }
+
+  if (dateTo) {
+    const date = new Date(new Date(dateTo).getTime() + 24 * 60 * 60 * 1000)
+    docs = docs.filter(d => new Date(d.date) < date)
+  }
+
   return forecast ? addPredictions(docs) : docs
 }
 
@@ -52,10 +63,9 @@ const reducer = (state, { type, ...values }) => {
     case 'ADD_NOTIFICATION':
       return {
         ...state,
-        notifications:
-          window.innerWidth >= 576
-            ? [...state.notifications, values.notification]
-            : [values.notification, ...state.notifications]
+        notifications: window.innerWidth >= 576
+          ? [...state.notifications, values.notification]
+          : [values.notification, ...state.notifications]
       }
 
     case 'REMOVE_NOTIFICATION':
@@ -70,7 +80,12 @@ const reducer = (state, { type, ...values }) => {
       const nextState = {
         ...state,
         areacode: values.areacode,
-        docs: getDocs(state.docs, values.areacode, state.forecast)
+        docs: getDocs(state.docs, {
+          areacode: values.areacode,
+          dateFrom: state.dateFrom,
+          dateTo: state.dateTo,
+          forecast: state.forecast
+        })
       }
 
       return {
@@ -82,7 +97,12 @@ const reducer = (state, { type, ...values }) => {
     case 'SET_DOCS': {
       const nextState = {
         ...state,
-        docs: getDocs(values.docs, state.areacode, state.forecast)
+        docs: getDocs(values.docs, {
+          areacode: state.areacode,
+          dateFrom: state.dateFrom,
+          dateTo: state.dateTo,
+          forecast: state.forecast
+        })
       }
 
       return {
@@ -94,7 +114,12 @@ const reducer = (state, { type, ...values }) => {
     case 'SET_FORECAST':
       return {
         ...state,
-        docs: getDocs(state.docs, state.areacode, values.forecast),
+        docs: getDocs(state.docs, {
+          areacode: state.areacode,
+          dateFrom: state.dateFrom,
+          dateTo: state.dateTo,
+          forecast: values.forecast
+        }),
         forecast: values.forecast
       }
 
@@ -110,14 +135,14 @@ const reducer = (state, { type, ...values }) => {
 }
 
 const App = () => {
+  const params = new URLSearchParams(window.location.search)
+
   const [state, dispatch] = useReducer(reducer, {
-    areacode:
-      new URLSearchParams(window.location.search).get('areacode') ||
-      localStorage.areacode ||
-      'fl',
+    areacode: params.get('areacode') || localStorage.areacode || 'fl',
+    dateFrom: params.get('dateFrom') || localStorage.dateFrom || '',
+    dateTo: params.get('dateTo') || localStorage.dateTo || '',
     docs: [],
-    forecast:
-      new URLSearchParams(window.location.search).get('forecast') === 'true' ||
+    forecast: params.get('forecast') === 'true' ||
       localStorage.forecast === 'true' ||
       false,
     installEvent: undefined,
@@ -125,14 +150,25 @@ const App = () => {
     lastModified: undefined,
     notifications: [],
     sharebutton: false,
-    tableview:
-      new URLSearchParams(window.location.search).get('tableview') === 'true' ||
+    tableview: params.get('tableview') === 'true' ||
       localStorage.tableview === 'true' ||
       false
   })
 
-  const handlePopstate = ({ state: { areacode, forecast, tableview } }) =>
-    dispatch({ type: 'SET_AREACODE', areacode, forecast, tableview })
+  const handleDaterange = ({ target: { name, value } }) =>
+    dispatch({ type: 'SET_VALUES', [name]: value })
+
+  const handlePopstate = (
+    { state: { areacode, dateFrom, dateTo, forecast, tableview } }
+  ) =>
+    dispatch({
+      type: 'SET_AREACODE',
+      areacode,
+      dateFrom,
+      dateTo,
+      forecast,
+      tableview
+    })
 
   const removeNotification = useCallback(id => {
     const el = document.querySelector(`div[data-id="${id}"]`)
@@ -202,8 +238,7 @@ const App = () => {
         'Es besteht keine Internetverbindung. Die App befindet sich im Offline-Modus.',
         'warning',
         'offline'
-      )
-    )
+      ))
   }, [addNotification, removeNotification])
 
   useEffect(() => {
@@ -222,11 +257,11 @@ const App = () => {
       addNotification(
         `Konnte nicht auf Datenbank zugreifen: ${error.message}`,
         'warning'
-      )
-    )
+      ))
 
-    replication.on('error', error =>
-      addNotification(`Datenbankfehler: ${error.message}`, 'danger')
+    replication.on(
+      'error',
+      error => addNotification(`Datenbankfehler: ${error.message}`, 'danger')
     )
   }, [addNotification, removeNotification, state.areacode])
 
@@ -256,7 +291,13 @@ const App = () => {
         }
       }
     )
-  }, [addNotification, state.areacode, state.lastChange])
+  }, [
+    addNotification,
+    state.areacode,
+    state.dateFrom,
+    state.dateTo,
+    state.lastChange
+  ])
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -268,21 +309,43 @@ const App = () => {
     localStorage.forecast = state.forecast
     localStorage.tableview = state.tableview
 
+    const pushState = {
+      areacode: state.areacode,
+      forecast: state.forecast,
+      tableview: state.tableview
+    }
+
+    if (state.dateFrom) {
+      localStorage.dateFrom = state.dateFrom
+      params.set('dateFrom', state.dateFrom)
+      pushState.dateFrom = state.dateFrom
+    } else {
+      localStorage.removeItem('dateFrom')
+      params.delete('dateFrom', state.dateFrom)
+    }
+
+    if (state.dateTo) {
+      localStorage.dateTo = state.dateTo
+      params.set('dateTo', state.dateTo)
+      pushState.dateTo = state.dateTo
+    } else {
+      localStorage.removeItem('dateTo')
+      params.delete('dateTo', state.dateTo)
+    }
+
     if (window.location.search !== '?' + params.toString()) {
-      window.history.pushState(
-        {
-          areacode: state.areacode,
-          forecast: state.forecast,
-          tableview: state.tableview
-        },
-        '',
-        '?' + params.toString()
-      )
+      window.history.pushState(pushState, '', '?' + params.toString())
     }
 
     window.addEventListener('popstate', handlePopstate)
     return () => window.removeEventListener('popstate', handlePopstate)
-  }, [state.areacode, state.forecast, state.tableview])
+  }, [
+    state.areacode,
+    state.dateFrom,
+    state.dateTo,
+    state.forecast,
+    state.tableview
+  ])
 
   useEffect(() => {
     registerServiceWorker(addNotification)
@@ -308,6 +371,8 @@ const App = () => {
 
   const {
     areacode,
+    dateFrom,
+    dateTo,
     docs,
     forecast,
     lastModified,
@@ -318,12 +383,12 @@ const App = () => {
 
   return (
     <div id='app'>
-      <h1>Zeitverlauf der Corona-Fälle in </h1>
+      <h1>Zeitverlauf der Corona-Fälle in</h1>
 
       <div
         style={{
           fontSize: '2em',
-          margin: '-0.5rem -0.5rem 2rem',
+          margin: '-0.5rem -0.5rem 1rem',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center'
@@ -332,8 +397,7 @@ const App = () => {
         <div style={{ width: 'auto' }}>
           <select
             onChange={({ target: { value } }) =>
-              dispatch({ type: 'SET_AREACODE', areacode: value })
-            }
+              dispatch({ type: 'SET_AREACODE', areacode: value })}
             style={{ margin: '0.5rem', width: 'calc(100% - 1.5rem)' }}
             value={areacode}
           >
@@ -349,32 +413,47 @@ const App = () => {
           <button
             className='selectbutton'
             onClick={() =>
-              dispatch({ type: 'SET_VALUES', tableview: !tableview })
-            }
+              dispatch({ type: 'SET_VALUES', tableview: !tableview })}
             style={{ margin: '0.5rem' }}
             type='button'
           >
-            {tableview ? (
-              <IconTable width='1rem' />
-            ) : (
-              <IconChart width='1rem' />
-            )}
+            {tableview
+              ? <IconTable width='1rem' />
+              : <IconChart width='1rem' />}
           </button>
         </div>
       </div>
 
+      <div className='daterange'>
+        <input
+          max={dateTo}
+          name='dateFrom'
+          onChange={handleDaterange}
+          type='date'
+          value={dateFrom}
+        />
+        <div>–</div>
+        <input
+          min={dateFrom}
+          name='dateTo'
+          onChange={handleDaterange}
+          type='date'
+          value={dateTo}
+        />
+      </div>
+
       <div id='container'>
-        {docs.length === 0 ? (
-          <Loading />
-        ) : tableview ? (
-          <Table docs={docs} />
-        ) : (
-          <LineChart
-            areacode={areacode}
-            className={forecast ? 'with-forecast' : undefined}
-            docs={docs}
-          />
-        )}
+        {docs.length === 0
+          ? <Loading />
+          : tableview
+          ? <Table docs={docs} />
+          : (
+            <LineChart
+              areacode={areacode}
+              className={forecast ? 'with-forecast' : undefined}
+              docs={docs}
+            />
+          )}
       </div>
 
       <footer>
@@ -383,8 +462,7 @@ const App = () => {
             <input
               checked={forecast}
               onChange={({ target: { checked } }) =>
-                dispatch({ type: 'SET_FORECAST', forecast: checked })
-              }
+                dispatch({ type: 'SET_FORECAST', forecast: checked })}
               type='checkbox'
             />
             Trend anzeigen
@@ -395,8 +473,8 @@ const App = () => {
           Datenquelle:{' '}
           <a href={areacodes[areacode].sourceUri}>
             {areacodes[areacode].sourceLabel}
-          </a> / arcgis.com{' '}
-          {lastModified
+          </a>{' '}
+          / arcgis.com {lastModified
             ? ` (Letztes Update: ${new Date(lastModified).toLocaleString()})`
             : ''}
         </p>
@@ -412,7 +490,10 @@ const App = () => {
 
         <p>
           {(state.installEvent || sharebutton) && (
-            <button className='sharebutton' onClick={() => handleInstall()}>
+            <button
+              className='sharebutton'
+              onClick={() => handleInstall()}
+            >
               Installieren
             </button>
           )}
