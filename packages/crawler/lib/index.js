@@ -56,15 +56,6 @@ const upsert = stats =>
           return acc
         }
 
-        // Skip bogus upates
-        const lastEntry = rows.findLast(({ doc }) =>
-          doc.areacode === stat.areacode
-        )
-
-        if (lastEntry.infected === stat.infected) {
-          return acc
-        }
-
         // Insert new record
         return [
           ...acc,
